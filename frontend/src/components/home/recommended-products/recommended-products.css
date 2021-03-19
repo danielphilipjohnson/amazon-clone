@@ -1,0 +1,47 @@
+.recommended__items__container {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.recommended__items__row {
+  padding: 1rem 1rem;
+  background-color: #fff;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.recommended__items-title {
+  color: #0f1111;
+  font-size: 1.35rem;
+  font-weight: 400;
+  margin-bottom: 0.95rem;
+}
+
+.recommended__items-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.recommended__items-product {
+  width: 100%;
+  height: auto;
+  max-width: 220px;
+  max-height: 200px;
+  vertical-align: middle;
+  margin-bottom: 2rem;
+  object-fit: contain;
+}
+
+@media only screen and (min-width: 500px) {
+  .recommended__items-product {
+    margin-right: 0.5rem;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .recommended__items-product {
+    width: auto;
+    margin-right: 0.5rem;
+    max-width: 270px;
+  }
+}
