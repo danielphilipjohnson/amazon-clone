@@ -75,3 +75,6 @@
 .header__link-alt {
   color: #000;
 }
+.header__link-alt span {
+  padding-bottom: 1.5rem;
+}

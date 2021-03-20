@@ -42,7 +42,6 @@ function Login() {
         <img className="login__logo" src={AmazonLogo} />
         <span>.fake</span>
       </Link>
-
       <div className="login__container">
         <h1>Sign-in</h1>
 
