@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import AltFooter from "../sitewide/alt-footer/index";
+
 import "./login.css";
 import { Link, useHistory } from "react-router-dom";
 import { auth } from "../../adapters/firebase";
@@ -79,6 +81,9 @@ function Login() {
           Create your Amazon Account
         </button>
       </div>
+
+      <AltFooter />
+
     </div>
   );
 }
