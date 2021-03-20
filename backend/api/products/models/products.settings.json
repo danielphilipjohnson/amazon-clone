@@ -1,0 +1,65 @@
+{
+  "kind": "collectionType",
+  "collectionName": "products",
+  "info": {
+    "name": "products",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "published": {
+      "type": "date"
+    },
+    "delivery": {
+      "type": "boolean"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "Books",
+        "Films",
+        "Music",
+        "Electronics",
+        "Computers",
+        "Home",
+        "Garden",
+        "Pets",
+        "Toys",
+        "Children",
+        "Baby",
+        "Clothes",
+        "Shoes",
+        "Jewellery",
+        "Accessories"
+      ]
+    },
+    "questions": {
+      "collection": "questions",
+      "via": "product"
+    }
+  }
+}

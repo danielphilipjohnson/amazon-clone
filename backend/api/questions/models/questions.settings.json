@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "questions",
+  "info": {
+    "name": "questions"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Question": {
+      "type": "string"
+    },
+    "Answer": {
+      "type": "richtext"
+    },
+    "votes": {
+      "type": "integer"
+    },
+    "product": {
+      "via": "questions",
+      "model": "products"
+    }
+  }
+}
