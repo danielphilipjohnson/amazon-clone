@@ -8,7 +8,32 @@ import SubTotal from "./subtotal";
 import { useStateValue } from "../../StateProvider";
 
 function Checkout() {
+  const [{ basket, user }, dispatch] = useStateValue();
   const history = useHistory();
+
+  const CheckoutSubtotal = () => {
+    if (user?.email && basket.length > 0) {
+      return (
+        <div className="checkout__subtotal">
+          <>
+            <SubTotal />
+            <small className="subtotal__gift">
+              <input type="checkbox" />
+              This order contains a gift
+            </small>
+            <button
+              className="btn-amazon btn-amazon-active f-width"
+              onClick={(e) => history.push("/payment")}
+            >
+              Proceed to Checkout
+            </button>
+          </>
+        </div>
+      );
+    } else {
+      return null;
+    }
+  };
 
   return (
     <div className="checkout">
@@ -20,19 +45,7 @@ function Checkout() {
 
         <Cart />
       </div>
-      <div className="checkout__subtotal">
-        <SubTotal />
-        <small className="subtotal__gift">
-          <input type="checkbox" />
-          This order contains a gift
-        </small>
-        <button
-          className="btn-amazon btn-amazon-active f-width"
-          onClick={(e) => history.push("/payment")}
-        >
-          Proceed to Checkout
-        </button>
-      </div>
+      <CheckoutSubtotal />
     </div>
   );
 }
