@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./checkout.css";
 import checkoutImage from "../../images/checkout/shopping.svg";
 import Subtotal from "../subtotal";
@@ -35,16 +36,17 @@ function Checkout() {
                 <h2 className="empty-cart__title">
                   Your shopping basket is empty
                 </h2>
-                <a href="/" className="alink-normal">
+                <a href="/" className="alink-normal"></a>
+                <Link to="/" className="alink-normal">
                   Shop today's deals
-                </a>
+                </Link>
                 <div className="button-group">
-                  <a href="/" className="btn-amazon btn-amazon-active">
+                  <Link to="/login" className="btn-amazon btn-amazon-active">
                     Sign in to your account
-                  </a>
-                  <a href="/" className="btn-amazon">
+                  </Link>
+                  <Link to="/login" className="btn-amazon ">
                     Sign up now
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
