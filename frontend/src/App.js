@@ -62,6 +62,7 @@ function App() {
             <Subheader />
             <CheckoutSubNav />
             <Checkout />
+            <Footer />
           </Route>
           <Route path="/payment">
             <Header />
