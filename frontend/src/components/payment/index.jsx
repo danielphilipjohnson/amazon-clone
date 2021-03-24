@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./payment.css";
+import AmazonLogo from "../../images/amazon-logo-black.png";
 import { useStateValue } from "../../StateProvider";
 import CheckoutProduct from "../checkout/product";
 import { Link, useHistory } from "react-router-dom";
@@ -51,13 +52,14 @@ function Payment() {
         }).catch((thrown) => {
           console.log(thrown);
         });
+        console.log(response.data.clientSecret);
         setClientSecret(response.data.clientSecret);
       } else {
         console.log("basket is empty");
       }
     };
 
-    getClientSecret();
+    // getClientSecret();
   }, [basket]);
 
   console.log("THE SECRET IS >>>", clientSecret);
@@ -110,74 +112,172 @@ function Payment() {
 
   return (
     <div className="payment">
-      <div className="payment__container">
+      <div className="payment__header">
+        <img src={AmazonLogo} alt="Logo" />
         <h1>
           Checkout (<Link to="/checkout">{basket?.length} items</Link>)
         </h1>
-        {/* Payment section - delivery address */}
-        <div className="payment__section">
-          <div className="payment__title">
-            <h3>Delivery Address</h3>
+      </div>
+      <div className="payment__container">
+        <div className="payment-card">
+          {/* Payment section - delivery address */}
+          <div className="payment__section">
+            <ol className="payment__details">
+              <li className="payment__details-list">
+                <div className="payment__section">
+                  <div className="payment__title">
+                    <h3>Delivery Address</h3>
+                  </div>
+                  <div className="payment__address">
+                    <p>{user?.email}</p>
+                    <p>123 React Lane</p>
+                    <p>Los Angeles, CA</p>
+                  </div>
+                </div>
+              </li>
+              <li className="payment__details-list">
+                {/* Payment section - Payment method */}
+                <div className="payment__section">
+                  <div className="payment__title">
+                    <h3>Payment Method</h3>
+                  </div>
+                  <div className="payment__details">
+                    {/* Stripe magic will go */}
+
+                    <form onSubmit={handleSubmit}>
+                      <CardElement onChange={handleChange} />
+
+                      {/* Errors */}
+                      {error && <div>{error}</div>}
+                    </form>
+                  </div>
+                </div>
+              </li>
+              <li className="payment__details-list">
+                {/* Payment section - Review Items */}
+                <div className="payment__section">
+                  <div className="payment__title">
+                    <h3>Review items and delivery</h3>
+                  </div>
+                  <div className="payment__items">
+                    {basket.map((item) => (
+                      <CheckoutProduct
+                        id={item.id}
+                        title={item.title}
+                        image={item.image}
+                        price={item.price}
+                        rating={item.rating}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </li>
+            </ol>
           </div>
-          <div className="payment__address">
-            <p>{user?.email}</p>
-            <p>123 React Lane</p>
-            <p>Los Angeles, CA</p>
-          </div>
+
+          {/* <div className="payment__priceContainer">
+            <CurrencyFormat
+              renderText={(value) => <h3>Order Total: {value}</h3>}
+              decimalScale={2}
+              value={getBasketTotal(basket)}
+              displayType={"text"}
+              thousandSeparator={true}
+              prefix={"$"}
+            />
+
+            {miniumPurchase ? (
+              <button disabled={processing || disabled || succeeded} empty>
+                <span>{processing ? <p>Processing</p> : "Buy Now"} </span>
+
+                {console.log(miniumPurchase)}
+              </button>
+            ) : (
+              "basket empty"
+            )}
+          </div> */}
         </div>
-        dispatch
-        {/* Payment section - Review Items */}
-        <div className="payment__section">
-          <div className="payment__title">
-            <h3>Review items and delivery</h3>
-          </div>
-          <div className="payment__items">
-            {basket.map((item) => (
-              <CheckoutProduct
-                id={item.id}
-                title={item.title}
-                image={item.image}
-                price={item.price}
-                rating={item.rating}
+
+        <div className="payment__aside">
+          <div className="payment__aside__body">
+            <button className="btn-amazon btn-amazon-active f-width">
+              Buy now
+            </button>
+            <p className="payment__notice border-bottom">
+              <span>By placing your order you agree to Amazon's </span>
+              <a href="/" className="alink-normal">
+                Conditions of Use & Sale.
+              </a>
+              <span> Please see our</span>
+              <a href="/" className="alink-normal">
+                Privacy Notice
+              </a>
+              <span> , our</span>
+              <a href="/" className="alink-normal">
+                Cookies Notice
+              </a>
+              <span> and our </span>
+              <a href="/" className="alink-normal">
+                Interest-Based Ads Notice
+              </a>
+              <span> . </span>
+            </p>
+
+            <h3 className="payment__heading">Order Summary</h3>
+
+            <ul className="payment__aside-list border-bottom">
+              <li>
+                <span>Items:</span>{" "}
+                <span>
+                  <CurrencyFormat
+                    renderText={(value) => <h3> {value}</h3>}
+                    decimalScale={2}
+                    value={getBasketTotal(basket)}
+                    displayType={"text"}
+                    thousandSeparator={true}
+                    prefix={"$"}
+                  />
+                  {/* {miniumPurchase ? (
+                    <button
+                      disabled={processing || disabled || succeeded}
+                      empty
+                    >
+                      <span>{processing ? <p>Processing</p> : "Buy Now"} </span>
+
+                      {console.log(miniumPurchase)}
+                    </button>
+                  ) : (
+                    "basket empty"
+                  )} */}
+                </span>
+              </li>
+              <li>
+                <span>Postage & Packing:</span> <span>£0.00</span>
+              </li>
+            </ul>
+            <h3 className="payment__heading color-total">
+              <span>Order Total:</span>
+              <CurrencyFormat
+                renderText={(value) => <span> {value}</span>}
+                decimalScale={2}
+                value={getBasketTotal(basket)}
+                displayType={"text"}
+                thousandSeparator={true}
+                prefix={"$"}
               />
-            ))}
+            </h3>
+            <p>
+              Order totals include VAT.
+              <a href="/" className="alink-normal d-inline">
+                See details.
+              </a>
+            </p>
           </div>
-        </div>
-        {/* Payment section - Payment method */}
-        <div className="payment__section">
-          <div className="payment__title">
-            <h3>Payment Method</h3>
-          </div>
-          <div className="payment__details">
-            {/* Stripe magic will go */}
 
-            <form onSubmit={handleSubmit}>
-              <CardElement onChange={handleChange} />
-
-              <div className="payment__priceContainer">
-                <CurrencyFormat
-                  renderText={(value) => <h3>Order Total: {value}</h3>}
-                  decimalScale={2}
-                  value={getBasketTotal(basket)}
-                  displayType={"text"}
-                  thousandSeparator={true}
-                  prefix={"$"}
-                />
-
-                {miniumPurchase ? (
-                  <button disabled={processing || disabled || succeeded} empty>
-                    <span>{processing ? <p>Processing</p> : "Buy Now"} </span>
-
-                    {console.log(miniumPurchase)}
-                  </button>
-                ) : (
-                  "basket empty"
-                )}
-              </div>
-
-              {/* Errors */}
-              {error && <div>{error}</div>}
-            </form>
+          <div className="payment_aside-bottom">
+            <p>
+              Amazon Prime Delivery has been applied to the eligible items in
+              your order.
+            </p>
           </div>
         </div>
       </div>

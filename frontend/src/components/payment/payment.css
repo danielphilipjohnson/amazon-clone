@@ -1,32 +1,58 @@
 .payment {
   background-color: white;
+  height: 100vh;
 }
-
-.payment__container > h1 {
-  text-align: center;
-  padding: 10px;
-  font-weight: 400;
+.payment__header {
   background-color: rgb(234, 237, 237);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  padding: 1rem;
+}
+.payment__header h1 {
+  font-weight: 400;
+
   border-bottom: 1px solid lightgray;
 }
 
-.payment__container > h1 a {
-  text-decoration: none;
+.payment__container {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.payment__details {
+  width: 100%;
+}
+.payment__details-list {
+  border-bottom: 1px solid lightgray;
+}
+
+.payment__address {
+  font-size: 0.95rem;
+  color: #333;
+}
+.payment__address p {
+  margin-bottom: 0.5rem;
+}
+.payment__container {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
 }
 
 .payment__section {
   display: flex;
   padding: 20px;
-  margin: 0 20px;
-  border-bottom: 1px solid lightgray;
 }
 
 .payment__title {
   flex: 0.2;
 }
 
-.payment__address, .payment__items, .payment__details {
-  flex: 0.8;
+.payment__address,
+.payment__items,
+.payment__details {
+  /* flex: 0.8; */
 }
 
 .payment__details > form {
@@ -36,7 +62,6 @@
 .payment__details > h3 {
   padding-bottom: 20px;
 }
-
 
 .payment__details > form > div > button {
   background: #f0c14b;
@@ -48,4 +73,70 @@
   margin-top: 10px;
   border-color: #a88734 #9c7e31 #846a29;
   color: #111;
+}
+
+.payment__aside {
+  margin: 1rem;
+
+  border-top: 1px solid #efefef;
+  border-left: 1px solid #efefef;
+  border-right: 1px solid #efefef;
+  /* border: 1px solid #efefef; */
+  border-radius: 4px;
+  height: max-content;
+}
+.payment__aside__body,
+.payment_aside-bottom {
+  padding: 1rem;
+}
+
+.payment__aside button {
+  margin-bottom: 1rem;
+}
+.payment__aside__body > p,
+.payment_aside-bottom > p {
+  padding-bottom: 1rem;
+  font-size: 0.75rem;
+  /* margin-bottom: 1rem; */
+  /* border-bottom: 1px solid lightgray; */
+}
+.payment__notice {
+  text-align: center;
+  font-size: 0.75rem;
+}
+.payment__notice a {
+  display: inline;
+}
+
+.payment__heading {
+  margin-bottom: 0.55rem;
+  display: flex;
+  justify-content: space-between;
+}
+.payment__aside-list {
+  list-style: none;
+  padding: 0;
+}
+.payment__aside-list li {
+  margin-bottom: 0.5rem;
+  font-size: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+}
+.color-total {
+  color: #b12704;
+}
+
+.d-inline {
+  display: inline;
+}
+
+.payment_aside-bottom {
+  background-color: #f0f2f2;
+  border-radius: 0 0 8px 8px;
+  border: 1px #d5d9d9 solid;
+}
+
+.border-bottom {
+  border-bottom: 1px #d5d9d9 solid;
 }
