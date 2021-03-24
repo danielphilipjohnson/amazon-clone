@@ -7,7 +7,7 @@ import { useStateValue } from "../../../StateProvider";
 import "./cart.css";
 
 function Cart() {
-  const [{ basket, user }] = useStateValue();
+  let [{ basket, user }] = useStateValue();
 
   /* if a user has an email he is logged in */
   if (user?.email) {

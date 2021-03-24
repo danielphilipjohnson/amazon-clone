@@ -1,5 +1,7 @@
+import { getLocalStorageState, setLocalStorageState } from "../storage/local";
+
 export const initialState = {
-  basket: [],
+  basket: getLocalStorageState("basket"),
   subtotal: 0,
 };
 
@@ -10,11 +12,15 @@ export const getBasketTotal = (basket) =>
 const reducer = (state, action) => {
   switch (action.type) {
     case "ADD_TO_BASKET":
+      setLocalStorageState("basket", [...state.basket, action.item]);
+
       return {
         ...state,
         basket: [...state.basket, action.item],
       };
     case "EMPTY_BASKET":
+      setLocalStorageState("basket", []);
+
       return {
         ...state,
         basket: [],
@@ -32,6 +38,7 @@ const reducer = (state, action) => {
           `Cant remove product (id: ${action.id}) as its not in basket!`
         );
       }
+      setLocalStorageState("basket", newBasket);
       return {
         ...state,
         basket: newBasket,

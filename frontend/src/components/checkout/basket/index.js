@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useStateValue } from "../../../StateProvider";
 import CheckoutProduct from "../product";
 import Subtotal from "../subtotal";
+
 function Basket() {
-  const [{ basket }] = useStateValue();
+  console.log("in basket");
+  let [{ basket }] = useStateValue();
+
   return (
     <div className="cart__signedin">
       <div className="cart__heading">
