@@ -35,7 +35,7 @@ function Cart() {
           <Link to="/" className="alink-normal">
             Shop today's deals
           </Link>
-          <div className="button-group">
+          <div className="flex">
             <Link to="/login" className="btn-amazon btn-amazon-active">
               Sign in to your account
             </Link>

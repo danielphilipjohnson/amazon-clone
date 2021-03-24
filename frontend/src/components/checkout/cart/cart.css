@@ -3,18 +3,7 @@
   display: grid;
   width: 100%;
 }
-.empty-cart__signedin {
-  background-color: #fff;
-  padding: 1rem;
-}
-.empty-cart__signedin-title {
-  margin-bottom: 1rem;
-  font-size: 1.75rem;
-  font-weight: 400;
-}
-.empty-cart__signedin-link {
-  display: inline;
-}
+
 @media only screen and (min-width: 768px) {
   .empty-cart {
     grid-template-columns: 1fr 2fr;
@@ -52,6 +41,22 @@
 .empty-cart__right {
   padding: 2rem 1rem;
 }
+.empty-cart__title {
+  margin-bottom: 0.5rem;
+}
+
+.empty-cart__signedin {
+  background-color: #fff;
+  padding: 1rem;
+}
+.empty-cart__signedin-title {
+  margin-bottom: 1rem;
+  font-size: 1.75rem;
+  font-weight: 400;
+}
+.empty-cart__signedin-link {
+  display: inline;
+}
 
 .btn-amazon {
   display: block;
@@ -77,10 +82,4 @@
 .btn-amazon-active:hover {
   background-color: #f7ca00;
   transition: background-color 0.5s;
-}
-.button-group {
-  display: flex;
-}
-.empty-cart__title {
-  margin-bottom: 0.5rem;
 }
