@@ -2,26 +2,45 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import { useStateValue } from "../../../StateProvider";
-
+import CheckoutProduct from "../product";
 import "./cart.css";
 import checkoutImage from "../../../images/checkout/shopping.svg";
 
 function Cart() {
-  const [{ user }] = useStateValue();
+  const [{ basket, user }] = useStateValue();
   if (user?.email) {
-    return (
-      <div className="empty-cart__signedin">
-        <h2 className="empty-cart__signedin-title">
-          Your Amazon Basket is empty.
-        </h2>
-        <p>
-          Check your Saved for later items below or {/* */}
-          <Link to="/login" className="alink-normal empty-cart__signedin-link">
-            continue shopping.
-          </Link>
-        </p>
-      </div>
-    );
+    if (basket.length > 0) {
+      return (
+        <div className="empty-cart__signedin">
+          {basket.map((item) => (
+            <CheckoutProduct
+              key={item.id}
+              title={item.title}
+              image={item.image}
+              price={item.price}
+              rating={item.rating}
+            />
+          ))}
+        </div>
+      );
+    } else {
+      return (
+        <div className="empty-cart__signedin">
+          <h2 className="empty-cart__signedin-title">
+            Your Amazon Basket is empty.
+          </h2>
+          <p>
+            Check your Saved for later items below or {/* */}
+            <Link
+              to="/login"
+              className="alink-normal empty-cart__signedin-link"
+            >
+              continue shopping.
+            </Link>
+          </p>
+        </div>
+      );
+    }
   } else {
     return (
       <div className="empty-cart">

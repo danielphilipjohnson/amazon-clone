@@ -17,7 +17,7 @@ function Checkout() {
         />
         <div>
           <Cart />
-          {basket.map((item) => (
+          {/* {basket.map((item) => (
             <CheckoutProduct
               key={item.id}
               title={item.title}
@@ -25,7 +25,7 @@ function Checkout() {
               price={item.price}
               rating={item.rating}
             />
-          ))}
+          ))} */}
         </div>
       </div>
       <div className="checkout__right">{/* <Subtotal /> */}</div>
