@@ -18,7 +18,7 @@ function Cart() {
       /* if there is no items in the basket display to user the basket is empty */
       return (
         <div className="cart__signedin">
-          <h2 className="cart__signedin-title">Your Amazon Basket is empty.</h2>
+          <h2 className="cart__title">Your Amazon Basket is empty.</h2>
           <p>
             Check your Saved for later items below or {/* */}
             <Link to="/login" className="alink-normal cart__signedin-link">

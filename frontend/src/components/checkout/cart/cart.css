@@ -1,52 +1,4 @@
-.empty-cart {
-  background-color: #fff;
-  display: grid;
-  width: 100%;
-  margin-bottom: 1rem;
-}
-
-@media only screen and (min-width: 768px) {
-  .empty-cart {
-    grid-template-columns: 1fr 2fr;
-  }
-}
-
-.empty-cart__image {
-  width: 350px;
-  height: 250px;
-
-  -webkit-clip-path: polygon(
-    28% 0,
-    82% 5%,
-    95% 31%,
-    96% 70%,
-    87% 95%,
-    15% 96%,
-    6% 69%,
-    6% 33%
-  );
-  clip-path: polygon(
-    28% 0,
-    82% 5%,
-    95% 31%,
-    96% 70%,
-    87% 95%,
-    15% 96%,
-    6% 69%,
-    6% 33%
-  );
-
-  margin: 2rem;
-}
-
-.empty-cart__right {
-  padding: 2rem 1rem;
-}
-.empty-cart__title {
-  margin-bottom: 0.5rem;
-}
-
-.empty-cart__heading {
+.cart__heading {
   border-bottom: 1px solid #ddd;
 }
 
@@ -54,7 +6,7 @@
   background-color: #fff;
   padding: 2rem 1.25rem;
 }
-.cart__signedin-title {
+.cart__title {
   margin-bottom: 0.75rem;
   font-size: 1.75rem;
   font-weight: 400;

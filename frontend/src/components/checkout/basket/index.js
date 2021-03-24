@@ -5,8 +5,8 @@ function Basket() {
   const [{ basket }] = useStateValue();
   return (
     <div className="cart__signedin">
-      <div className="empty-cart__heading">
-        <h2 className="cart__signedin-title">Shopping Basket</h2>
+      <div className="cart__heading">
+        <h2 className="cart__title">Shopping Basket</h2>
         <p className="alink-normal"> Deselect all items</p>
       </div>
 

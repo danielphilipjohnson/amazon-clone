@@ -1,21 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import checkoutImage from "../../../images/checkout/shopping.svg";
+import "./cart-logged-out.css";
+
 function RemindLogin({ title }) {
   return (
-    <div className="empty-cart">
+    <div className="loggedout-cart">
       <div className="left">
         <a href="https://www.freevector.com/grocery-shopping-girl-illustration-vector-29602">
           <img
-            className="empty-cart__image"
+            className="loggedout-cart__image"
             src={checkoutImage}
             alt=" shopping cart"
           />
         </a>
       </div>
 
-      <div className="empty-cart__right">
-        <h2 className="empty-cart__title">{title}</h2>
+      <div className="loggedout-cart__right">
+        <h2 className="loggedout-cart__title">{title}</h2>
         <Link to="/" className="alink-normal">
           Shop today's deals
         </Link>
