@@ -3,14 +3,22 @@
   padding: 20px;
 
   height: max-content;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+@media only screen and (min-width: 768px) {
+  .checkout {
+    grid-template-columns: 4fr 1fr;
+  }
 }
 
 .checkout__ad {
-  width: 90%;
+  width: 100%;
   margin-bottom: 10px;
   padding: 0.5rem;
   border: 2px solid lightblue;
   background-color: #fff;
+  box-sizing: border-box;
 }
 
 .checkout__title {
@@ -22,7 +30,12 @@
 .empty-cart {
   background-color: #fff;
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  width: 100%;
+}
+@media only screen and (min-width: 768px) {
+  .empty-cart {
+    grid-template-columns: 1fr 2fr;
+  }
 }
 
 .empty-cart__image {
@@ -60,14 +73,20 @@
 .btn-amazon {
   display: block;
   background-color: transparent;
+  color: inherit;
+  margin-right: 0.5rem;
   border: 1px solid #efefef;
   border-radius: 4px;
   padding: 0.45rem 0.75rem;
   font-weight: 600;
+  text-decoration: none;
+  text-decoration-color: unset;
 }
 .btn-amazon:hover {
   background-color: rgba(0, 0, 0, 0.09);
   transition: background-color 0.5s;
+  text-decoration: none;
+  cursor: pointer;
 }
 .btn-amazon-active {
   background-color: #ffd814;
@@ -75,4 +94,10 @@
 .btn-amazon-active:hover {
   background-color: #f7ca00;
   transition: background-color 0.5s;
+}
+.button-group {
+  display: flex;
+}
+.empty-cart__title {
+  margin-bottom: 0.5rem;
 }

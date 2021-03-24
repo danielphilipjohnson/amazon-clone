@@ -32,13 +32,20 @@ function Checkout() {
               </div>
 
               <div className="empty-cart__right">
-                <h2>Your shopping basket is empty</h2>
-                <a href="/">Shop today's deals</a>
-
-                <button className="btn-amazon btn-amazon-active">
-                  Sign in to your account
-                </button>
-                <button className="btn-amazon">Sign up now</button>
+                <h2 className="empty-cart__title">
+                  Your shopping basket is empty
+                </h2>
+                <a href="/" className="alink-normal">
+                  Shop today's deals
+                </a>
+                <div className="button-group">
+                  <a href="/" className="btn-amazon btn-amazon-active">
+                    Sign in to your account
+                  </a>
+                  <a href="/" className="btn-amazon">
+                    Sign up now
+                  </a>
+                </div>
               </div>
             </div>
           )}
