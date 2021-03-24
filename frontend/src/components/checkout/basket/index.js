@@ -1,17 +1,23 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useStateValue } from "../../../StateProvider";
 import CheckoutProduct from "../product";
 import Subtotal from "../subtotal";
 
 function Basket() {
-  console.log("in basket");
-  let [{ basket }] = useStateValue();
+  let [{ basket }, dispatch] = useStateValue();
 
+  const clearBasket = () => {
+    dispatch({
+      type: "EMPTY_BASKET",
+    });
+  };
   return (
     <div className="cart__signedin">
       <div className="cart__heading">
         <h2 className="cart__title">Shopping Basket</h2>
-        <p className="alink-normal"> Deselect all items</p>
+        <p className="alink-normal" onClick={() => clearBasket()}>
+          Deselect all items
+        </p>
       </div>
 
       {basket.map((item) => (

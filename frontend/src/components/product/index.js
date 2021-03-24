@@ -11,6 +11,7 @@ function Product({ id, title, image, price, rating }) {
     dispatch({
       type: "ADD_TO_BASKET",
       item: {
+        id: Date.now(),
         title: title,
         image: image,
         price: price,

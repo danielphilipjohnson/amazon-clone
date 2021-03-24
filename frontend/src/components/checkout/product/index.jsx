@@ -16,7 +16,7 @@ function CheckoutProduct({ id, image, title, price, rating, hideButton }, ref) {
   };
 
   return (
-    <FadeIn>
+    <FadeIn key={id}>
       <div className="checkoutProduct" key={id}>
         <img className="checkoutProduct__image" src={image} />
         <div className="checkoutProduct__info">
@@ -35,7 +35,7 @@ function CheckoutProduct({ id, image, title, price, rating, hideButton }, ref) {
             {Array(rating)
               .fill()
               .map((_, i) => (
-                <p>🌟</p>
+                <p key={i}>🌟</p>
               ))}
           </div>
           {!hideButton && (
