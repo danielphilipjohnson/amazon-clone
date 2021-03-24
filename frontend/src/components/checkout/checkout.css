@@ -1,7 +1,7 @@
 .checkout {
   display: flex;
   padding: 20px;
-  background-color: #fff;
+
   height: max-content;
 }
 
@@ -10,10 +10,69 @@
   margin-bottom: 10px;
   padding: 0.5rem;
   border: 2px solid lightblue;
+  background-color: #fff;
 }
 
 .checkout__title {
   margin-right: 10px;
   padding: 10px;
   border-bottom: 1px solid lightgray;
+}
+
+.empty-cart {
+  background-color: #fff;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.empty-cart__image {
+  width: 350px;
+  height: 250px;
+
+  -webkit-clip-path: polygon(
+    28% 0,
+    82% 5%,
+    95% 31%,
+    96% 70%,
+    87% 95%,
+    15% 96%,
+    6% 69%,
+    6% 33%
+  );
+  clip-path: polygon(
+    28% 0,
+    82% 5%,
+    95% 31%,
+    96% 70%,
+    87% 95%,
+    15% 96%,
+    6% 69%,
+    6% 33%
+  );
+
+  margin: 2rem;
+}
+
+.empty-cart__right {
+  padding: 2rem 1rem;
+}
+
+.btn-amazon {
+  display: block;
+  background-color: transparent;
+  border: 1px solid #efefef;
+  border-radius: 4px;
+  padding: 0.45rem 0.75rem;
+  font-weight: 600;
+}
+.btn-amazon:hover {
+  background-color: rgba(0, 0, 0, 0.09);
+  transition: background-color 0.5s;
+}
+.btn-amazon-active {
+  background-color: #ffd814;
+}
+.btn-amazon-active:hover {
+  background-color: #f7ca00;
+  transition: background-color 0.5s;
 }
