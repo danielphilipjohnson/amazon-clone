@@ -12,6 +12,11 @@ function Cart() {
     if (basket.length > 0) {
       return (
         <div className="empty-cart__signedin">
+          <div className="empty-cart__heading">
+            <h2 className="empty-cart__signedin-title">Shopping Basket</h2>
+            <p className="alink-normal"> Deselect all items</p>
+          </div>
+
           {basket.map((item) => (
             <CheckoutProduct
               key={item.id}

@@ -5,6 +5,9 @@
   padding-bottom: 1rem;
   border-bottom: 1px solid #ddd;
 }
+.empty-cart__heading {
+  border-bottom: 1px solid #ddd;
+}
 
 .checkoutProduct__info {
   padding-left: 20px;
@@ -24,6 +27,7 @@
   background-color: transparent;
   border: 0;
   cursor: pointer;
+  font-size: 0.85rem;
 }
 .seperator {
   font-size: 0.75rem;

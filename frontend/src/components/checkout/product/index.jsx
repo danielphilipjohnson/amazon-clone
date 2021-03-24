@@ -27,7 +27,7 @@ function CheckoutProduct({ id, image, title, price, rating, hideButton }, ref) {
               <strong>{price}</strong>
             </p>
           </div>
-          <p>In stock</p>
+          <p className="color-success">In stock</p>
           <div className="i-con">
             <img src={PrimeLogo} alt="" />
           </div>

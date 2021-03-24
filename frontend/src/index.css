@@ -17,6 +17,11 @@ code {
     monospace;
 }
 
+.color-success {
+  color: #007600;
+  font-size: 0.85rem;
+}
+
 /* normal default links */
 .alink-normal {
   display: block;

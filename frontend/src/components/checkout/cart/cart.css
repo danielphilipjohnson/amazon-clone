@@ -45,12 +45,16 @@
   margin-bottom: 0.5rem;
 }
 
+.empty-cart__heading {
+  border-bottom: 1px solid #ddd;
+}
+
 .empty-cart__signedin {
   background-color: #fff;
-  padding: 1rem;
+  padding: 2rem 1.25rem;
 }
 .empty-cart__signedin-title {
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   font-size: 1.75rem;
   font-weight: 400;
 }
