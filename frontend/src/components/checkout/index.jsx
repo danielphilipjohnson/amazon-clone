@@ -1,14 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "./checkout.css";
-import checkoutImage from "../../images/checkout/shopping.svg";
-import Subtotal from "../subtotal";
+
+import Cart from "./cart";
+
 import { useStateValue } from "../../StateProvider";
 import CheckoutProduct from "./product";
 
 function Checkout() {
-  const [{ basket, user }] = useStateValue();
-
+  const [{ basket }] = useStateValue();
   return (
     <div className="checkout">
       <div className="checkout__left">
@@ -17,37 +16,7 @@ function Checkout() {
           src="https://images-na.ssl-images-amazon.com/images/G/02/UK_CCMP/TM/OCC_Amazon1._CB423493668_.jpg"
         />
         <div>
-          {user || (
-            <div className="empty-cart">
-              <div className="left">
-                <a href="https://www.freevector.com/grocery-shopping-girl-illustration-vector-29602">
-                  <img
-                    className="empty-cart__image"
-                    src={checkoutImage}
-                    alt=""
-                  />
-                </a>
-              </div>
-
-              <div className="empty-cart__right">
-                <h2 className="empty-cart__title">
-                  Your shopping basket is empty
-                </h2>
-                <a href="/" className="alink-normal"></a>
-                <Link to="/" className="alink-normal">
-                  Shop today's deals
-                </Link>
-                <div className="button-group">
-                  <Link to="/login" className="btn-amazon btn-amazon-active">
-                    Sign in to your account
-                  </Link>
-                  <Link to="/login" className="btn-amazon ">
-                    Sign up now
-                  </Link>
-                </div>
-              </div>
-            </div>
-          )}
+          <Cart />
           {basket.map((item) => (
             <CheckoutProduct
               key={item.id}
@@ -59,9 +28,7 @@ function Checkout() {
           ))}
         </div>
       </div>
-      <div className="checkout__right">
-        <Subtotal />
-      </div>
+      <div className="checkout__right">{/* <Subtotal /> */}</div>
     </div>
   );
 }
