@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
+import { useStateValue } from "../../../StateProvider";
+
 import "./cart.css";
 import checkoutImage from "../../../images/checkout/shopping.svg";
-import { useStateValue } from "../../../StateProvider";
 
 function Cart() {
   const [{ user }] = useStateValue();
@@ -31,7 +33,6 @@ function Cart() {
 
         <div className="empty-cart__right">
           <h2 className="empty-cart__title">Your shopping basket is empty</h2>
-          <a href="/" className="alink-normal"></a>
           <Link to="/" className="alink-normal">
             Shop today's deals
           </Link>
