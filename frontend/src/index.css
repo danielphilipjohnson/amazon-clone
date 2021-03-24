@@ -33,3 +33,31 @@ code {
 .flex {
   display: flex;
 }
+
+/* btns */
+
+.btn-amazon {
+  display: block;
+  background-color: transparent;
+  color: inherit;
+  margin-right: 0.5rem;
+  border: 1px solid #efefef;
+  border-radius: 4px;
+  padding: 0.45rem 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  text-decoration-color: unset;
+}
+.btn-amazon:hover {
+  background-color: rgba(0, 0, 0, 0.09);
+  transition: background-color 0.5s;
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn-amazon-active {
+  background-color: #ffd814;
+}
+.btn-amazon-active:hover {
+  background-color: #f7ca00;
+  transition: background-color 0.5s;
+}
