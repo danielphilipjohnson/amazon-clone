@@ -1,6 +1,7 @@
 import React from "react";
 import { useStateValue } from "../../../StateProvider";
 import CheckoutProduct from "../product";
+import Subtotal from "../subtotal";
 function Basket() {
   const [{ basket }] = useStateValue();
   return (
@@ -19,6 +20,9 @@ function Basket() {
           rating={item.rating}
         />
       ))}
+      <div className="cart_subtotal">
+        <Subtotal />
+      </div>
     </div>
   );
 }

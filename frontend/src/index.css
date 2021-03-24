@@ -80,3 +80,7 @@ code {
   font-size: 0.75rem;
   color: #efefef;
 }
+
+.f-width {
+  width: 100%;
+}

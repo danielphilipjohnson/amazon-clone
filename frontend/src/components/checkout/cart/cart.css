@@ -14,3 +14,8 @@
 .cart__signedin-link {
   display: inline;
 }
+
+.cart_subtotal {
+  display: flex;
+  justify-content: flex-end;
+}
