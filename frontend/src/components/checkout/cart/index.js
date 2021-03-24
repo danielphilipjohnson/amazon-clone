@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import CheckoutProduct from "../product";
 import RemindLogin from "../remind-login";
+import Basket from "../basket";
 import { useStateValue } from "../../../StateProvider";
 
 import "./cart.css";
@@ -13,24 +13,7 @@ function Cart() {
   if (user?.email) {
     /* if there is items in the basket display items */
     if (basket.length > 0) {
-      return (
-        <div className="cart__signedin">
-          <div className="empty-cart__heading">
-            <h2 className="cart__signedin-title">Shopping Basket</h2>
-            <p className="alink-normal"> Deselect all items</p>
-          </div>
-
-          {basket.map((item) => (
-            <CheckoutProduct
-              key={item.id}
-              title={item.title}
-              image={item.image}
-              price={item.price}
-              rating={item.rating}
-            />
-          ))}
-        </div>
-      );
+      return <Basket />;
     } else {
       /* if there is no items in the basket display to user the basket is empty */
       return (
@@ -45,31 +28,19 @@ function Cart() {
         </div>
       );
     }
-    /* if the user isnt signed in show an empty cart and remind user to login */
+    /* user isnt signed in */
   } else {
+    /* if the basket is full remind user to login and still display basket */
+
     if (basket.length > 0) {
       return (
         <>
           <RemindLogin title="To checkout please login" />
-          <div className="cart__signedin">
-            <div className="empty-cart__heading">
-              <h2 className="cart__signedin-title">Shopping Basket</h2>
-              <p className="alink-normal"> Deselect all items</p>
-            </div>
-
-            {basket.map((item) => (
-              <CheckoutProduct
-                key={item.id}
-                title={item.title}
-                image={item.image}
-                price={item.price}
-                rating={item.rating}
-              />
-            ))}
-          </div>
+          <Basket />
         </>
       );
     } else {
+      /* if the basket is empty indicate the basket is empty and ask user to login */
       return <RemindLogin title="Your shopping basket is empty" />;
     }
   }
