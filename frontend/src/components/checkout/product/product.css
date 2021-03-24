@@ -5,22 +5,12 @@
   padding-bottom: 1rem;
   border-bottom: 1px solid #ddd;
 }
-.empty-cart__heading {
-  border-bottom: 1px solid #ddd;
-}
 
 .checkoutProduct__info {
   padding-left: 20px;
   width: 100%;
 }
 
-.checkoutProduct__info > button {
-  /* background: #f0c14b;
-  border: 1px solid;
-  margin-top: 10px;
-  border-color: #a88734 #9c7e31 #846a29;
-  color: #111; */
-}
 .a-color-link {
   color: #007185;
   margin-bottom: 0.5rem;
