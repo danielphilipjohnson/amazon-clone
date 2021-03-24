@@ -35,6 +35,15 @@ code {
   color: #c7511f;
 }
 
+.a-color-link {
+  color: #007185;
+  margin-bottom: 0.5rem;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
 .flex {
   display: flex;
 }
@@ -65,4 +74,9 @@ code {
 .btn-amazon-active:hover {
   background-color: #f7ca00;
   transition: background-color 0.5s;
+}
+
+.seperator {
+  font-size: 0.75rem;
+  color: #efefef;
 }

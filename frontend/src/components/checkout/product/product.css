@@ -11,18 +11,6 @@
   width: 100%;
 }
 
-.a-color-link {
-  color: #007185;
-  margin-bottom: 0.5rem;
-  background-color: transparent;
-  border: 0;
-  cursor: pointer;
-  font-size: 0.85rem;
-}
-.seperator {
-  font-size: 0.75rem;
-  color: #efefef;
-}
 .checkoutProduct__image {
   object-fit: contain;
   width: 180px;
