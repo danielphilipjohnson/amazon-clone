@@ -1,12 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./cart.css";
 import checkoutImage from "../../../images/checkout/shopping.svg";
 import { useStateValue } from "../../../StateProvider";
 
 function Cart() {
   const [{ user }] = useStateValue();
   if (user?.email) {
-    return <div>Welcome</div>;
+    return (
+      <div className="empty-cart__signedin">
+        <h2 className="empty-cart__signedin-title">
+          Your Amazon Basket is empty.
+        </h2>
+        <p>
+          Check your Saved for later items below or {/* */}
+          <Link to="/login" className="alink-normal empty-cart__signedin-link">
+            continue shopping.
+          </Link>
+        </p>
+      </div>
+    );
   } else {
     return (
       <div className="empty-cart">
