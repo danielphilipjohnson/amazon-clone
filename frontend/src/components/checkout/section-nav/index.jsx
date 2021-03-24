@@ -6,17 +6,17 @@ function CheckoutSubNav() {
       <ul className="checkoutSubNav__items">
         <li>Amazon.co.uk</li>
         <li>Today's Deals</li>
-        <li>Warehouse Deals</li>
-        <li>Outlet</li>
-        <li>Subscribe & Save</li>
-        <li>Vouchers</li>
-        <li>Amazon Family</li>
-        <li>Amazon Prime</li>
-        <li>Prime Video</li>
-        <li>Prime Student</li>
-        <li>Mobile Apps</li>
-        <li>Amazon Pickup Locations</li>
-        <li>Amazon Assistant</li>
+        <li className="hide-mobile show-tablet">Warehouse Deals</li>
+        <li className="hide-mobile show-tablet">Outlet</li>
+        <li className="hide-mobile show-tablet">Subscribe & Save</li>
+        <li className="hide-mobile show-tablet">Vouchers</li>
+        <li className="hide-mobile show-desktop">Amazon Family</li>
+        <li className="hide-mobile show-desktop">Amazon Prime</li>
+        <li className="hide-mobile show-desktop">Prime Video</li>
+        <li className="hide-mobile show-desktop">Prime Student</li>
+        <li className="hide-mobile show-desktop">Mobile Apps</li>
+        <li className="hide-mobile show-desktop">Amazon Pickup Locations</li>
+        <li className="hide-mobile show-desktop">Amazon Assistant</li>
       </ul>
     </div>
   );

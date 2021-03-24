@@ -1,6 +1,5 @@
 .checkoutSubNav__items {
   display: flex;
-  width: 100%;
 
   list-style: none;
   word-wrap: normal;
@@ -9,6 +8,7 @@
   white-space: nowrap;
   height: 33px;
   background: #fafafa;
+  padding: 0 0 0 0.5rem;
 }
 .checkoutSubNav__items li {
   position: relative;
@@ -17,5 +17,5 @@
   line-height: 2rem;
   color: #333;
   font-size: 0.9rem;
-  padding: 0 0.95rem;
+  padding: 0 0.85rem;
 }
