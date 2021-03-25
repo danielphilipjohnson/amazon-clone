@@ -27,6 +27,9 @@
 .payment__details-list {
   border-bottom: 1px solid lightgray;
 }
+.payment__details-list:last-child {
+  border: 0;
+}
 
 .payment__address {
   font-size: 0.95rem;
@@ -42,17 +45,17 @@
 
 .payment__section {
   display: flex;
-  padding: 20px;
+  padding: 1rem;
 }
 
 .payment__title {
-  flex: 0.2;
+  flex: 1;
 }
 
 .payment__address,
 .payment__items,
 .payment__details {
-  /* flex: 0.8; */
+  flex: 2;
 }
 
 .payment__details > form {
@@ -139,4 +142,50 @@
 
 .border-bottom {
   border-bottom: 1px #d5d9d9 solid;
+}
+
+.payment__items {
+  padding: 1rem;
+  border: 1px #d5d9d9 solid;
+  border-radius: 5px;
+}
+
+.buynow__bottom {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+.reviewProduct {
+  display: grid;
+  grid-template-columns: 1fr 2fr 3fr;
+  padding: 1rem;
+}
+.reviewProduct__image {
+  height: 100px;
+  object-fit: cover;
+}
+
+.reviewProduct__price {
+  display: flex;
+  align-items: center;
+}
+
+.color-mute {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgb(100, 98, 98);
+}
+
+.reviewForm__heading {
+  font-size: 0.75rem;
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+.form-group {
+  display: flex;
+}
+.form__delivery {
+  margin-left: 0.5rem;
+  font-size: 0.85rem;
 }
