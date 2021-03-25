@@ -179,7 +179,7 @@ function Payment() {
                         <div className="reviewProduct__info">
                           <p className="reviewProduct__title">{item.title}</p>
                           <div className="reviewProduct__price">
-                            <p className="color-price">
+                            <p className="color-total">
                               <small>$</small>
                               {item.price}{" "}
                             </p>
@@ -234,14 +234,18 @@ function Payment() {
               </ol>
             </div>
             <div className="buynow__bottom">
-              <button className="btn-amazon btn-amazon-active">Buy now</button>
+              <button className="btn-amazon btn-amazon-active buynow__btn">
+                Buy now
+              </button>
 
-              <h3>Order Total: $1.95</h3>
-              <p>
-                By placing your order you agree to Amazon's Conditions of Use &
-                Sale. Please see our Privacy Notice, our Cookies Notice and our
-                Interest-Based Ads Notice.
-              </p>
+              <div className="content">
+                <h3 className="color-total">Order Total: $1.95</h3>
+                <p>
+                  By placing your order you agree to Amazon's Conditions of Use
+                  & Sale. Please see our Privacy Notice, our Cookies Notice and
+                  our Interest-Based Ads Notice.
+                </p>
+              </div>
             </div>
           </div>
 
