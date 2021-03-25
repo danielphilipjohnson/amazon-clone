@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import RemindLogin from "../remind-login";
+import YourItems from "../your-items/";
 import Basket from "../basket";
 import { useStateValue } from "../../../StateProvider";
 
@@ -13,7 +14,13 @@ function Cart() {
   if (user?.email) {
     /* if there is items in the basket display items */
     if (basket.length > 0) {
-      return <Basket />;
+      return (
+        <>
+          <Basket />
+
+          <YourItems />
+        </>
+      );
     } else {
       /* if there is no items in the basket display to user the basket is empty */
       return (
@@ -37,6 +44,7 @@ function Cart() {
         <>
           <RemindLogin title="To checkout please login" />
           <Basket />
+          <YourItems />
         </>
       );
     } else {
