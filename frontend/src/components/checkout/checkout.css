@@ -1,6 +1,5 @@
 .checkout {
   display: flex;
-  padding: 20px;
 
   height: max-content;
   display: grid;
@@ -9,6 +8,7 @@
 @media only screen and (min-width: 768px) {
   .checkout {
     grid-template-columns: 2fr 1fr;
+    padding: 20px;
   }
 }
 @media only screen and (min-width: 1200px) {
@@ -18,7 +18,7 @@
 }
 @media only screen and (min-width: 1600px) {
   .checkout {
-    grid-template-columns: 5fr 1fr;
+    grid-template-columns: 4fr 1fr;
   }
 }
 .checkout__ad {

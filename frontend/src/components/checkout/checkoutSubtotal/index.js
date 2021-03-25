@@ -8,7 +8,7 @@ function CheckoutSubtotal({ user, basket }) {
 
   if (user?.email && basket.length > 0) {
     return (
-      <div>
+      <>
         <div className="checkout__subtotal">
           <>
             <SubTotal />
@@ -25,7 +25,7 @@ function CheckoutSubtotal({ user, basket }) {
           </>
         </div>
         <PeopleWhoBought />
-      </div>
+      </>
     );
   } else {
     return null;

@@ -48,11 +48,14 @@
   .suggested__items-product {
     width: auto;
     margin-right: 0.5rem;
-    max-width: 120px;
+    max-width: 100px;
   }
 }
 
 .suggested__items-description h3 {
   font-size: 0.95rem;
   font-weight: 400;
+}
+.suggested__items-description p {
+  margin-bottom: 1rem;
 }
