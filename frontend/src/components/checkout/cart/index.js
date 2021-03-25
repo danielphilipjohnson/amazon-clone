@@ -7,6 +7,8 @@ import { useStateValue } from "../../../StateProvider";
 
 import "./cart.css";
 
+// refactor into more meaningfull components
+
 function Cart() {
   let [{ basket, user }] = useStateValue();
 
@@ -17,7 +19,6 @@ function Cart() {
       return (
         <>
           <Basket />
-
           <YourItems />
         </>
       );

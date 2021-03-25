@@ -5,7 +5,7 @@ import "./your-items.css";
 
 function YourItems() {
   // make this saved items
-  let [{ basket }, dispatch] = useStateValue();
+  let [{ basket }] = useStateValue();
 
   return (
     <div className="customer-items">
