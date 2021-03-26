@@ -64,6 +64,12 @@ function App() {
             <Checkout />
             <Footer />
           </Route>
+          <Route path="/product/:id">
+            <Header />
+            <Subheader />
+            <h1>Welcome to product</h1>
+            <Footer />
+          </Route>
           <Route path="/payment">
             <Elements stripe={promise}>
               <Payment />
