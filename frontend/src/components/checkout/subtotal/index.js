@@ -1,42 +1,35 @@
 import React from "react";
-import CurrencyFormat from "react-currency-format";
-import "./subtotal.css";
+import { useHistory } from "react-router-dom";
+import SubTotal from "../shared/displaySubtotal";
+import PeopleWhoBought from "../../sitewide/people-who-bought";
 
-import { getBasketTotal } from "../../../reducer/reducer";
-import { useStateValue } from "../../../StateProvider";
+function CheckoutSubtotal({ user, basket }) {
+  const history = useHistory();
 
-function Subtotal() {
-  const [{ basket }] = useStateValue();
-
-  if (basket.length > 0) {
+  if (user?.email && basket.length > 0) {
     return (
       <>
-        <div className="subtotal">
-          <CurrencyFormat
-            renderText={(value) => (
-              <>
-                <p>
-                  Subtotal ({basket.length} items):{" "}
-                  <strong>{` ${value}`}</strong>
-                </p>
-              </>
-            )}
-            decimalScale={2}
-            value={getBasketTotal(basket)}
-            displayType={"text"}
-            thousandSeparator={true}
-            prefix={"$"}
-          />
+        <div className="checkout__subtotal">
+          <>
+            <SubTotal />
+            <small className="subtotal__gift">
+              <input type="checkbox" />
+              This order contains a gift
+            </small>
+            <button
+              className="btn-amazon btn-amazon-active f-width"
+              onClick={(e) => history.push("/payment")}
+            >
+              Proceed to Checkout
+            </button>
+          </>
         </div>
+        <PeopleWhoBought />
       </>
     );
   } else {
-    return (
-      <>
-        <h3>Cart broken</h3>
-      </>
-    );
+    return null;
   }
 }
 
-export default Subtotal;
+export default CheckoutSubtotal;

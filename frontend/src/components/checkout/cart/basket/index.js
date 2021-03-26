@@ -1,12 +1,11 @@
 import React from "react";
 
-import { useStateValue } from "../../../StateProvider";
-import CheckoutProduct from "../../shared/product/index";
-import Subtotal from "../subtotal";
+import { useStateValue } from "../../../../StateProvider";
+import CheckoutProduct from "../../../shared/product";
+import Subtotal from "../../shared/displaySubtotal";
 
 function Basket() {
   let [{ basket }, dispatch] = useStateValue();
-  console.log(basket);
   const clearBasket = () => {
     dispatch({
       type: "EMPTY_BASKET",

@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import RemindLogin from "../remind-login";
-import YourItems from "../your-items/";
-import Basket from "../basket";
+import RemindLogin from "./remind-login";
+import YourItems from "./your-items";
+import Basket from "./basket";
 import { useStateValue } from "../../../StateProvider";
 
 import "./cart.css";

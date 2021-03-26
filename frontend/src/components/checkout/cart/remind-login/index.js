@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import checkoutImage from "../../../images/checkout/shopping.svg";
+import checkoutImage from "../../../../images/checkout/shopping.svg";
 import "./cart-logged-out.css";
 
 function RemindLogin({ title }) {

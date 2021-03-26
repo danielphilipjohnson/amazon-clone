@@ -1,7 +1,7 @@
 import React from "react";
 
 import Cart from "./cart";
-import CheckoutSubtotal from "./checkoutSubtotal";
+import Subtotal from "./subtotal";
 
 import BrowsingHistory from "../sitewide/browsering-history";
 import { useStateValue } from "../../StateProvider";
@@ -22,7 +22,7 @@ function Checkout() {
           <Cart />
         </div>
         <div className="checkout__right">
-          <CheckoutSubtotal user={user} basket={basket} />
+          <Subtotal user={user} basket={basket} />
         </div>
       </div>
       <BrowsingHistory />

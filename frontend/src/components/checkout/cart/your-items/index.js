@@ -1,6 +1,6 @@
 import React from "react";
-import { useStateValue } from "../../../StateProvider";
-import CheckoutProduct from "../../shared/product/index";
+import { useStateValue } from "../../../../StateProvider";
+import CheckoutProduct from "../../../shared/product/index";
 import "./your-items.css";
 
 function YourItems() {
