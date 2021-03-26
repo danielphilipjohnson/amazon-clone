@@ -1,6 +1,6 @@
 .product-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 3fr 2fr 2fr;
 
   padding: 1rem 0;
   background-color: #fff;
@@ -80,4 +80,26 @@
 }
 .product-description__about p {
   font-size: 0.9rem;
+}
+
+.product-form {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 1rem;
+  margin: 1rem 0.5rem;
+  box-sizing: border-box;
+  height: max-content;
+}
+
+.btn-amazon-buynow {
+  background-color: #ffa41c;
+}
+.btn-amazon-buynow:hover {
+  background-color: #f0960e;
+  transition: background-color 0.5s;
+}
+.btn-amazon-pill {
+  border-radius: 20px;
+  width: 100%;
+  margin-bottom: 0.5rem;
 }

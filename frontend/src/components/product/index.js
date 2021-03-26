@@ -26,7 +26,7 @@ function Product({ id }) {
             <p>
               RRP: <s>£29.19</s>
             </p>
-            <p className="product-description__primelogo">
+            <div className="product-description__primelogo">
               <span className="product-description__primelogo-item">
                 Price:
               </span>
@@ -38,7 +38,7 @@ function Product({ id }) {
                 src={PrimeLogo}
               />
               <span>FREE One-Day</span>
-            </p>
+            </div>
             <p>
               You Save: <span className="color-total">£15.20(52%)</span>
             </p>
@@ -113,7 +113,41 @@ function Product({ id }) {
         </div>
       </div>
       <div className="product-form">
-        <h3 className="color-total">$13.99 {id}</h3>
+        <h3 className="color-total">$13.99</h3>
+        <div className="product-description__primelogo">
+          <img
+            className="product-description__primelogo-item"
+            src={PrimeLogo}
+          />
+          <span>FREE One-Day</span>
+        </div>
+        <p>
+          FREE delivery: <b>Tomorrow</b> Order within 8 hrs 29 mins{" "}
+          <span className="alink-normal">Details</span>
+        </p>
+
+        <p>Only 12 left in stock (more on the way). </p>
+        <div className="f">
+          <label htmlFor="quantity">Quantity: </label>
+          <select name="quantity" id="quantity">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+        </div>
+
+        <button className="btn-amazon btn-amazon-pill btn-amazon-active">
+          Add to Basket
+        </button>
+        <button className="btn-amazon btn-amazon-pill btn-amazon-buynow">
+          Buy Now
+        </button>
+        <div className="s">
+          <img src="https://img.icons8.com/ios/250/000000/lock.png" alt="" />
+          <p className="alink-normal">Secure transaction</p>
+        </div>
+        <p>Dispatched from and sold by Amazon. </p>
+        <button>Add to list</button>
       </div>
     </div>
   );
