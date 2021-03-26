@@ -121,13 +121,17 @@ function Product({ id }) {
           />
           <span>FREE One-Day</span>
         </div>
-        <p>
-          FREE delivery: <b>Tomorrow</b> Order within 8 hrs 29 mins{" "}
-          <span className="alink-normal">Details</span>
-        </p>
+        <div className="product-form__delivery">
+          <p>
+            FREE delivery: <b>Tomorrow</b> Order within 8 hrs 29 mins{" "}
+            <span className="alink-normal">Details</span>
+          </p>
+        </div>
+        <div className="product-form__stock color-success">
+          <p>Only 12 left in stock (more on the way). </p>
+        </div>
 
-        <p>Only 12 left in stock (more on the way). </p>
-        <div className="f">
+        <div className="product-form__quantity">
           <label htmlFor="quantity">Quantity: </label>
           <select name="quantity" id="quantity">
             <option value="1">1</option>
@@ -136,17 +140,27 @@ function Product({ id }) {
           </select>
         </div>
 
-        <button className="btn-amazon btn-amazon-pill btn-amazon-active">
-          Add to Basket
-        </button>
-        <button className="btn-amazon btn-amazon-pill btn-amazon-buynow">
-          Buy Now
-        </button>
-        <div className="s">
-          <img src="https://img.icons8.com/ios/250/000000/lock.png" alt="" />
+        <div className="btns">
+          <button className="btn-amazon btn-amazon-pill btn-amazon-active">
+            Add to Basket
+          </button>
+          <button className="btn-amazon btn-amazon-pill btn-amazon-buynow">
+            Buy Now
+          </button>
+        </div>
+
+        <div className="secure-box">
+          <img
+            src="https://img.icons8.com/ios/250/000000/lock.png"
+            alt=""
+            className="padlock"
+          />
           <p className="alink-normal">Secure transaction</p>
         </div>
-        <p>Dispatched from and sold by Amazon. </p>
+
+        <p className="product-form__dispatch">
+          Dispatched from and sold by Amazon.{" "}
+        </p>
         <button>Add to list</button>
       </div>
     </div>

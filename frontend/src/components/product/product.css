@@ -86,9 +86,10 @@
   border: 1px solid #ddd;
   border-radius: 5px;
   padding: 1rem;
-  margin: 1rem 0.5rem;
+  margin: 0 0.5rem 1rem 1.5rem;
   box-sizing: border-box;
   height: max-content;
+  max-width: 250px;
 }
 
 .btn-amazon-buynow {
@@ -102,4 +103,40 @@
   border-radius: 20px;
   width: 100%;
   margin-bottom: 0.5rem;
+}
+.secure-box {
+  display: flex;
+  align-items: baseline;
+}
+.padlock {
+  width: 20px;
+  margin-right: 0.5rem;
+}
+
+.product-form__delivery {
+  font-size: 0.85rem;
+  color: rgb(94, 92, 92);
+  margin-bottom: 0.75rem;
+}
+
+.product-form__stock {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+.color-success {
+  color: #007600;
+}
+
+.product-form__quantity {
+  margin-bottom: 1rem;
+}
+
+.product-form__dispatch {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+/* use this to reduce styles */
+.font-normal {
+  font-size: 0.9rem;
 }
