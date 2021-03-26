@@ -1,0 +1,42 @@
+.product-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  padding: 1rem 0;
+  background-color: #fff;
+}
+.product__image {
+  width: 100%;
+}
+
+.product-description__header {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.5rem;
+}
+.product-description__heading {
+  font-weight: 400;
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.5rem;
+}
+.product-description__link {
+  font-size: 0.9rem;
+}
+
+.product-description__main__pricing {
+  font-size: 0.95rem;
+  color: rgb(71, 69, 69);
+  margin-bottom: 0.45rem;
+  padding-top: 0.75rem;
+}
+.product-description__main__pricing p {
+  margin-bottom: 0.25rem;
+}
+
+.product-description__primelogo {
+  display: flex;
+  align-items: center;
+}
+.product-description__primelogo-item {
+  margin-right: 0.5rem;
+}
