@@ -6,11 +6,12 @@
 .customer-items__heading {
   margin-bottom: 1rem;
 }
+
 .btn-group {
   border-bottom: 1px solid #ddd;
   padding-left: 0.75rem;
-  /* padding-bottom: 0.5rem; */
 }
+
 .btn-tab {
   background: none;
   border: none;
@@ -20,7 +21,7 @@
   text-decoration: none;
   color: #007185;
 }
-.btn-tab-active {
+.btn-tab--active {
   border-bottom: 3px solid #e47911;
   color: #000;
 }
