@@ -167,6 +167,141 @@ function Product({ id }) {
               <button>Add to list</button>
             </div>
           </div>
+          <p className="product__information__title"> Product information </p>
+
+          <div className="product__information">
+            <div className="technical__details">
+              <h3 className="product__information__heading">
+                Technical Details
+              </h3>
+              <table>
+                <tr className="tr">
+                  <th className="td t-left"> Product Dimensions </th>
+                  <td className="td">6.35 x 6.35 x 9.53 cm; 0.21 Grams </td>
+                </tr>
+                <tr className="tr">
+                  <th className="td t-left"> Manufacturer recommended age </th>
+                  <td className="td">6 years and up</td>
+                </tr>
+                <tr className="tr">
+                  <th className="td t-left"> Item model number </th>
+                  <td className="td">39697</td>
+                </tr>
+                <tr className="tr">
+                  <th className="td t-left">
+                    Manufacturer's Suggested Maximum Weight
+                  </th>
+                  <td className="td"> 2 Kilograms </td>
+                </tr>
+                <tr className="tr">
+                  <th className="td t-left"> Language: </th>
+                  <td className="td">English</td>
+                </tr>
+                <tr className="tr">
+                  <th className="td t-left"> Number of Puzzle Pieces </th>
+                  <td className="td">1</td>
+                </tr>
+                <tr className="tr">
+                  <th className="td t-left"> Assembly Required </th>
+                  <td className="td">No</td>
+                </tr>
+                <tr className="tr">
+                  <th className="td t-left"> Batteries Required? </th>
+                  <td className="td">No</td>
+                </tr>
+                <tr className="tr">
+                  <th className="td t-left"> Batteries included? </th>
+                  <td className="td">No</td>
+                </tr>
+                <tr className="tr">
+                  <th className="td t-left"> Material Type(s) </th>
+                  <td className="td">Vinyl</td>
+                </tr>
+                <tr className="tr">
+                  <th className="td t-left"> Material Composition </th>
+                  <td className="td"> 100% Cotton </td>
+                </tr>
+                <tr className="tr">
+                  <th className="td t-left"> Release date </th>
+                  <td className="td"> 21 July 2019 </td>
+                </tr>
+                <tr className="tr">
+                  <th className="td t-left"> Mfg Recommended age </th>
+                  <td className="td"> 6 - 99 years </td>
+                </tr>
+              </table>
+            </div>
+
+            <div className="addtional-information">
+              <h3 className="product__information__heading">
+                Additional Information
+              </h3>
+              <table>
+                <tr className="tr">
+                  <th className="td t-left"> Customer Reviews </th>
+                  <td className="td">
+                    <p>
+                      <span role="img" aria-labelledby="star rating">
+                        🌟
+                      </span>
+                      <span role="img" aria-labelledby="star rating">
+                        🌟
+                      </span>
+                      <span role="img" aria-labelledby="star rating">
+                        🌟
+                      </span>
+                      <span role="img" aria-labelledby="star rating">
+                        🌟
+                      </span>
+                    </p>
+                    <p> 4.8 out of 5 stars </p>
+                  </td>
+                </tr>
+                <tr className="tr">
+                  <th className="td t-left"> Best Sellers Rank </th>
+                  <td className="td">
+                    13,070 in Toys & Games{" "}
+                    <span className="alink-normal inline">
+                      (See Top 100 in Toys & Games)
+                    </span>
+                    <span> 75 in </span>
+                    <span className="alink-normal inline">
+                      Chibi Character Figures
+                    </span>
+                  </td>
+                </tr>
+                <tr className="tr">
+                  <th className="td t-left"> Date First Available </th>
+                  <td className="td"> 15 Mar. 2019 </td>
+                </tr>
+              </table>
+
+              <div className="sub-section">
+                <h3 className="product__information__heading">
+                  Warranty & Support
+                </h3>
+                <p className="font-normal">
+                  Amazon.com Return Policy:Regardless of your statutory right of
+                  withdrawal, you enjoy a 30-day right of return for many
+                  products. For exceptions and conditions, see{" "}
+                  <span className="alink-normal inline">Return details.</span>
+                </p>
+              </div>
+
+              <div className="sub-section">
+                <h3 className="product__information__heading">
+                  Warranty & Support
+                </h3>
+
+                <p className="font-normal">
+                  Would you like to
+                  <span className="alink-normal inline">
+                    tell us about a lower price?
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
 
           <ProductList title="Customers who viewed this item also viewed" />
           <ProductList title="More items to explore" />

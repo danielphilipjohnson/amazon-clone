@@ -9,6 +9,8 @@
 
 .product-container {
   display: grid;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.75rem;
 }
 
 .product__fullimage {
@@ -44,7 +46,9 @@
 }
 /* .product-description__main__pricing p {
 } */
-
+.product-description__about {
+  padding: 0 0.5rem;
+}
 .product-description__primelogo {
   display: flex;
   align-items: center;
@@ -67,8 +71,7 @@
 .reset-list {
   padding: 0;
 }
-/* .product-description__main__extra ul {
-} */
+
 .product-description__main__extra ul li {
   margin-bottom: 0.25rem;
 }
@@ -79,10 +82,6 @@
 .product-description__about-heading {
   padding: 1rem 0 0.5rem 0;
   font-size: 1rem;
-}
-.product-description__about-list {
-  font-size: 0.9rem;
-  padding: 0 1rem;
 }
 
 .product-description__about-list li {
@@ -185,4 +184,56 @@
 /* use this to reduce styles */
 .font-normal {
   font-size: 0.9rem;
+}
+.product__information {
+  display: grid;
+  padding: 1rem;
+}
+
+@media only screen and (min-width: 900px) {
+  .product__information {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.technical__details,
+.addtional-information {
+  padding: 0.5rem;
+}
+
+.product__information__title {
+  padding: 1.5rem;
+  color: #c60;
+  font-weight: 600;
+}
+.product__information__heading {
+  font-weight: 400;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #ddd;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+.tr {
+  border-bottom: 1px solid #ddd;
+}
+.td {
+  padding: 0.5rem 1rem 2rem 1rem;
+  text-align: left;
+  font-weight: normal;
+  font-size: 0.85rem;
+}
+.t-left {
+  background-color: #f3f3f3;
+  color: #565959;
+}
+
+.font-normal {
+  font-size: 0.9rem;
+  line-height: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: #0f1111;
+  /* font-style: Arial, sans-serif; */
 }
