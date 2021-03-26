@@ -46,12 +46,38 @@
   font-size: 0.85rem;
   letter-spacing: 0.05px;
   line-height: 1.25rem;
+  border-bottom: 1px solid #ddd;
 }
 
-.product-description__main__extra p {
+.product-description__main__extra-text {
   margin-bottom: 0.75rem;
 }
-
+.reset-list {
+  padding: 0;
+}
+.product-description__main__extra ul {
+  /* padding: 0; */
+}
+.product-description__main__extra ul li {
+  margin-bottom: 0.25rem;
+}
 .inline {
   display: inline;
+}
+
+.product-description__about-heading {
+  padding: 1rem 0 0.5rem 0;
+  font-size: 1rem;
+}
+.product-description__about-list {
+  font-size: 0.9rem;
+  padding: 0 1rem;
+}
+
+.product-description__about-list li {
+  margin-bottom: 0.25rem;
+  line-height: 1.25rem;
+}
+.product-description__about p {
+  font-size: 0.9rem;
 }

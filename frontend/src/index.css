@@ -84,3 +84,6 @@ code {
 .f-width {
   width: 100%;
 }
+.between {
+  justify-content: space-between;
+}
