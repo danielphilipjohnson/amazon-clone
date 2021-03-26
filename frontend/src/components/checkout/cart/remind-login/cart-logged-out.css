@@ -1,4 +1,4 @@
-.loggedout-cart {
+.loggedout__cart {
   background-color: #fff;
   display: grid;
   width: 100%;
@@ -6,12 +6,12 @@
 }
 
 @media only screen and (min-width: 768px) {
-  .loggedout-cart {
+  .loggedout__cart {
     grid-template-columns: 1fr 2fr;
   }
 }
 
-.loggedout-cart__image {
+.loggedout__cart__image {
   width: 350px;
   height: 250px;
 
@@ -39,9 +39,9 @@
   margin: 2rem;
 }
 
-.loggedout-cart__right {
+.loggedout__cart--right {
   padding: 2rem 1rem;
 }
-.loggedout-cart__title {
+.loggedout__cart--title {
   margin-bottom: 0.5rem;
 }

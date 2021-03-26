@@ -5,19 +5,19 @@ import "./cart-logged-out.css";
 
 function RemindLogin({ title }) {
   return (
-    <div className="loggedout-cart">
+    <div className="loggedout__cart">
       <div className="left">
         <a href="https://www.freevector.com/grocery-shopping-girl-illustration-vector-29602">
           <img
-            className="loggedout-cart__image"
+            className="loggedout__cart__image"
             src={checkoutImage}
             alt=" shopping cart"
           />
         </a>
       </div>
 
-      <div className="loggedout-cart__right">
-        <h2 className="loggedout-cart__title">{title}</h2>
+      <div className="loggedout__cart--right">
+        <h2 className="loggedout__cart--title">{title}</h2>
         <Link to="/" className="alink-normal">
           Shop today's deals
         </Link>
