@@ -1,0 +1,21 @@
+.cart__heading {
+  border-bottom: 1px solid #ddd;
+}
+
+.cart__signedin {
+  background-color: #fff;
+  padding: 2rem 1.25rem;
+}
+.cart__title {
+  margin-bottom: 0.75rem;
+  font-size: 1.75rem;
+  font-weight: 400;
+}
+.cart__signedin-link {
+  display: inline;
+}
+
+.cart_subtotal {
+  display: flex;
+  justify-content: flex-end;
+}

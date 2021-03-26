@@ -1,0 +1,47 @@
+.loggedout__cart {
+  background-color: #fff;
+  display: grid;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .loggedout__cart {
+    grid-template-columns: 1fr 2fr;
+  }
+}
+
+.loggedout__cart__image {
+  width: 350px;
+  height: 250px;
+
+  -webkit-clip-path: polygon(
+    28% 0,
+    82% 5%,
+    95% 31%,
+    96% 70%,
+    87% 95%,
+    15% 96%,
+    6% 69%,
+    6% 33%
+  );
+  clip-path: polygon(
+    28% 0,
+    82% 5%,
+    95% 31%,
+    96% 70%,
+    87% 95%,
+    15% 96%,
+    6% 69%,
+    6% 33%
+  );
+
+  margin: 2rem;
+}
+
+.loggedout__cart--right {
+  padding: 2rem 1rem;
+}
+.loggedout__cart--title {
+  margin-bottom: 0.5rem;
+}

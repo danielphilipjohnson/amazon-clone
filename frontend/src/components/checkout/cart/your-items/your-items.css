@@ -1,0 +1,27 @@
+.customer-items {
+  padding: 1rem;
+  background-color: #fff;
+  margin-top: 2rem;
+}
+.customer-items__heading {
+  margin-bottom: 1rem;
+}
+
+.btn-group {
+  border-bottom: 1px solid #ddd;
+  padding-left: 0.75rem;
+}
+
+.btn-tab {
+  background: none;
+  border: none;
+  font-weight: 700;
+  padding: 0 0.75rem 0.25rem 0.75rem;
+  margin-right: 0.5rem;
+  text-decoration: none;
+  color: #007185;
+}
+.btn-tab--active {
+  border-bottom: 3px solid #e47911;
+  color: #000;
+}
