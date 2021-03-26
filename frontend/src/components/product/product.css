@@ -30,7 +30,7 @@
   padding-top: 0.75rem;
 }
 .product-description__main__pricing p {
-  margin-bottom: 0.25rem;
+  /* margin-bottom: 0.05rem; */
 }
 
 .product-description__primelogo {
@@ -39,4 +39,19 @@
 }
 .product-description__primelogo-item {
   margin-right: 0.5rem;
+}
+
+.product-description__main__extra {
+  padding: 0.5rem 0;
+  font-size: 0.85rem;
+  letter-spacing: 0.05px;
+  line-height: 1.25rem;
+}
+
+.product-description__main__extra p {
+  margin-bottom: 0.75rem;
+}
+
+.inline {
+  display: inline;
 }

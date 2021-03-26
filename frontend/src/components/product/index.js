@@ -44,15 +44,25 @@ function Product({ id }) {
             </p>
           </div>
 
-          <p>
-            May be available at a lower price from other sellers, potentially
-            without free Prime shipping.{" "}
-          </p>
-          <p>
-            Note: This item is eligible for FREE click and collect without a
-            minimum order. Details{" "}
-          </p>
-          <p> New (5) from £10.03 & FREE Delivery </p>
+          <div className="product-description__main__extra">
+            <p>
+              May be available at a lower price from{" "}
+              <span className="alink-normal inline">other sellers</span>,
+              potentially without free Prime shipping.{" "}
+            </p>
+            <p>
+              <b>Note:</b> This item is eligible for{" "}
+              <b>FREE click and collect</b> without a minimum order.
+              <span className="alink-normal inline"> Details</span>
+            </p>
+            <p>
+              {" "}
+              <span className="alink-normal inline">New (5) </span>from
+              <span className="color-total">£10.03 </span>{" "}
+              <b>& FREE Delivery</b>
+            </p>
+          </div>
+
           <ul>
             <li>
               <p>Brand</p>
