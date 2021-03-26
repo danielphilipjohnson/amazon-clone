@@ -1,13 +1,12 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
 // move to a layout component
 import Header from "./components/sitewide/header";
 import Subheader from "./components/sitewide/subheader";
 import BrowseringHistory from "./components/sitewide/browsering-history";
 import Footer from "./components/sitewide/footer";
 
-import CheckoutSubNav from "./components/shared/section-nav/";
+import SectionNav from "./components/shared/section-nav/";
 
 /* Routes */
 import Orders from "./routes/orders";
@@ -15,6 +14,8 @@ import Login from "./routes/login";
 import Checkout from "./routes/checkout";
 import Payment from "./routes/payment";
 import Home from "./routes/home";
+import Products from "./routes/products";
+import Product from "./routes/product";
 
 import { auth } from "./adapters/firebase";
 
@@ -28,6 +29,7 @@ import "./App.css";
 const promise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
 function App() {
   const [{}, dispatch] = useStateValue();
+  // let { slug } = useParams();
   useEffect(() => {
     // run once when the app component loads
     auth.onAuthStateChanged((authUser) => {
@@ -60,15 +62,18 @@ function App() {
           <Route path="/checkout">
             <Header />
             <Subheader />
-            <CheckoutSubNav />
+            <SectionNav />
             <Checkout />
             <Footer />
+          </Route>
+          <Route path="/products">
+            <Products />
           </Route>
           <Route path="/product/:id">
             <Header />
             <Subheader />
-            <h1>Welcome to product</h1>
-            <Footer />
+            <SectionNav />
+            <Product />
           </Route>
           <Route path="/payment">
             <Elements stripe={promise}>
