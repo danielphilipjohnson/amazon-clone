@@ -4,7 +4,7 @@ import AmazonLogo from "../../images/amazon-logo-black.png";
 import { useStateValue } from "../../StateProvider";
 import PrimeLogo from "../../images/prime-logo.png";
 
-import CheckoutProduct from "../checkout/product";
+// import CheckoutProduct from "../../shared/product/index";
 import { Link, useHistory } from "react-router-dom";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import CurrencyFormat from "react-currency-format";

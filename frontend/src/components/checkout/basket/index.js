@@ -1,12 +1,12 @@
 import React from "react";
 
 import { useStateValue } from "../../../StateProvider";
-import CheckoutProduct from "../product";
+import CheckoutProduct from "../../shared/product/index";
 import Subtotal from "../subtotal";
 
 function Basket() {
   let [{ basket }, dispatch] = useStateValue();
-
+  console.log(basket);
   const clearBasket = () => {
     dispatch({
       type: "EMPTY_BASKET",
@@ -21,15 +21,18 @@ function Basket() {
         </p>
       </div>
 
-      {basket.map((item) => (
-        <CheckoutProduct
-          key={item.id}
-          title={item.title}
-          image={item.image}
-          price={item.price}
-          rating={item.rating}
-        />
-      ))}
+      {basket.map((item) => {
+        return (
+          <CheckoutProduct
+            key={item.id}
+            id={item.id}
+            title={item.title}
+            image={item.image}
+            price={item.price}
+            rating={item.rating}
+          />
+        );
+      })}
       <div className="cart_subtotal">
         <Subtotal />
       </div>

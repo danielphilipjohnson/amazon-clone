@@ -5,7 +5,7 @@ import "./product.css";
 import { useStateValue } from "../../../StateProvider";
 
 function CheckoutProduct({ id, image, title, price, rating, hideButton }, ref) {
-  const [dispatch] = useStateValue();
+  const [{ _ }, dispatch] = useStateValue();
 
   const removeFromBasket = () => {
     // remove the item from the basket
@@ -18,7 +18,7 @@ function CheckoutProduct({ id, image, title, price, rating, hideButton }, ref) {
   return (
     <FadeIn key={id}>
       <div className="checkoutProduct" key={id}>
-        <img className="checkoutProduct__image" src={image} />
+        <img className="checkoutProduct__image" src={image} alt={title} />
         <div className="checkoutProduct__info">
           <div className="checkoutProduct__top">
             <p className="checkoutProduct__title alink-normal">{title}</p>
@@ -35,13 +35,20 @@ function CheckoutProduct({ id, image, title, price, rating, hideButton }, ref) {
             {Array(rating)
               .fill()
               .map((_, i) => (
-                <p key={i}>🌟</p>
+                <p key={i}>
+                  <span role="img" aria-labelledby="star rating">
+                    🌟
+                  </span>
+                </p>
               ))}
           </div>
           {!hideButton && (
             <>
               <span className="seperator">| </span>
-              <button onClick={removeFromBasket} className="a-color-link">
+              <button
+                onClick={() => removeFromBasket()}
+                className="a-color-link"
+              >
                 Delete
               </button>
               <span className="seperator">| </span>

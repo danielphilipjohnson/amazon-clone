@@ -1,6 +1,6 @@
 import React from "react";
 import { useStateValue } from "../../../StateProvider";
-import CheckoutProduct from "../product";
+import CheckoutProduct from "../../shared/product/index";
 import "./your-items.css";
 
 function YourItems() {
@@ -21,6 +21,7 @@ function YourItems() {
       {basket.map((item) => (
         <CheckoutProduct
           key={item.id}
+          id={item.id}
           title={item.title}
           image={item.image}
           price={item.price}
