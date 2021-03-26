@@ -1,12 +1,25 @@
+.page {
+  background-color: #fff;
+  padding: 1rem 0;
+}
+
+.container {
+  margin: 0 auto;
+}
+
 .product-container {
   display: grid;
-  grid-template-columns: 3fr 2fr 2fr;
-
-  padding: 1rem 0;
-  background-color: #fff;
 }
-.product__image {
+
+.product__fullimage {
   width: 100%;
+  height: max-content;
+  padding: 0 1rem 1rem 1rem;
+  box-sizing: border-box;
+}
+
+.product-description {
+  padding: 0 1rem;
 }
 
 .product-description__header {
@@ -29,9 +42,8 @@
   margin-bottom: 0.45rem;
   padding-top: 0.75rem;
 }
-.product-description__main__pricing p {
-  /* margin-bottom: 0.05rem; */
-}
+/* .product-description__main__pricing p {
+} */
 
 .product-description__primelogo {
   display: flex;
@@ -55,9 +67,8 @@
 .reset-list {
   padding: 0;
 }
-.product-description__main__extra ul {
-  /* padding: 0; */
-}
+/* .product-description__main__extra ul {
+} */
 .product-description__main__extra ul li {
   margin-bottom: 0.25rem;
 }
@@ -89,7 +100,42 @@
   margin: 0 0.5rem 1rem 1.5rem;
   box-sizing: border-box;
   height: max-content;
-  max-width: 250px;
+}
+
+@media only screen and (min-width: 600px) {
+  .product__fullimage {
+    height: 350px;
+    object-fit: cover;
+  }
+}
+@media only screen and (min-width: 900px) {
+  .container {
+    margin: 0 auto;
+    padding: 0 3rem;
+    max-width: 1500px;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .product-container {
+    grid-template-columns: 1fr 2fr 1fr;
+  }
+  .product-form {
+    max-width: 250px;
+  }
+}
+@media only screen and (min-width: 1500px) {
+  .container {
+    margin: 0 auto;
+    min-width: 1000px;
+    max-width: 1500px;
+  }
+  .product-container {
+    grid-template-columns: 2fr 3fr 1fr;
+  }
+  .product-form {
+    max-width: unset;
+  }
 }
 
 .btn-amazon-buynow {

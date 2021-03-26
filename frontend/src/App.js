@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // move to a layout component
 import Header from "./components/sitewide/header";
 import Subheader from "./components/sitewide/subheader";
-import BrowseringHistory from "./components/sitewide/browsering-history";
+import ProductList from "./components/shared/product-list";
 import Footer from "./components/sitewide/footer";
 
 import SectionNav from "./components/shared/section-nav/";
@@ -84,7 +84,7 @@ function App() {
             <Header />
             <Subheader />
             <Home />
-            <BrowseringHistory />
+            <ProductList />
             <Footer />
           </Route>
         </Switch>
