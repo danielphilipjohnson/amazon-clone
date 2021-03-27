@@ -7,23 +7,6 @@
   margin: 0 auto;
 }
 
-.reset-list {
-  padding: 0;
-}
-
-.inline {
-  display: inline;
-}
-
-.product-form {
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 1rem;
-  margin: 0 0.5rem 1rem 1.5rem;
-  box-sizing: border-box;
-  height: max-content;
-}
-
 @media only screen and (min-width: 900px) {
   .container {
     margin: 0 auto;
@@ -32,79 +15,9 @@
   }
 }
 
-.btn-amazon-buynow {
-  background-color: #ffa41c;
-}
-.btn-amazon-buynow:hover {
-  background-color: #f0960e;
-  transition: background-color 0.5s;
-}
-.btn-amazon-pill {
-  border-radius: 20px;
-  width: 100%;
-  margin-bottom: 0.5rem;
-}
-.secure-box {
-  display: flex;
-  align-items: baseline;
-}
-.padlock {
-  width: 20px;
-  margin-right: 0.5rem;
-}
-
-.product-form__delivery {
-  font-size: 0.85rem;
-  color: rgb(94, 92, 92);
-  margin-bottom: 0.75rem;
-}
-
-.product-form__stock {
-  font-size: 1.25rem;
-  margin-bottom: 1rem;
-}
-.color-success {
-  color: #007600;
-}
-
-.product-form__quantity {
-  margin-bottom: 1rem;
-}
-
-.product-form__dispatch {
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
-}
-
-/* use this to reduce styles */
-.font-normal {
-  font-size: 0.9rem;
-}
-.product__information {
-  display: grid;
-  padding: 1rem;
-}
-
-@media only screen and (min-width: 900px) {
-  .product__information {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
 .technical__details,
 .addtional-information {
   padding: 0.5rem;
-}
-
-.product__information__title {
-  padding: 1.5rem;
-  color: #c60;
-  font-weight: 600;
-}
-.product__information__heading {
-  font-weight: 400;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid #ddd;
 }
 
 table {
@@ -123,12 +36,4 @@ table {
 .t-left {
   background-color: #f3f3f3;
   color: #565959;
-}
-
-.font-normal {
-  font-size: 0.9rem;
-  line-height: 1.25rem;
-  margin-bottom: 0.5rem;
-  color: #0f1111;
-  /* font-style: Arial, sans-serif; */
 }

@@ -1,0 +1,22 @@
+.product__information {
+  display: grid;
+  padding: 1rem;
+}
+
+@media only screen and (min-width: 900px) {
+  .product__information {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.product__information__title {
+  padding: 1.5rem;
+  color: #c60;
+  font-weight: 600;
+}
+.product__information__heading {
+  font-weight: 400;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #ddd;
+}

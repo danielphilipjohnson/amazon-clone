@@ -9,8 +9,8 @@ function Product({ id }) {
     <>
       <div className="page">
         <div className="container">
-          <ProductItem />
-          <ProductInformation />
+          <ProductItem id={id} />
+          <ProductInformation id={id} />
 
           <ProductList title="Customers who viewed this item also viewed" />
           <ProductList title="More items to explore" />

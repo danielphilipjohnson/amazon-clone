@@ -2,6 +2,7 @@ import React from "react";
 import TechnicalDetails from "./technical-details";
 
 import SubSection from "../shared/sub-section";
+import "./information.css";
 
 function index() {
   return (
