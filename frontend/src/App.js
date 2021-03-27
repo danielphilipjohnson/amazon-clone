@@ -74,6 +74,7 @@ function App() {
             <Subheader />
             <SectionNav />
             <Product />
+            <Footer />
           </Route>
           <Route path="/payment">
             <Elements stripe={promise}>
