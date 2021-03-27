@@ -1,6 +1,6 @@
 import React from "react";
 
-import Table from "../shared/table";
+import Table from "../../shared/table";
 
 function TechnicalDetails() {
   return (
