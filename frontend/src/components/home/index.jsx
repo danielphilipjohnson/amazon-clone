@@ -2,7 +2,7 @@ import React from "react";
 
 import Bg from "../../images/bg.jpg";
 // spilt out later
-import Product from "../oldproduct";
+// import Product from "../oldproduct";
 import shippingImg from "../../images/shipping.jpg";
 import popitemsImg from "../../images/popitems.jpg";
 import topdealitemImg from "../../images/topdealitem.jpg";
@@ -55,7 +55,7 @@ function Home() {
               Shop more deals
             </a>
           </div>
-          <Product
+          {/* <Product
             id="1"
             axios
             title="The lean startup"
@@ -70,7 +70,7 @@ function Home() {
             price={17.95}
             image={process.env.PUBLIC_URL + "/images/norton.jpg"}
             rating={5}
-          />
+          /> */}
         </div>
         <div className="home__row">
           {/* <Product
