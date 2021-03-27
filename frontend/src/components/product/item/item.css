@@ -14,7 +14,8 @@
 @media only screen and (min-width: 600px) {
   .product__fullimage {
     height: 350px;
-    object-fit: cover;
+
+    object-fit: contain;
   }
 }
 
@@ -24,6 +25,10 @@
   }
   .product-form {
     max-width: 250px;
+  }
+  .product__fullimage {
+    height: 100%;
+    object-fit: contain;
   }
 }
 @media only screen and (min-width: 1500px) {

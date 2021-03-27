@@ -1,9 +1,33 @@
 import React from "react";
+import { useStateValue } from "../../../../StateProvider";
 import PrimeLogo from "../../../../images/prime-logo.png";
+import baseUrl from "../../../../adapters";
 import "./form.css";
 
 // create a function that determines time bewteen now and 24 hours
-function Form({ price, stock }) {
+function Form({ product, stock }) {
+  const {
+    title,
+    image,
+
+    current_price: price,
+    rating,
+  } = product;
+  const [{ basket }, dispatch] = useStateValue();
+
+  const addToBasket = () => {
+    dispatch({
+      type: "ADD_TO_BASKET",
+      item: {
+        id: product.id,
+        title: title,
+        image: baseUrl + image.url,
+        price: price,
+        rating: rating,
+      },
+    });
+  };
+
   return (
     <div className="product-form">
       <h3 className="color-total">{price}</h3>
@@ -31,7 +55,12 @@ function Form({ price, stock }) {
       </div>
 
       <div className="btns">
-        <button className="btn-amazon btn-amazon-pill btn-amazon-active">
+        <button
+          className="btn-amazon btn-amazon-pill btn-amazon-active"
+          onClick={() => {
+            addToBasket();
+          }}
+        >
           Add to Basket
         </button>
         <button className="btn-amazon btn-amazon-pill btn-amazon-buynow">

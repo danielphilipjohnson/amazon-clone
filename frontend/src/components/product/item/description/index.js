@@ -2,14 +2,7 @@ import React from "react";
 import PrimeLogo from "../../../../images/prime-logo.png";
 import "./description.css";
 function Description({ product }) {
-  const {
-    title,
-    rrp,
-    current_price,
-    rating,
-    details,
-    description__about,
-  } = product;
+  const { title, rrp, current_price, rating, details, about } = product;
 
   const GenerateMaterial = () => {
     return details.map((detail) => {
@@ -23,10 +16,10 @@ function Description({ product }) {
   };
 
   const GenerateAbout = () => {
-    return description__about.map((about) => {
+    return about.map((item) => {
       return (
         <li>
-          <p>{about}</p>
+          <p>{item}</p>
         </li>
       );
     });
