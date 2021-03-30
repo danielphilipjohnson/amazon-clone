@@ -9,7 +9,13 @@ function Item({ id }) {
   const [product, setProduct] = useState(null);
 
   const fetchProduct = (id) => {
-    setProduct(Data[id]);
+    setProduct(
+      Data.filter(function (item) {
+        if (item.id == id) {
+          return item;
+        }
+      })[0]
+    );
   };
   useEffect(() => {
     fetchProduct(id);

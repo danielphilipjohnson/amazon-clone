@@ -99,3 +99,16 @@
 .text-bold {
   font-weight: bold;
 }
+
+.text-base {
+  color: #0f1111;
+}
+.alink-none {
+  text-decoration: none;
+}
+.alink-none:hover {
+  text-decoration: none;
+}
+.alink-none:active {
+  color: #0f1111;
+}
