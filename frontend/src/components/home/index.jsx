@@ -72,8 +72,8 @@ function Home() {
             rating={5}
           /> */}
         </div>
-        <div className="home__row">
-          {/* <Product
+        {/* <div className="home__row">
+          <Product
             id="3"
             title="Echo Dot (3rd Gen) - Smart speaker with Alexa - Charcoal Fabric"
             price={49.99}
@@ -94,17 +94,17 @@ function Home() {
             price={39.99}
             image={process.env.PUBLIC_URL + "/images/lego.jpg"}
             rating={5}
-          /> */}
-        </div>
-        <div className="home__row">
-          {/* <Product
+          />
+        </div> */}
+        {/* <div className="home__row">
+          <Product
             id="6"
             title="Mastering React Test-Driven Development: Build rock-solid, well-tested web apps with React, Redux and GraphQL Paperback – 3 May 2019"
             price={30.99}
             image={process.env.PUBLIC_URL + "/images/reactbook.jpg"}
             rating={5}
-          /> */}
-        </div>
+          />
+        </div> */}
         <RecommendedProducts />
         <SubCards />
         <RecommendedProducts />
