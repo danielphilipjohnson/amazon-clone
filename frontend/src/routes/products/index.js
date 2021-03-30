@@ -8,23 +8,22 @@ import {
   useRouteMatch,
 } from "react-router-dom";
 
-import NavigationForm from "./navigation";
-import ListProducts from "./list-products";
+import SearchContainer from "../../components/search";
 
-import "./products.css";
 function Index() {
   let { path, url } = useRouteMatch();
 
   return (
-    <div className="search-body">
-      <div className="container search__container">
-        <NavigationForm />
+    <SearchContainer />
+    // <div className="search-body">
+    //   <div className="container search__container">
+    //     <NavigationForm />
 
-        <div className="product__container">
-          <ListProducts />
-        </div>
-      </div>
-    </div>
+    //     <div className="product__container">
+    //       <ListProducts />
+    //     </div>
+    //   </div>
+    // </div>
   );
 }
 
