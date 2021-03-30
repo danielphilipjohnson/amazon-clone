@@ -1,7 +1,7 @@
 import React from "react";
-import PrimeLogo from "../../../images/prime-logo.png";
+import PrimeLogo from "../../../../images/prime-logo.png";
 
-import baseUrl from "../../../adapters";
+import baseUrl from "../../../../adapters";
 
 function Project({ productInformation }) {
   const DisplayPrice = () => {

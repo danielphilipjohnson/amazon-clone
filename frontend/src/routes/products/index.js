@@ -9,9 +9,11 @@ import {
 } from "react-router-dom";
 
 import NavigationForm from "./navigation";
-import Product from "./product";
+import ListProducts from "./list-products";
 
-import data from "../../adapters/productAdapter";
+// import Product from "./product";
+
+// import data from "../../adapters/productAdapter";
 
 import "./products.css";
 function Index() {
@@ -25,20 +27,20 @@ function Index() {
   //   fetchMatchedProducts(id);
   // }, []);
 
-  const RenderProducts = () => {
-    return data.map((item) => {
-      // console.log(item);
-      return <Product productInformation={item} />;
-    });
-  };
+  // const RenderProducts = () => {
+  //   return data.map((item) => {
+  //     // console.log(item);
+  //     return <Product productInformation={item} />;
+  //   });
+  // };
   return (
     <div>
       <NavigationForm />
 
       <div className="product__container">
-        <RenderProducts />
+        <ListProducts />
       </div>
-      <p>List of products</p>
+      {/* <p>List of products</p>
       <ul>
         <li>
           <Link to={`${url}/1`}>Product 1</Link>
@@ -49,7 +51,7 @@ function Index() {
         <li>
           <Link to={`${url}/3`}>Project 3</Link>
         </li>
-      </ul>
+      </ul> */}
     </div>
   );
 }
