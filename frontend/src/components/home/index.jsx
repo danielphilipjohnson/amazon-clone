@@ -29,7 +29,7 @@ function Home() {
           <div className="card">
             <h2 className="card__title">Customers' most loved for him</h2>
             <img className="card__image" src={popitemsImg} alt="shipping" />
-            <a className="c./src/index.jsard__link" href="/">
+            <a className="card__link" href="/">
               See more
             </a>
           </div>
