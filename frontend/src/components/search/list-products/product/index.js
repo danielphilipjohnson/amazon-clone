@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useParams,
-  useRouteMatch,
-} from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 
 import PrimeLogo from "../../../../images/prime-logo.png";
 

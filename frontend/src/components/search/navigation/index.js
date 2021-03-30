@@ -1,8 +1,11 @@
 import React from "react";
 import "./navigation.css";
 import PrimeLogo from "../../../images/prime-logo.png";
+
 function Navigation() {
   return (
+    // http://localhost:1337/products?current_price_gte=50
+    // deal with prices
     <aside className="form-navigation">
       <div className="form-navigation__group prime">
         <h3>Amazon Prime</h3>

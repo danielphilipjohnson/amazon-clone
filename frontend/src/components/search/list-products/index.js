@@ -3,10 +3,18 @@ import Product from "./product";
 import LoadingProducts from "../../shared/loading-product";
 import data from "../../../adapters/productAdapter";
 
+import { useLocation } from "react-router-dom";
+
 function ListProducts() {
   const [product, setProduct] = useState(null);
+  const location = useLocation();
 
   const fetchMatchedProducts = async () => {
+    // use this to get the correct products
+    // examples
+    //http://localhost:3000/search?category=technology
+    //http://localhost:1337/products?category=Electronics
+    console.log(location.search);
     await setProduct(data);
     // setProduct(null);
   };

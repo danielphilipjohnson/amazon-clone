@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import "./header.css";
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useParams,
+  useLocation,
+  useHistory,
+} from "react-router-dom";
 
 import RoomIcon from "@material-ui/icons/Room";
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
-import { Link } from "react-router-dom";
 import { useStateValue } from "../../../StateProvider";
 
 import { auth } from "../../../adapters/firebase";
@@ -12,12 +21,22 @@ import { auth } from "../../../adapters/firebase";
 import AmazonLogo from "../../../images/amazon-logo.png";
 
 function Header() {
-  const [{ basket, user }, dispatch] = useStateValue();
+  let history = useHistory();
 
+  const [{ basket, user }, dispatch] = useStateValue();
+  const [searchQuery, setSearchQuery] = useState("");
+  // add category i have to it
   const handleAuthenticaton = () => {
     if (user) {
       auth.signOut();
     }
+  };
+  const onSearchClick = (e) => {
+    const formSearch = `/search?category=${searchQuery}`;
+    history.push(formSearch);
+  };
+  const handleChange = (e) => {
+    setSearchQuery(e.target.value);
   };
 
   return (
@@ -42,57 +61,32 @@ function Header() {
           <select
             aria-describedby="search Dropdown"
             className="header__search-dropdown hide-mobile show-desktop"
+            onChange={handleChange}
           >
             <option defaultValue="all">All Departments</option>
-            <option value="amazon-devices">Amazon Devices</option>
-            <option value="alexa-skills">Alexa Skills</option>
-            <option value="amazon-global-store">Amazon Global Store</option>
-            <option value="warehouse-deals">Amazon Warehouse</option>
-            <option value="mobile-apps">Apps &amp; Games</option>
-            <option value="audible">Audible Audiobooks</option>
+            <option value="accessories">Accessories</option>
             <option value="baby">Baby</option>
-            <option value="beauty">Beauty</option>
-            <option value="stripbooks">Books</option>
-            <option value="automotive">Car &amp; Motorbike</option>
-            <option value="popular">CDs &amp; Vinyl</option>
-            <option value="classical">Classical Music</option>
-            <option value="clothing">Clothing</option>
-            <option value="computers">Computers &amp; Accessories</option>
-            <option value="digital-music">Digital Music </option>
-            <option value="diy">DIY &amp; Tools</option>
-            <option value="dvd">DVD &amp; Blu-ray</option>
-            <option value="electronics">Electronics &amp; Photo</option>
+            <option value="books">Books</option>
+            <option value="children">Children</option>
+            <option value="clothes">Clothes</option>
+            <option value="computers">Computers & Accessories</option>
+            <option value="electronics">Electronics</option>
             <option value="fashion">Fashion</option>
-            <option value="outdoor">Garden &amp; Outdoors</option>
-            <option value="gift-cards">Gift Cards</option>
-            <option value="grocery">Grocery</option>
-            <option value="handmade">Handmade</option>
-            <option value="drugstore">Health &amp; Personal Care</option>
-            <option value="local-services">Home &amp; Business Services</option>
-            <option value="kitchen">Home &amp; Kitchen</option>
-            <option value="industrial">Industrial &amp; Scientific</option>
-            <option value="jewelry">Jewellery</option>
-            <option value="digital-text">Kindle Store</option>
-            <option value="appliances">Large Appliances</option>
-            <option value="lighting">Lighting</option>
-            <option value="luggage">Luggage</option>
-            <option value="mi">Musical Instruments &amp; DJ Equipment</option>
-            <option value="videogames">PC &amp; Video Games</option>
-            <option value="pets">Pet Supplies</option>
-            <option value="luxury-beauty">Premium Beauty</option>
-            <option value="instant-video">Prime Video</option>
-            <option value="shoes">Shoes &amp; Bags</option>
-            <option value="software">Software</option>
-            <option value="sports">Sports &amp; Outdoors</option>
-            <option value="office-products">
-              Stationery &amp; Office Supplies
-            </option>
-            <option value="toys">Toys &amp; Games</option>
-            <option value="watches">Watches</option>
+            <option value="films">Films</option>
+            <option value="garden">Garden</option>
+            <option value="home">Home</option>
+            <option value="jewellery">Jewellery</option>
+            <option value="music">Music</option>
+            <option value="pets">Pets</option>
+            <option value="toys">Toys </option>
+            <option value="shoes">Shoes</option>
           </select>
         </div>
         <input className="header__searchInput" type="text" />
-        <SearchIcon className="header__searchIcon" />
+        <SearchIcon
+          className="header__searchIcon"
+          onClick={() => onSearchClick()}
+        />
       </div>
 
       <div className="nav-right header__nav">
