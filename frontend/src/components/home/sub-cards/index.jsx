@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 
+import categoryData from "../../../adapters/categoriesAdapter";
+import baseUrl from "../../../adapters";
+
 import "./sub-cards.css";
 
 const data = [
@@ -56,25 +59,29 @@ const data = [
 function SubCard() {
   const [productTypes, setProducts] = useState([]);
   useEffect(() => {
-    setProducts(data);
+    console.log(categoryData);
+    setProducts(categoryData);
   }, []);
 
   return (
     <div className="sub__cards-container">
       {productTypes.map((productType) => {
         return (
-          <div className="sub__cards-grid">
-            <h2 className="sub__cards-title">{productType.title}</h2>
+          <div className="sub__cards-grid" key={productType.Title}>
+            <h2 className="sub__cards-title">{productType.Title}</h2>
             <div className="sub__cards-items">
-              {productType.products.map((project) => {
+              {productType.category_items.map((item) => {
                 return (
-                  <div className="sub__card">
+                  <div
+                    className="sub__card"
+                    key={productType.Title + productType.id}
+                  >
                     <img
                       className="sub__card-img"
-                      src={process.env.PUBLIC_URL + project.image}
+                      src={baseUrl + item.Image.url}
                       alt="sub__card"
                     />
-                    <p className="sub__card-title">{project.title}</p>
+                    <p className="sub__card-title">{item.Title}</p>
                   </div>
                 );
               })}
