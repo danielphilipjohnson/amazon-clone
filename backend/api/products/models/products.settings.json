@@ -17,7 +17,7 @@
     "description": {
       "type": "text"
     },
-    "price": {
+    "current_price": {
       "type": "decimal"
     },
     "image": {
@@ -40,26 +40,38 @@
     "category": {
       "type": "enumeration",
       "enum": [
-        "Books",
-        "Films",
-        "Music",
-        "Electronics",
-        "Computers",
-        "Home",
-        "Garden",
-        "Pets",
-        "Toys",
-        "Children",
-        "Baby",
-        "Clothes",
-        "Shoes",
-        "Jewellery",
-        "Accessories"
+        "books",
+        "films",
+        "music",
+        "electronics",
+        "computers",
+        "home",
+        "garden",
+        "pets",
+        "toys",
+        "children",
+        "baby",
+        "clothes",
+        "shoes",
+        "jewellery",
+        "accessories"
       ]
     },
     "questions": {
       "collection": "questions",
       "via": "product"
+    },
+    "about": {
+      "type": "json"
+    },
+    "rrp": {
+      "type": "decimal"
+    },
+    "rating": {
+      "type": "integer"
+    },
+    "details": {
+      "type": "json"
     }
   }
 }

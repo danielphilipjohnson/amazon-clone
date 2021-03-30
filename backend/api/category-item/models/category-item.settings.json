@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "category_items",
+  "info": {
+    "name": "CategoryItem",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "category_card": {
+      "model": "category-cards",
+      "via": "category_items"
+    }
+  }
+}

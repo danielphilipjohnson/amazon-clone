@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "category_cards",
+  "info": {
+    "name": "CategoryCards",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "category_items": {
+      "via": "category_card",
+      "collection": "category-item"
+    }
+  }
+}
