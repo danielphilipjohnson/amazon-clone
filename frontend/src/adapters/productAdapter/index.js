@@ -1,5 +1,4 @@
 const data = [
-  {},
   {
     id: 1,
     title: "Womens red shirt",
