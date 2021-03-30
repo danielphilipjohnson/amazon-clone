@@ -43,8 +43,8 @@ function Header() {
             aria-describedby="search Dropdown"
             className="header__search-dropdown hide-mobile show-desktop"
           >
-            <option defaultValue="amazon-devices">Amazon Devices</option>
-            <option value="all">All Departments</option>
+            <option defaultValue="all">All Departments</option>
+            <option value="amazon-devices">Amazon Devices</option>
             <option value="alexa-skills">Alexa Skills</option>
             <option value="amazon-global-store">Amazon Global Store</option>
             <option value="warehouse-deals">Amazon Warehouse</option>

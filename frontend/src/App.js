@@ -66,7 +66,7 @@ function App() {
             <Checkout />
             <Footer />
           </Route>
-          <Route path="/products">
+          <Route path="/search">
             <Header />
             <Subheader />
             <SectionNav />
