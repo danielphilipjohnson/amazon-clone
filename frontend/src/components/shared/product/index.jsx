@@ -1,6 +1,7 @@
 import React from "react";
 import FadeIn from "react-fade-in";
 import PrimeLogo from "../../../images/prime-logo.png";
+import { Link } from "react-router-dom";
 import "./product.css";
 import { useStateValue } from "../../../StateProvider";
 
@@ -21,7 +22,13 @@ function CheckoutProduct({ id, image, title, price, rating, hideButton }, ref) {
         <img className="checkoutProduct__image" src={image} alt={title} />
         <div className="checkoutProduct__info">
           <div className="checkoutProduct__top">
-            <p className="checkoutProduct__title alink-normal">{title}</p>
+            <Link
+              to={`/product/${id}`}
+              className="checkoutProduct__title alink-normal"
+            >
+              {title}
+            </Link>
+
             <p className="checkoutProduct__price">
               <small>$</small>
               <strong>{price}</strong>

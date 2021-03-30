@@ -3,7 +3,7 @@ import React from "react";
 import Cart from "./cart";
 import Subtotal from "./subtotal";
 
-import BrowsingHistory from "../sitewide/browsering-history";
+import ProductList from "../shared/product-list";
 import { useStateValue } from "../../StateProvider";
 
 import "./checkout.css";
@@ -25,7 +25,7 @@ function Checkout() {
           <Subtotal user={user} basket={basket} />
         </div>
       </div>
-      <BrowsingHistory />
+      <ProductList />
     </>
   );
 }

@@ -1,0 +1,48 @@
+.product-form {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 1rem;
+  margin: 0 0.5rem 1rem 1.5rem;
+  box-sizing: border-box;
+  height: max-content;
+}
+
+.product-form__delivery {
+  font-size: 0.85rem;
+  color: rgb(94, 92, 92);
+  margin-bottom: 0.75rem;
+}
+
+.product-form__stock {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.product-form__quantity {
+  margin-bottom: 1rem;
+}
+
+.product-form__dispatch {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.secure-box {
+  display: flex;
+  align-items: baseline;
+}
+.padlock {
+  width: 20px;
+  margin-right: 0.5rem;
+}
+
+@media only screen and (min-width: 1000px) {
+  .product-form {
+    max-width: 250px;
+  }
+}
+@media only screen and (min-width: 1500px) {
+  .product-form {
+    max-width: unset;
+  }
+}

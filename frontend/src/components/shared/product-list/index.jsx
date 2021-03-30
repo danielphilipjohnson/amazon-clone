@@ -6,7 +6,7 @@ import Item from "./item";
 
 import "./browsering-history.css";
 
-function BrowseringHistory() {
+function BrowseringHistory({ title }) {
   const [browseringHistoryProducts, setBrowseringHistoryProducts] = useState(
     null
   );
@@ -19,9 +19,7 @@ function BrowseringHistory() {
     return (
       <div className="browsering__items__container">
         <div className="browsering__items__row">
-          <h2 className="browsering__items-title">
-            Inspired by your browsing history
-          </h2>
+          <h2 className="browsering__items-title">{title}</h2>
 
           <div className="browsering__items-cards">
             {browseringHistoryProducts.map((product) => {

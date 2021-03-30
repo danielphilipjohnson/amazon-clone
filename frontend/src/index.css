@@ -17,10 +17,25 @@ code {
     monospace;
 }
 
+/* use this to reduce styles */
+.font-normal {
+  font-size: 0.9rem;
+}
+.font-normal {
+  font-size: 0.9rem;
+  line-height: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: #0f1111;
+  /* font-style: Arial, sans-serif; */
+}
+
 .color-success {
   color: #007600;
   font-size: 0.85rem;
 }
+/* .color-success {
+  color: #007600;
+} */
 
 /* normal default links */
 .alink-normal {
@@ -46,6 +61,9 @@ code {
 
 .flex {
   display: flex;
+}
+.inline {
+  display: inline;
 }
 
 /* btns */
@@ -76,6 +94,19 @@ code {
   transition: background-color 0.5s;
 }
 
+.btn-amazon-buynow {
+  background-color: #ffa41c;
+}
+.btn-amazon-buynow:hover {
+  background-color: #f0960e;
+  transition: background-color 0.5s;
+}
+.btn-amazon-pill {
+  border-radius: 20px;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
 .seperator {
   font-size: 0.75rem;
   color: #efefef;
@@ -83,4 +114,11 @@ code {
 
 .f-width {
   width: 100%;
+}
+.between {
+  justify-content: space-between;
+}
+
+.reset-list {
+  padding: 0;
 }
