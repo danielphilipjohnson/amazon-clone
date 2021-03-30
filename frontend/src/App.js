@@ -67,7 +67,11 @@ function App() {
             <Footer />
           </Route>
           <Route path="/products">
+            <Header />
+            <Subheader />
+            <SectionNav />
             <Products />
+            <Footer />
           </Route>
           <Route path="/product/:id">
             <Header />
