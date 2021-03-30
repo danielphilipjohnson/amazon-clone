@@ -1,16 +1,15 @@
 .wrapper {
-  margin: 30px;
-  padding: 30px;
-  background: #fff;
-  width: 360px;
-  height: 640px;
+  padding: 1rem;
+
   display: flex;
   flex-direction: column;
 }
 
 .wrapper-cell {
   display: flex;
-  margin-bottom: 30px;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #888c8c21;
 }
 
 @keyframes placeHolderShimmer {
@@ -36,8 +35,8 @@
 }
 
 .image {
-  height: 60px;
-  width: 60px;
+  height: 100px;
+  width: 100px;
 }
 
 .text {

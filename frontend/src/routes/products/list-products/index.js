@@ -8,8 +8,8 @@ function ListProducts() {
   const [product, setProduct] = useState(null);
 
   const fetchMatchedProducts = async () => {
-    // await setProduct(data);
-    setProduct(null);
+    await setProduct(data);
+    // setProduct(null);
   };
 
   useEffect(() => {
@@ -26,6 +26,33 @@ function ListProducts() {
         <div class="wrapper-cell">
           <div class="image animated-background"></div>
           <div class="text">
+            <div class="text-line animated-background"></div>
+            <div class="text-line animated-background"></div>
+            <div class="text-line animated-background"></div>
+            <div class="text-line animated-background"></div>
+            <div class="text-line animated-background"></div>
+            <div class="text-line animated-background"></div>
+            <div class="text-line animated-background"></div>
+          </div>
+        </div>
+        <div class="wrapper-cell">
+          <div class="image animated-background"></div>
+          <div class="text">
+            <div class="text-line animated-background"></div>
+            <div class="text-line animated-background"></div>
+            <div class="text-line animated-background"></div>
+            <div class="text-line animated-background"></div>
+            <div class="text-line animated-background"></div>
+            <div class="text-line animated-background"></div>
+            <div class="text-line animated-background"></div>
+          </div>
+        </div>
+        <div class="wrapper-cell">
+          <div class="image animated-background"></div>
+          <div class="text">
+            <div class="text-line animated-background"></div>
+            <div class="text-line animated-background"></div>
+            <div class="text-line animated-background"></div>
             <div class="text-line animated-background"></div>
             <div class="text-line animated-background"></div>
             <div class="text-line animated-background"></div>
