@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Product from "./product";
+import LoadingProducts from "../../../components/shared/loading-product";
 import data from "../../../adapters/productAdapter";
-
-import "./loading.css";
 
 function ListProducts() {
   const [product, setProduct] = useState(null);
 
   const fetchMatchedProducts = async () => {
-    await setProduct(data);
-    // setProduct(null);
+    // await setProduct(data);
+    setProduct(null);
   };
 
   useEffect(() => {
@@ -21,46 +20,7 @@ function ListProducts() {
       return <Product productInformation={item} />;
     });
   } else {
-    return (
-      <div class="wrapper">
-        <div class="wrapper-cell">
-          <div class="image animated-background"></div>
-          <div class="text">
-            <div class="text-line animated-background"></div>
-            <div class="text-line animated-background"></div>
-            <div class="text-line animated-background"></div>
-            <div class="text-line animated-background"></div>
-            <div class="text-line animated-background"></div>
-            <div class="text-line animated-background"></div>
-            <div class="text-line animated-background"></div>
-          </div>
-        </div>
-        <div class="wrapper-cell">
-          <div class="image animated-background"></div>
-          <div class="text">
-            <div class="text-line animated-background"></div>
-            <div class="text-line animated-background"></div>
-            <div class="text-line animated-background"></div>
-            <div class="text-line animated-background"></div>
-            <div class="text-line animated-background"></div>
-            <div class="text-line animated-background"></div>
-            <div class="text-line animated-background"></div>
-          </div>
-        </div>
-        <div class="wrapper-cell">
-          <div class="image animated-background"></div>
-          <div class="text">
-            <div class="text-line animated-background"></div>
-            <div class="text-line animated-background"></div>
-            <div class="text-line animated-background"></div>
-            <div class="text-line animated-background"></div>
-            <div class="text-line animated-background"></div>
-            <div class="text-line animated-background"></div>
-            <div class="text-line animated-background"></div>
-          </div>
-        </div>
-      </div>
-    );
+    return <LoadingProducts />;
   }
 }
 
