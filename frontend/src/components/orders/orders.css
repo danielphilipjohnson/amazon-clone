@@ -1,9 +1,5 @@
 .order__container {
   background-color: #fff;
-  /* padding: 3rem; */
-}
-
-.orders {
 }
 
 .order__container-heading {
@@ -97,10 +93,11 @@
 .order__heading-title {
   text-transform: uppercase;
 }
-.order__content-heading {
+.order__content-image {
   height: 100px;
   width: 100px;
   padding: 1rem 1rem 1rem 0;
+  object-fit: contain;
 }
 
 .order__content-about,
