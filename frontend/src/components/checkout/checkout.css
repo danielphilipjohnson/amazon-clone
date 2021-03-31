@@ -3,6 +3,7 @@
   height: max-content;
   display: grid;
   grid-template-columns: 1fr;
+  background: rgb(234, 237, 237);
 }
 @media only screen and (min-width: 768px) {
   .checkout {

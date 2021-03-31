@@ -74,7 +74,11 @@ function SubCard() {
                 return (
                   <div
                     className="sub__card"
-                    key={productType.Title + productType.id}
+                    key={
+                      productType.Title +
+                      productType.updated_at +
+                      productType.id
+                    }
                   >
                     <ProductImage
                       url={item.Image.url}

@@ -20,7 +20,6 @@ function Orders() {
 
   const GenerateOrder = () => {
     return orders.map((item) => {
-      console.log(item);
       return (
         <div className="order">
           <div className="order__heading flex between text-secondary size-base">
@@ -146,7 +145,7 @@ function Orders() {
           <li className="alink-normal">Your Account &gt; </li>
           <li className="text-company">Your Orders</li>
         </ul>
-        <div className="order__container-heading ">
+        <div className="order__container-heading">
           <h1>Your Orders</h1>
           <div className="order__container-form">
             <input

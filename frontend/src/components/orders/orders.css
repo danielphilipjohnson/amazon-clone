@@ -6,6 +6,12 @@
   padding: 0 1rem 1rem 1rem;
   display: grid;
 }
+@media only screen and (min-width: 900px) {
+  .order__container-heading {
+    padding: 0 0 1rem 0;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 
 .order__container-form input {
   margin-top: 0.5rem;
@@ -29,11 +35,8 @@
   .order__container-form input {
     margin-top: 0;
   }
-  .order__container-heading {
-    padding: 0 0 1rem 0;
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
+
 .pagination {
   padding: 1rem;
 }
@@ -47,6 +50,8 @@
 .pagination li {
   margin-right: 0.5rem;
 }
+
+/* order */
 .order__heading {
   background-color: #f6f6f6;
   border: 1px #ddd solid;
@@ -74,9 +79,6 @@
   margin-bottom: 1rem;
   border-bottom: 1px #ddd solid;
   padding-left: 0.75rem;
-}
-.btn-group {
-  border-bottom: 1px solid #ddd;
 }
 
 .btn-tab {
@@ -196,6 +198,9 @@
 }
 /* padding-top: 1rem; */
 
+.btn-group {
+  border-bottom: 1px solid #ddd;
+}
 @media only screen and (min-width: 700px) {
   .btn__content {
     border-top: none;
