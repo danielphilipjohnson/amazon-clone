@@ -1,5 +1,8 @@
 import React, { useState } from "react";
+import AltFooter from "../sitewide/alt-footer/index";
+
 import "./login.css";
+import AmazonLogo from "../../images/amazon-logo-black.png";
 import { Link, useHistory } from "react-router-dom";
 import { auth } from "../../adapters/firebase";
 
@@ -35,13 +38,10 @@ function Login() {
 
   return (
     <div className="login">
-      <Link to="/">
-        <img
-          className="login__logo"
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1024px-Amazon_logo.svg.png"
-        />
+      <Link to="/" className="header__link header__link-alt">
+        <img className="login__logo" src={AmazonLogo} />
+        <span>.fake</span>
       </Link>
-
       <div className="login__container">
         <h1>Sign-in</h1>
 
@@ -65,20 +65,22 @@ function Login() {
             onClick={signIn}
             className="login__signInButton"
           >
-            Sign In
+            Continue
           </button>
         </form>
 
         <p>
-          By signing-in you agree to the AMAZON FAKE CLONE Conditions of Use &
-          Sale. Please see our Privacy Notice, our Cookies Notice and our
-          Interest-Based Ads Notice.
+          This is an <a href="">AMAZON FAKE CLONE</a> This site isn't real so
+          please use a fake email you will not have to confirm it. Nor will any
+          emails be sent to you.
         </p>
 
         <button onClick={register} className="login__registerButton">
           Create your Amazon Account
         </button>
       </div>
+
+      <AltFooter />
     </div>
   );
 }

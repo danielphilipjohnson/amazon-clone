@@ -1,0 +1,39 @@
+.page {
+  background-color: #fff;
+  padding: 1rem 0;
+}
+
+.container {
+  margin: 0 auto;
+}
+
+@media only screen and (min-width: 900px) {
+  .container {
+    margin: 0 auto;
+    padding: 0 3rem;
+    max-width: 1500px;
+  }
+}
+
+.technical__details,
+.addtional-information {
+  padding: 0.5rem;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+.tr {
+  border-bottom: 1px solid #ddd;
+}
+.td {
+  padding: 0.5rem 1rem 2rem 1rem;
+  text-align: left;
+  font-weight: normal;
+  font-size: 0.85rem;
+}
+.t-left {
+  background-color: #f3f3f3;
+  color: #565959;
+}

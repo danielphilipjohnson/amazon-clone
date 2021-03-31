@@ -1,0 +1,21 @@
+.checkoutSubNav__items {
+  display: flex;
+
+  list-style: none;
+  word-wrap: normal;
+  border-top: 1px solid rgba(0, 0, 0, 0.17);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+  height: 33px;
+  background: #fafafa;
+  padding: 0 0 0 0.5rem;
+}
+.checkoutSubNav__items li {
+  position: relative;
+  float: left;
+  height: 31px;
+  line-height: 2rem;
+  color: #333;
+  font-size: 0.9rem;
+  padding: 0 0.85rem;
+}

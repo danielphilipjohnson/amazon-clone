@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "orders",
+  "info": {
+    "name": "Orders",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "products": {
+      "collection": "products"
+    },
+    "order_total": {
+      "type": "decimal"
+    },
+    "order_placed": {
+      "type": "datetime"
+    },
+    "order_identifier": {
+      "type": "uid"
+    },
+    "users": {
+      "plugin": "users-permissions",
+      "model": "user"
+    }
+  }
+}

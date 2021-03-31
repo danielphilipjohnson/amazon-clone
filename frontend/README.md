@@ -100,10 +100,26 @@ This project uses the air bnb: https://airbnb.io/javascript/react/ style guide f
 
     src
       |---adapters
+      |---common
       |---components
       |---images
       |---reducer
       |---routes
+
+#### V2 will include some changes to structure
+
+Currently it scales okay but soon it might run into some issues.
+
+This is a possible solution
+
+      /src
+        /shared
+        /cart
+          /shared
+          /component
+          /api
+          /reducers
+          /actions
 
 ### Adapters
 
@@ -128,6 +144,17 @@ This project uses the air bnb: https://airbnb.io/javascript/react/ style guide f
     |── index.jsx
     |── component.test.tsx
     ├── utils.test.ts
+    component.test.tsx
+    index.jsx
+
+### React Common
+
+#### File structure
+
+    |── button-component
+    |── AuthForm-component
+      |── index.jsx
+    |── component.test.tsx
     component.test.tsx
     index.jsx
 
@@ -291,9 +318,7 @@ Avoid large useEffects that do multiple things. They make your code error-prone 
       setVisibility(unlisted)
     }, [unlisted])
 
-##### Prefer conditionals over ( && )
-
-using actual branching syntax is that test coverage tools can detect and indicate when your tests are not covering one of the branches.
+##### Prefer conditionals over ( && )Iteme tools can detect and indicate when your tests are not covering one of the branches.
 
     if (contacts.length) {
       contactsElements = contacts.map(contact => (

@@ -1,13 +1,12 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
 // move to a layout component
 import Header from "./components/sitewide/header";
 import Subheader from "./components/sitewide/subheader";
-import BrowseringHistory from "./components/sitewide/browsering-history";
+import ProductList from "./components/shared/product-list";
 import Footer from "./components/sitewide/footer";
 
-import CheckoutSubNav from "./components/checkout/section-nav/";
+import SectionNav from "./components/shared/section-nav/";
 
 /* Routes */
 import Orders from "./routes/orders";
@@ -15,6 +14,8 @@ import Login from "./routes/login";
 import Checkout from "./routes/checkout";
 import Payment from "./routes/payment";
 import Home from "./routes/home";
+import Products from "./routes/products";
+import Product from "./routes/product";
 
 import { auth } from "./adapters/firebase";
 
@@ -28,6 +29,7 @@ import "./App.css";
 const promise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
 function App() {
   const [{}, dispatch] = useStateValue();
+  // let { slug } = useParams();
   useEffect(() => {
     // run once when the app component loads
     auth.onAuthStateChanged((authUser) => {
@@ -52,7 +54,13 @@ function App() {
       <div className="app">
         <Switch>
           <Route path="/orders">
+            <Header />
+            <Subheader />
+            <SectionNav />
             <Orders />
+            <ProductList title="Recommended based on your purchase" />
+            <ProductList title={"Browsing History"} />
+            <Footer />
           </Route>
           <Route path="/login">
             <Login />
@@ -60,11 +68,25 @@ function App() {
           <Route path="/checkout">
             <Header />
             <Subheader />
-            <CheckoutSubNav />
+            <SectionNav />
             <Checkout />
+            <Footer />
+          </Route>
+          <Route path="/search">
+            <Header />
+            <Subheader />
+            <SectionNav />
+            <Products />
+            <Footer />
+          </Route>
+          <Route path="/product/:id">
+            <Header />
+            <Subheader />
+            <SectionNav />
+            <Product />
+            <Footer />
           </Route>
           <Route path="/payment">
-            <Header />
             <Elements stripe={promise}>
               <Payment />
             </Elements>
@@ -73,7 +95,6 @@ function App() {
             <Header />
             <Subheader />
             <Home />
-            <BrowseringHistory />
             <Footer />
           </Route>
         </Switch>

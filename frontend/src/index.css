@@ -1,18 +1,173 @@
-*{
+* {
   margin: 0;
 }
 
 body {
-  background-color: rgb(234,237,237);
+  background-color: #fff;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+/* use this to reduce styles */
+.font-normal {
+  font-size: 0.9rem;
+}
+.font-normal {
+  font-size: 0.9rem;
+  line-height: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: #0f1111;
+  /* font-style: Arial, sans-serif; */
+}
+
+.color-success {
+  color: #007600;
+  font-size: 0.85rem;
+}
+/* .color-success {
+  color: #007600;
+} */
+
+/* normal default links */
+.alink-normal {
+  display: block;
+  text-decoration: none;
+  color: #007185;
+  margin-bottom: 0.5rem;
+}
+.alink-normal-inline {
+  display: inline;
+}
+
+.alink-normal:hover {
+  text-decoration: underline;
+  cursor: pointer;
+  color: #c7511f;
+}
+
+.a-color-link {
+  color: #007185;
+  margin-bottom: 0.5rem;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.flex {
+  display: flex;
+}
+.inline {
+  display: inline;
+}
+
+/* btns */
+
+.btn-amazon {
+  display: block;
+  background-color: transparent;
+  color: inherit;
+  margin-right: 0.5rem;
+  border: 1px solid #efefef;
+  border-radius: 4px;
+  padding: 0.45rem 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  text-decoration-color: unset;
+}
+.btn-amazon:hover {
+  background-color: rgba(0, 0, 0, 0.09);
+  transition: background-color 0.5s;
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn-amazon-active {
+  background-color: #ffd814;
+}
+.btn-amazon-active:hover {
+  background-color: #f7ca00;
+  transition: background-color 0.5s;
+}
+
+.btn-amazon-buynow {
+  background-color: #ffa41c;
+}
+.btn-amazon-buynow:hover {
+  background-color: #f0960e;
+  transition: background-color 0.5s;
+}
+.btn-amazon-pill {
+  border-radius: 20px;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.seperator {
+  font-size: 0.75rem;
+  color: #efefef;
+}
+
+.f-width {
+  width: 100%;
+}
+.between {
+  justify-content: space-between;
+}
+
+.reset-list {
+  padding: 0;
+}
+.reset-list li {
+  list-style: none;
+}
+/* Accessibility */
+.offscreen {
+  position: absolute !important;
+  left: 0 !important;
+  bottom: -1px !important;
+  z-index: -1 !important;
+  opacity: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.size-base {
+  font-size: 0.9rem;
+}
+.text-secondary {
+  color: #565959;
+}
+.text-bold {
+  font-weight: bold;
+}
+.text-company {
+  color: #c7511f;
+}
+
+.text-base {
+  color: #0f1111;
+}
+.alink-none {
+  text-decoration: none;
+}
+.alink-none:hover {
+  text-decoration: none;
+}
+.alink-none:active {
+  color: #0f1111;
 }

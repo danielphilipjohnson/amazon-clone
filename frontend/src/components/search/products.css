@@ -1,0 +1,75 @@
+.search-body {
+  background-color: #fff;
+}
+.search__container {
+  display: grid;
+  grid-template-columns: 270px 2.5fr;
+}
+.product__container {
+  margin: 0 1rem;
+}
+
+.list-card__product {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  border-bottom: 1px solid #888c8c;
+  padding: 1rem 0.5rem;
+}
+
+.list-card__image {
+  height: 200px;
+  width: 100%;
+  object-fit: contain;
+}
+.list-card__content {
+  padding: 0 1rem;
+}
+
+.list-card__heading {
+  font-weight: 400;
+  font-size: 1.15rem;
+  color: #0f1111;
+  margin-bottom: 0.5rem;
+}
+
+.list-card__stars {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+.list-card__pricing {
+  margin-bottom: 0.5rem;
+}
+
+.list-card__price {
+  font-size: 1.25rem;
+  color: #0f1111;
+}
+
+.list-card__currency,
+.list-card__fraction {
+  font-size: 0.85rem;
+  position: relative;
+  top: -4px;
+}
+.list-card__old-price {
+  margin-left: 0.25rem;
+  color: #565959;
+  font-size: 0.85rem;
+}
+
+.detail-item {
+  padding: 0 1rem;
+  font-size: 0.9rem;
+}
+
+.prime-delivery {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.prime-delivery img {
+  margin-right: 0.25rem;
+}
+.prime-delivery span {
+  font-size: 0.8rem;
+}
