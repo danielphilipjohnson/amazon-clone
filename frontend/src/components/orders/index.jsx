@@ -172,8 +172,11 @@ function Orders() {
         </div>
 
         <div className="order__container-overview">
-          <span className="text-bold">14 orders </span>
-          <span>placed in</span>
+          <div>
+            <span className="text-bold">14 orders </span>
+            <span>placed in</span>
+          </div>
+
           <select name="" id="">
             <option value="3months">Last 30 days</option>
             <option value="3months">Past three months</option>
