@@ -25,7 +25,7 @@ function Orders() {
         <div className="order">
           <div className="order__heading flex between text-secondary size-base">
             <div className="order__heading-left">
-              <div className="flex between">
+              <div className="flex between order-responsive">
                 <div className="grid-space">
                   <p className="order__heading-title">Order placed </p>
                   <p>{item.order_placed}</p>
@@ -53,13 +53,13 @@ function Orders() {
               </p>
             </div>
           </div>
-          <div className="order__content">
-            <div className="flex between">
+          <div className="order__content-container">
+            <div className="order__content flex between left">
               <div className="x">
                 <h2>Arriving tomorrow </h2>
                 {item.products.map((product) => {
                   return (
-                    <div className="flex between">
+                    <div className="flex between order-responsive">
                       <ProductImage
                         url={product.image.url}
                         classname="order__content-image"
@@ -90,7 +90,7 @@ function Orders() {
                 })}
               </div>
 
-              <div className="">
+              <div className="btn__content">
                 <button className="btn-basic btn-basic-active f-width">
                   Track package
                 </button>
@@ -146,7 +146,7 @@ function Orders() {
           <li className="alink-normal">Your Account &gt; </li>
           <li className="text-company">Your Orders</li>
         </ul>
-        <div className="order__container-heading flex between">
+        <div className="order__container-heading ">
           <h1>Your Orders</h1>
           <div className="order__container-form">
             <input
