@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import categoryData from "../../../adapters/categoriesAdapter";
-import baseUrl from "../../../adapters";
+import ProductImage from "../../shared/product-image";
 
 import "./sub-cards.css";
 
@@ -76,9 +76,9 @@ function SubCard() {
                     className="sub__card"
                     key={productType.Title + productType.id}
                   >
-                    <img
-                      className="sub__card-img"
-                      src={baseUrl + item.Image.url}
+                    <ProductImage
+                      url={item.Image.url}
+                      classname="sub__card-img"
                       alt="sub__card"
                     />
                     <p className="sub__card-title">{item.Title}</p>

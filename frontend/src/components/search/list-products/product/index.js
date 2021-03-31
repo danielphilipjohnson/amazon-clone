@@ -1,9 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Link } from "react-router-dom";
+import ProductImage from "../../../shared/product-image";
 
 import PrimeLogo from "../../../../images/prime-logo.png";
-
-import baseUrl from "../../../../adapters";
 
 function Project({ productInformation }) {
   const DisplayPrice = () => {
@@ -23,11 +22,12 @@ function Project({ productInformation }) {
       className="alink-none text-base "
     >
       <div className="list-card__product">
-        <img
-          className="list-card__image"
-          src={baseUrl + productInformation?.image.url}
-          alt=""
+        <ProductImage
+          classname="list-card__image"
+          url={productInformation.image.url}
+          alt={productInformation?.title}
         />
+
         <div className="list-card__content">
           <h2 className="list-card__heading">{productInformation?.title}</h2>
           <div className="flex items-center">

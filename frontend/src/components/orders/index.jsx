@@ -316,6 +316,7 @@ function Orders() {
                       <ProductImage
                         url={product.image.url}
                         classname="order__content-heading"
+                        alt="sub__card"
                       />
                       {/* <img
                         src={baseUrl + product.image.url}
