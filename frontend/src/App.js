@@ -58,6 +58,8 @@ function App() {
             <Subheader />
             <SectionNav />
             <Orders />
+            <ProductList title="Recommended based on your purchase" />
+            <Footer />
           </Route>
           <Route path="/login">
             <Login />

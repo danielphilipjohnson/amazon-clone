@@ -1,7 +1,7 @@
 import { getLocalStorageState, setLocalStorageState } from "../storage/local";
 
 export const initialState = {
-  basket: getLocalStorageState("basket"),
+  basket: getLocalStorageState("basket") || [],
   subtotal: 0,
 };
 
@@ -12,6 +12,7 @@ export const getBasketTotal = (basket) =>
 const reducer = (state, action) => {
   switch (action.type) {
     case "ADD_TO_BASKET":
+      console.log(state.basket);
       setLocalStorageState("basket", [...state.basket, action.item]);
 
       return {
