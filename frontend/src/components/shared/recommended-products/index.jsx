@@ -10,13 +10,11 @@ import item6 from "../../../images/items/item6.jpg";
 import item7 from "../../../images/items/item7.jpg";
 
 // random generate which products
-function RecommendedProducts() {
+function RecommendedProducts({ title }) {
   return (
     <div className="recommended__items__container">
       <div className="recommended__items__row">
-        <h2 className="recommended__items-title">
-          Recommended items other customers often buy again
-        </h2>
+        <h2 className="recommended__items-title">{title}</h2>
 
         <div className="recommended__items-cards">
           <img

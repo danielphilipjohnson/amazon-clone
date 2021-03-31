@@ -59,6 +59,7 @@ function App() {
             <SectionNav />
             <Orders />
             <ProductList title="Recommended based on your purchase" />
+            <ProductList title={"Browsing History"} />
             <Footer />
           </Route>
           <Route path="/login">
@@ -94,7 +95,6 @@ function App() {
             <Header />
             <Subheader />
             <Home />
-            <ProductList />
             <Footer />
           </Route>
         </Switch>
