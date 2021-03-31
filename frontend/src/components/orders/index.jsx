@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import ProductImage from "../shared/product-image";
 import { db } from "../../adapters/firebase";
 import "./orders.css";
 import { useStateValue } from "../../StateProvider";
@@ -312,10 +313,14 @@ function Orders() {
                 {item.products.map((product) => {
                   return (
                     <div className="flex between">
-                      <img
+                      <ProductImage
+                        url={product.image.url}
+                        classname="order__content-heading"
+                      />
+                      {/* <img
                         src={baseUrl + product.image.url}
                         className="order__content-heading"
-                      />
+                      /> */}
                       <div className="order__content-about">
                         <p className="alink-normal">{product.title}</p>
                         <p className="text-base">
