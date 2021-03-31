@@ -318,15 +318,12 @@ function Orders() {
                         classname="order__content-heading"
                         alt="sub__card"
                       />
-                      {/* <img
-                        src={baseUrl + product.image.url}
-                        className="order__content-heading"
-                      /> */}
+
                       <div className="order__content-about">
                         <p className="alink-normal">{product.title}</p>
-                        <p className="text-base">
+                        {/* <p className="text-base">
                           Morgan, Kieran Eligible for return until 15 Apr 2021
-                        </p>
+                        </p> */}
                         <div className="order__content-buttons flex">
                           <button className="btn-basic btn-basic-active">
                             Buy it again
