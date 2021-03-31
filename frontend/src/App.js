@@ -54,6 +54,9 @@ function App() {
       <div className="app">
         <Switch>
           <Route path="/orders">
+            <Header />
+            <Subheader />
+            <SectionNav />
             <Orders />
           </Route>
           <Route path="/login">

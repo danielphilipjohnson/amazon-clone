@@ -44,6 +44,10 @@ code {
   color: #007185;
   margin-bottom: 0.5rem;
 }
+.alink-normal-inline {
+  display: inline;
+}
+
 .alink-normal:hover {
   text-decoration: underline;
   cursor: pointer;
@@ -122,7 +126,9 @@ code {
 .reset-list {
   padding: 0;
 }
-
+.reset-list li {
+  list-style: none;
+}
 /* Accessibility */
 .offscreen {
   position: absolute !important;
@@ -148,6 +154,9 @@ code {
 }
 .text-bold {
   font-weight: bold;
+}
+.text-company {
+  color: #c7511f;
 }
 
 .text-base {

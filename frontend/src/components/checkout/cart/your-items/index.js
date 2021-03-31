@@ -11,7 +11,7 @@ function YourItems() {
     <div className="customer-items">
       <div className="customer-items__header">
         <h2 className="customer-items__heading">Your items</h2>
-        <div className="btn-group">
+        <div className="tabs">
           <button className="btn-tab btn-tab--active">
             Saved for later (26 items){" "}
           </button>
