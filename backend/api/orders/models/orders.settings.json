@@ -23,9 +23,12 @@
     "order_identifier": {
       "type": "uid"
     },
-    "users": {
+    "user": {
       "plugin": "users-permissions",
       "model": "user"
+    },
+    "address": {
+      "model": "address"
     }
   }
 }
