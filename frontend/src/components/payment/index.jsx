@@ -41,27 +41,30 @@ function Payment() {
     // generate the special stripe secret which allows us to charge a customer
     const getClientSecret = async () => {
       let totalCharge = Math.round(getBasketTotal(basket) * 100);
-      console.log(totalCharge);
+      // console.log(totalCharge);
 
       if (totalCharge > 1) {
         console.log(totalCharge);
-        const response = await axios({
-          method: "post",
-          // Stripe expects the total in a currencies subunits
-          url: `/payments/create?total=${Math.round(
-            getBasketTotal(basket) * 100
-          )}`,
-        }).catch((thrown) => {
-          console.log(thrown);
-        });
-        console.log(response.data.clientSecret);
-        setClientSecret(response.data.clientSecret);
+        // need to send payment intent
+        // Stripe expects the total in a currencies subunits
+
+        // const response = await axios({
+        //   method: "post",
+        //   url: `/payments/create?total=${Math.round(
+        //     getBasketTotal(basket) * 100
+        //   )}`,
+        // }).catch((thrown) => {
+        //   console.log(thrown);
+        // });
+        // console.log(response);
+        // console.log(response.data.clientSecret);
+        // setClientSecret(response.data.clientSecret);
       } else {
         console.log("basket is empty");
       }
     };
 
-    // getClientSecret();
+    getClientSecret();
   }, [basket]);
 
   console.log("THE SECRET IS >>>", clientSecret);
