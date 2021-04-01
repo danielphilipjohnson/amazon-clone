@@ -40,7 +40,7 @@ function RecommendedProducts({ title }) {
           />
           <img
             className="recommended__items-product"
-            src={item5}
+            src={item5} // setProcessing(true);
             alt="product description"
           />
           <img

@@ -6,7 +6,12 @@ import PrimeLogo from "../../images/prime-logo.png";
 
 // import CheckoutProduct from "../../shared/product/index";
 import { Link, useHistory } from "react-router-dom";
-import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import {
+  CardElement,
+  useStripe,
+  useElements,
+  paymentIntents,
+} from "@stripe/react-stripe-js";
 import CurrencyFormat from "react-currency-format";
 import { getBasketTotal } from "../../reducer/reducer";
 
@@ -21,13 +26,13 @@ function Payment() {
   const elements = useElements();
 
   const [succeeded, setSucceeded] = useState(false);
-  const [processing, setProcessing] = useState("");
+  const [processing, setProcessing] = useState(false);
   const [error, setError] = useState(null);
 
   const [miniumPurchase, setMiniumPurchase] = useState(false);
 
   const [disabled, setDisabled] = useState(true);
-  const [clientSecret, setClientSecret] = useState(true);
+  const [paymentIntent, setPaymentIntent] = useState(true);
 
   useEffect(() => {
     let totalCharge = Math.round(getBasketTotal(basket) * 100);
@@ -41,24 +46,20 @@ function Payment() {
     // generate the special stripe secret which allows us to charge a customer
     const getClientSecret = async () => {
       let totalCharge = Math.round(getBasketTotal(basket) * 100);
-      // console.log(totalCharge);
 
       if (totalCharge > 1) {
         console.log(totalCharge);
-        // need to send payment intent
         // Stripe expects the total in a currencies subunits
-
-        // const response = await axios({
-        //   method: "post",
-        //   url: `/payments/create?total=${Math.round(
-        //     getBasketTotal(basket) * 100
-        //   )}`,
-        // }).catch((thrown) => {
-        //   console.log(thrown);
-        // });
-        // console.log(response);
-        // console.log(response.data.clientSecret);
-        // setClientSecret(response.data.clientSecret);
+        await axios
+          .post("http://localhost:1337/orders/payment", {
+            basket,
+          })
+          .then(function (response) {
+            setPaymentIntent(response.data);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
       } else {
         console.log("basket is empty");
       }
@@ -67,52 +68,112 @@ function Payment() {
     getClientSecret();
   }, [basket]);
 
-  console.log("THE SECRET IS >>>", clientSecret);
-
-  const handleChange = (event) => {
+  const handleChange = async (event) => {
     // Listen for changes in the CardElement
     // and display any errors as the customer types their card details
-    setDisabled(event.empty);
+
+    // The card form is sanitised
+    if (event.complete) {
+      setDisabled(false);
+      setError(false);
+    }
+
     setError(event.error ? event.error.message : "");
   };
 
   const handleSubmit = async (event) => {
-    console.log("submitting");
-    // do all the fancy stripe stuff...
     event.preventDefault();
-    setProcessing(true);
+    console.log(paymentIntent.status);
+    if (!stripe || !elements) {
+      // Stripe.js has not loaded yet. Make sure to disable
+      // form submission until Stripe.js has loaded.
+      return;
+    }
+    // Do not allow submit for the following conditions
+    if (error || processing || disabled) {
+      return null;
+    }
+    // dont allow the user to resubmit card payment
+    if (paymentIntent?.status === "succeeded" || succeeded) {
+      console.log("donr allow submit");
+      setError(`Payment already succeeded`);
+      setDisabled(true);
+      // here use react portal to make an error dialog
+      dispatch({
+        type: "EMPTY_BASKET",
+      });
 
-    // problem is here
+      history.push("/orders");
+    }
 
-    const payload = await stripe
-      .confirmCardPayment(clientSecret, {
-        payment_method: {
-          card: elements.getElement(CardElement),
-        },
-      })
-      .then(({ paymentIntent }) => {
-        // paymentIntent = payment confirmation
+    // Allow submit
+    if (paymentIntent.status !== "succeeded") {
+      console.log("allow submit");
+      setProcessing(true);
 
-        db.collection("users")
-          .doc(user?.uid)
-          .collection("orders")
-          .doc(paymentIntent.id)
-          .set({
-            basket: basket,
-            amount: paymentIntent.amount,
-            created: paymentIntent.created,
+      const sendData = async (basket, paymentIntent, shippingAddress) => {
+        console.log("im in send data");
+        setPaymentIntent(paymentIntent);
+        return await axios
+          .post("http://localhost:1337/orders", {
+            basket,
+            paymentIntent,
+            shippingAddress,
+          })
+          .then(function (response) {
+            //
+            //check status of stripe
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
           });
+      };
 
-        setSucceeded(true);
+      const address = {
+        shipping_address: "84 Raccoon Run",
+        shipping_state: "Washington",
+        shipping_country: "US",
+        shipping_zip: "98106",
+      };
+
+      const payload = await stripe.confirmCardPayment(
+        paymentIntent.client_secret,
+        {
+          payment_method: {
+            card: elements.getElement(CardElement),
+          },
+        }
+      );
+      const response = await sendData(basket, payload.paymentIntent, address);
+      console.log(response);
+
+      // check response is good
+      // sendData(basket, paymentIntent, shippingAddress);
+
+      // dispatch({
+      //   type: "EMPTY_BASKET",
+      // });
+
+      // history.push("/orders");
+
+      if (payload.error) {
+        setError(`Payment failed ${payload.error.message}`);
+
+        setProcessing(false);
+      } else {
         setError(null);
+
         setProcessing(false);
 
-        dispatch({
-          type: "EMPTY_BASKET",
-        });
-
-        history.push("/orders");
-      });
+        setSucceeded(true);
+        console.log(paymentIntent);
+        console.log(payload);
+        setPaymentIntent(payload.paymentIntent);
+      }
+    } else {
+      return null;
+    }
   };
 
   return (
@@ -125,7 +186,7 @@ function Payment() {
       </div>
       <div className="payment__container">
         <div className="payment-card">
-          {/* Payment section - delivery address */}
+          {/* Payment section - delivery address  loading spinner*/}
           <div>
             <div className="payment__section">
               <ol className="payment__details">
@@ -150,7 +211,7 @@ function Payment() {
                     <div className="payment__details">
                       {/* Stripe magic will go */}
 
-                      <form onSubmit={handleSubmit}>
+                      <form>
                         <CardElement onChange={handleChange} />
 
                         {/* Errors */}
@@ -194,7 +255,7 @@ function Payment() {
                         </div>
 
                         <div>
-                          <p className="reviewForm__heading">
+                          <p className="repaymentIntentviewForm__heading">
                             Choose your Prime delivery option:
                           </p>
                           <form action="">
@@ -237,12 +298,38 @@ function Payment() {
               </ol>
             </div>
             <div className="buynow__bottom">
-              <button className="btn-amazon btn-amazon-active buynow__btn">
-                Buy now
-              </button>
+              {processing && <h1>Loading</h1>}
+              {processing || (
+                <form>
+                  {/* <button
+                    className="btn-amazon btn-amazon-active buynow__btn"
+                    onClick={handleSubmit}
+                    disabled={processing || disabled || succeeded || !stripe}
+                  >
+                    <span>{processing ? <p>Processing</p> : "Buy Now"}</span>
+                  </button> */}
+                  <button
+                    className="btn-amazon btn-amazon-active buynow__btn"
+                    onClick={handleSubmit}
+                  >
+                    Buy Now
+                  </button>
+                </form>
+              )}
 
               <div className="content">
-                <h3 className="color-total">Order Total: $1.95</h3>
+                <h3 className="color-total">
+                  Order Total:{" "}
+                  <CurrencyFormat
+                    renderText={(value) => <span> {value}</span>}
+                    decimalScale={2}
+                    value={getBasketTotal(basket)}
+                    displayType={"text"}
+                    thousandSeparator={true}
+                    prefix={"$"}
+                  />
+                </h3>
+
                 <p>
                   By placing your order you agree to Amazon's Conditions of Use
                   & Sale. Please see our Privacy Notice, our Cookies Notice and
@@ -253,14 +340,7 @@ function Payment() {
           </div>
 
           {/* <div className="payment__priceContainer">
-            <CurrencyFormat
-              renderText={(value) => <h3>Order Total: {value}</h3>}
-              decimalScale={2}
-              value={getBasketTotal(basket)}
-              displayType={"text"}
-              thousandSeparator={true}
-              prefix={"$"}
-            />
+           
 
             {miniumPurchase ? (
               <button disabled={processing || disabled || succeeded} empty>

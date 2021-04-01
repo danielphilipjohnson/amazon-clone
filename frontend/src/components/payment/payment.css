@@ -201,6 +201,12 @@
   padding: 1rem;
 }
 
+.buynow__btn:disabled {
+  background: #dddddd;
+  color: #dddddd;
+  display: none;
+}
+
 .content {
   flex: 1;
   font-size: 0.85rem;
