@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Aside from "./aside";
 import SubmitButton from "./button";
 import { useStateValue } from "../../../StateProvider";
 import { getBasketTotal } from "../../../reducer/reducer";
@@ -45,6 +46,7 @@ function Index({ processing }) {
   useEffect(() => {
     let totalCharge = Math.round(getBasketTotal(basket) * 100);
 
+    // need to implement this logic
     if (totalCharge > 1) {
       setMiniumPurchase(true);
     } else {
@@ -56,8 +58,6 @@ function Index({ processing }) {
       let totalCharge = Math.round(getBasketTotal(basket) * 100);
 
       if (totalCharge > 1) {
-        console.log(totalCharge);
-        // Stripe expects the total in a currencies subunits
         await axios
           .post("http://localhost:1337/orders/payment", {
             basket,
@@ -67,15 +67,19 @@ function Index({ processing }) {
           })
           .catch(function (error) {
             console.log(error);
+            setPaymentIntent(null);
+            // error alert
           });
       } else {
         console.log("basket is empty");
+        // redirect to cart
       }
     };
 
     getClientSecret();
   }, [basket]);
 
+  console.log(paymentIntent);
   const handleChange = async (event) => {
     // Listen for changes in the CardElement
     // and display any errors as the customer types their card details
@@ -341,81 +345,7 @@ function Index({ processing }) {
           </div>
         </div>
 
-        <div className="payment__aside">
-          <div className="payment__aside__body">
-            <SubmitButton
-              processing={processing}
-              disabled={disabled}
-              succeeded={isSuccessful}
-              handleSubmit={handleSubmit}
-              className="btn-amazon btn-amazon-active f-width buynow__btn"
-            />
-            <p className="payment__notice border-bottom">
-              <span>By placing your order you agree to Amazon's </span>
-              <a href="/" className="alink-normal">
-                Conditions of Use & Sale.
-              </a>
-              <span> Please see our</span>
-              <a href="/" className="alink-normal">
-                Privacy Notice
-              </a>
-              <span> , our</span>
-              <a href="/" className="alink-normal">
-                Cookies Notice
-              </a>
-              <span> and our </span>
-              <a href="/" className="alink-normal">
-                Interest-Based Ads Notice
-              </a>
-              <span> . </span>
-            </p>
-
-            <h3 className="payment__heading">Order Summary</h3>
-
-            <ul className="payment__aside-list border-bottom">
-              <li>
-                <span>Items:</span>{" "}
-                <span>
-                  <CurrencyFormat
-                    renderText={(value) => <h3> {value}</h3>}
-                    decimalScale={2}
-                    value={getBasketTotal(basket)}
-                    displayType={"text"}
-                    thousandSeparator={true}
-                    prefix={"$"}
-                  />
-                </span>
-              </li>
-              <li>
-                <span>Postage & Packing:</span> <span>£0.00</span>
-              </li>
-            </ul>
-            <h3 className="payment__heading color-total">
-              <span>Order Total:</span>
-              <CurrencyFormat
-                renderText={(value) => <span> {value}</span>}
-                decimalScale={2}
-                value={getBasketTotal(basket)}
-                displayType={"text"}
-                thousandSeparator={true}
-                prefix={"$"}
-              />
-            </h3>
-            <p>
-              Order totals include VAT.
-              <a href="/" className="alink-normal d-inline">
-                See details.
-              </a>
-            </p>
-          </div>
-
-          <div className="payment_aside-bottom">
-            <p>
-              Amazon Prime Delivery has been applied to the eligible items in
-              your order.
-            </p>
-          </div>
-        </div>
+        <Aside disabled={disabled} handleSubmit={handleSubmit} />
       </div>
     </>
   );
