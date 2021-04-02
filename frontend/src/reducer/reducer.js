@@ -3,6 +3,9 @@ import { getLocalStorageState, setLocalStorageState } from "../storage/local";
 export const initialState = {
   basket: getLocalStorageState("basket") || [],
   subtotal: 0,
+  hasSucceeded: false,
+  isProcessing: false,
+  isSuccessful: false,
 };
 
 export const getBasketTotal = (basket) =>
@@ -12,7 +15,6 @@ export const getBasketTotal = (basket) =>
 const reducer = (state, action) => {
   switch (action.type) {
     case "ADD_TO_BASKET":
-      console.log(state.basket);
       setLocalStorageState("basket", [...state.basket, action.item]);
 
       return {
@@ -45,6 +47,30 @@ const reducer = (state, action) => {
         basket: newBasket,
       };
 
+    case "CHECKOUT_PROCESSING":
+      return {
+        ...state,
+        isProcessing: true,
+      };
+
+    case "CHECKOUT_FINISH":
+      return {
+        ...state,
+        isProcessing: false,
+      };
+    case "CHECKOUT_COMPLETED":
+      return {
+        ...state,
+        isSuccessful: true,
+      };
+    /*
+
+  isDisabled: true,
+  isErrored: false,
+  hasSucceeded: false,
+  isProcessing: false,
+
+    */
     case "SET_USER":
       return {
         ...state,
