@@ -25,13 +25,11 @@ export const getBasketTotal = (basket) => {
   }, 0);
 };
 
-// [0, 1, 2, 3, 4].reduce((accumulator, currentValue, currentIndex, array) => {
-//   return accumulator + currentValue
-// }, 10)
-
 // reducer how to dispatch
 const reducer = (state, action) => {
   switch (action.type) {
+    // sets quantity at payment screen
+    // issues with sending to the backend
     case "ADD_TO_BASKET":
       const addItemToCart = (cartItems, cartItemToAdd) => {
         const existingCartItem = cartItems.find(
@@ -57,6 +55,29 @@ const reducer = (state, action) => {
       return {
         ...state,
         basket: addItemToCart(state.basket, action.item),
+      };
+
+    case "UPDATE_QUANTITY":
+      const cartItems = state.basket;
+      console.log(action.payload);
+      // const matchedCartItem = cartItems.find(
+      //   (cartItem) => cartItem.id === action.payload.itemId
+      // );
+
+      const updatedCartItem = cartItems.map((cartItem) => {
+        if (cartItem.id === action.payload.itemId) {
+          cartItem.quantity = action.payload.quantity;
+          return cartItem;
+        } else {
+          return cartItem;
+        }
+      });
+      console.log(updatedCartItem);
+      setLocalStorageState("basket", [...updatedCartItem]);
+
+      return {
+        ...state,
+        basket: [...updatedCartItem],
       };
     case "EMPTY_BASKET":
       setLocalStorageState("basket", []);

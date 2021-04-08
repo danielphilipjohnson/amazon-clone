@@ -354,7 +354,10 @@ function Index({ processing }) {
                                 <small>$</small>
                                 {item.price}{" "}
                               </p>
-                              <QuantitySelector quantity={item.quantity} />
+                              <QuantitySelector
+                                quantity={item.quantity}
+                                itemId={item.id}
+                              />
                             </div>
 
                             <img src={PrimeLogo} alt="" />
