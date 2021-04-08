@@ -11,6 +11,7 @@ function CheckoutProduct(
 ) {
   const [{ _ }, dispatch] = useStateValue();
   console.log("quantity", quantity);
+
   const generateQuantitySelector = () => {
     const options = [];
     const optionsValues = 10;

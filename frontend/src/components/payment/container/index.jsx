@@ -122,6 +122,27 @@ function Index({ processing }) {
     }
   };
 
+  const generateQuantitySelector = (quantity) => {
+    const options = [];
+    const optionsValues = 10;
+    for (let index = 1; index <= optionsValues; index++) {
+      if (index === 10) {
+        options.push(<option value="10+">10+</option>);
+      } else {
+        options.push(<option value={index}>{index}</option>);
+      }
+    }
+    return (
+      <select
+        name="quantity"
+        id="quantity"
+        value={quantity > 10 ? "10+" : quantity}
+      >
+        {options}
+      </select>
+    );
+  };
+
   // add on complete function
   const sendOrderToBackend = async (basket, payload, shippingAddress) => {
     setPaymentIntent(payload.paymentIntent);
@@ -348,14 +369,18 @@ function Index({ processing }) {
                         <div className="reviewProduct__info">
                           <p className="reviewProduct__title">{item.title}</p>
                           <div className="reviewProduct__price">
-                            <p className="color-total">
-                              <small>$</small>
-                              {item.price}{" "}
-                            </p>
+                            <div>
+                              <p className="color-total">
+                                <small>$</small>
+                                {item.price}{" "}
+                              </p>
+                              {generateQuantitySelector(item.quantity)}
+                            </div>
+
                             <img src={PrimeLogo} alt="" />
                           </div>
                           <span className="color-mute">
-                            Sold by:Amazon EU S.a.r.L.
+                            Sold by:Amazon EU S.a.quantityr.L.
                           </span>
                         </div>
 
