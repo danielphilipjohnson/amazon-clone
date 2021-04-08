@@ -5,7 +5,10 @@ import { Link } from "react-router-dom";
 import "./product.css";
 import { useStateValue } from "../../../StateProvider";
 
-function CheckoutProduct({ id, image, title, price, rating, hideButton }, ref) {
+function CheckoutProduct(
+  { id, image, title, price, rating, hideButton, quantity },
+  ref
+) {
   const [{ _ }, dispatch] = useStateValue();
 
   const removeFromBasket = () => {
@@ -51,6 +54,15 @@ function CheckoutProduct({ id, image, title, price, rating, hideButton }, ref) {
           </div>
           {!hideButton && (
             <>
+              <span className="seperator">| </span>
+              <select name="" id="" value={quantity}>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+
               <span className="seperator">| </span>
               <button
                 onClick={() => removeFromBasket()}

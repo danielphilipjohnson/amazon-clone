@@ -20,11 +20,27 @@ export const getBasketTotal = (basket) =>
 const reducer = (state, action) => {
   switch (action.type) {
     case "ADD_TO_BASKET":
-      setLocalStorageState("basket", [...state.basket, action.item]);
+      const addItemToCart = (cartItems, cartItemToAdd) => {
+        const existingCartItem = cartItems.find(
+          (cartItem) => cartItem.id === cartItemToAdd.id
+        );
+        console.log(existingCartItem);
+        if (existingCartItem) {
+          return cartItems.map((cartItem) =>
+            cartItem.id === cartItemToAdd.id
+              ? { ...cartItem, quantity: cartItem.quantity + 1 }
+              : cartItem
+          );
+        }
+
+        return [...cartItems, { ...cartItemToAdd, quantity: 1 }];
+      };
+      addItemToCart(state.basket, action.item);
+      setLocalStorageState("basket", addItemToCart(state.basket, action.item));
 
       return {
         ...state,
-        basket: [...state.basket, action.item],
+        basket: addItemToCart(state.basket, action.item),
       };
     case "EMPTY_BASKET":
       setLocalStorageState("basket", []);
