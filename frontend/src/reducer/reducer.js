@@ -7,9 +7,9 @@ export const initialState = {
   isProcessing: false,
   isSuccessful: false,
   alert: {
-    type: "Danger",
-    message: "Your account is created successfully",
-    isOpen: true,
+    type: null,
+    message: null,
+    isOpen: false,
   },
 };
 
@@ -70,14 +70,24 @@ const reducer = (state, action) => {
       };
 
     // open next
-    case "CLOSE_ALERT":
+    case "OPEN_ALERT":
       let newAlertState = state.alert;
-      newAlertState.type = null;
-      newAlertState.message = null;
-      newAlertState.isOpen = action.payload;
+      newAlertState.type = action.payload.type;
+      newAlertState.message = action.payload.message;
+      newAlertState.isOpen = action.payload.isOpen;
       return {
         ...state,
         ...newAlertState,
+      };
+
+    case "CLOSE_ALERT":
+      let removeAlertState = state.alert;
+      removeAlertState.type = null;
+      removeAlertState.message = null;
+      removeAlertState.isOpen = action.payload;
+      return {
+        ...state,
+        ...removeAlertState,
       };
 
     case "SET_USER":

@@ -1,20 +1,17 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import CurrencyFormat from "react-currency-format";
+
 import Aside from "./aside";
 import SubmitButton from "./button";
+
+import axios from "../../../axios";
+
 import { useStateValue } from "../../../StateProvider";
 import { getBasketTotal } from "../../../reducer/reducer";
-import { Link, useHistory } from "react-router-dom";
+
 import PrimeLogo from "../../../images/prime-logo.png";
-
-import {
-  CardElement,
-  useStripe,
-  useElements,
-  paymentIntents,
-} from "@stripe/react-stripe-js";
-
-import CurrencyFormat from "react-currency-format";
-import axios from "../../../axios";
 
 import ProcessingImage from "../../../images/processing.svg";
 
@@ -25,6 +22,7 @@ function Index({ processing }) {
   ] = useStateValue();
 
   const stripe = useStripe();
+
   const elements = useElements();
 
   const [disabled, setDisabled] = useState(true);
@@ -41,6 +39,149 @@ function Index({ processing }) {
     dispatch({
       type: "CHECKOUT_PROCESSING",
     });
+  };
+
+  const noPaymentIntent = (dispatch, message) => {
+    dispatch({
+      type: "OPEN_ALERT",
+      payload: {
+        type: "Warning",
+        message: message,
+        isOpen: true,
+      },
+    });
+  };
+
+  const paymentIntentAlreadySubmittied = (dispatch) => {
+    dispatch({
+      type: "OPEN_ALERT",
+      payload: {
+        type: "Warning",
+        message: "Error Payment already succeeded.",
+        isOpen: true,
+      },
+    });
+
+    // setError(`Payment already succeeded`);
+    // setDisabled(true);
+
+    dispatch({
+      type: "EMPTY_BASKET",
+    });
+
+    history.push("/orders");
+  };
+
+  const formContainsErrors = (dispatch) => {
+    dispatch({
+      type: "OPEN_ALERT",
+      payload: {
+        type: "Warning",
+        message: `Error while processing please try again later. ${error}`,
+        isOpen: true,
+      },
+    });
+    return null;
+  };
+
+  const dependenciesFailedToLoad = (dispatch) => {
+    dispatch({
+      type: "OPEN_ALERT",
+      payload: {
+        type: "Warning",
+        message: "Error was unable to process payment.",
+        isOpen: true,
+      },
+    });
+
+    return null;
+  };
+
+  const confirmCardPayment = async (client_secret, CardElement, address) => {
+    try {
+      return await stripe.confirmCardPayment(client_secret, {
+        payment_method: {
+          card: elements.getElement(CardElement),
+          billing_details: {
+            email: user?.email,
+            name: "Anon",
+            phone: "+15555555555",
+            address: {
+              city: address.shipping_state,
+              country: address.shipping_country,
+              line1: address.shipping_address,
+              line2: null,
+              postal_code: address.shipping_zip_postal_code,
+              state: address.shipping_state,
+            },
+          },
+        },
+      });
+    } catch (error) {
+      return error;
+    }
+  };
+
+  // add on complete function
+  const sendOrderToBackend = async (basket, payload, shippingAddress) => {
+    setPaymentIntent(payload.paymentIntent);
+    // check if payload payment intent exists
+
+    if (payload.paymentIntent) {
+      return await axios
+        .post("http://localhost:1337/orders", {
+          basket,
+          paymentIntent: payload.paymentIntent,
+          shippingAddress,
+        })
+        .then(function (response) {
+          // check if backend was successful saving the order
+          if (response.status === 200) {
+            dispatch({
+              type: "OPEN_ALERT",
+              payload: {
+                type: "Success",
+                message: "Your order has been received.",
+                isOpen: true,
+              },
+            });
+
+            dispatch({
+              type: "CHECKOUT_FINISH",
+            });
+
+            dispatch({
+              type: "CHECKOUT_COMPLETED",
+            });
+
+            setPaymentIntent(payload.paymentIntent);
+
+            dispatch({
+              type: "EMPTY_BASKET",
+            });
+
+            history.push("/orders");
+          }
+        })
+        .catch(function (error) {
+          dispatch({
+            type: "OPEN_ALERT",
+            payload: {
+              type: "Warning",
+              message: "Error Payment failed please try again later.",
+              isOpen: true,
+            },
+          });
+          setError(`Payment failed ${error.message}`);
+
+          dispatch({
+            type: "CHECKOUT_FINISH",
+          });
+        });
+    } else {
+      // throw
+      throw new Error("No payment intent");
+    }
   };
 
   useEffect(() => {
@@ -79,7 +220,6 @@ function Index({ processing }) {
     getClientSecret();
   }, [basket]);
 
-  console.log(paymentIntent);
   const handleChange = async (event) => {
     // Listen for changes in the CardElement
     // and display any errors as the customer types their card details
@@ -96,102 +236,51 @@ function Index({ processing }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    // Stripe.js has not loaded yet. Make sure to disable
+    // form submission until Stripe.js has loaded.
     if (!stripe || !elements) {
-      // Stripe.js has not loaded yet. Make sure to disable
-      // form submission until Stripe.js has loaded.
-      return;
+      dependenciesFailedToLoad();
     }
     // Do not allow submit for the following conditions
     if (error || isProcessing || disabled) {
-      return null;
+      formContainsErrors(dispatch);
     }
 
-    // dont allow the user to resubmit card payment
-    if (paymentIntent?.status === "isSuccessful" || isSuccessful) {
-      setError(`Payment already succeeded`);
-      setDisabled(true);
+    // check payment intent firstaddress
+    if (paymentIntent) {
+      // dont allow the user to resubmit card payment
+      if (paymentIntent?.status === "isSuccessful" || isSuccessful) {
+        paymentIntentAlreadySubmittied(dispatch);
+      }
 
-      // here use react portal to make an error dialog
-      dispatch({
-        type: "EMPTY_BASKET",
-      });
+      // Allow submit
+      if (paymentIntent.status !== "succeeded") {
+        checkoutProcessing();
 
-      history.push("/orders");
-    }
+        // create an address later users can add one
+        const address = {
+          shipping_address: "84 Raccoon Run",
+          shipping_state: "Washington",
+          shipping_country: "US",
+          shipping_zip_postal_code: "98106",
+        };
 
-    // Allow submit
-    if (paymentIntent.status !== "succeeded") {
-      checkoutProcessing();
+        // confirm payment
+        const payload = await confirmCardPayment(
+          paymentIntent.client_secret,
+          CardElement,
+          address
+        );
 
-      const address = {
-        shipping_address: "84 Raccoon Run",
-        shipping_state: "Washington",
-        shipping_country: "US",
-        shipping_zip: "98106",
-      };
-
-      const payload = await stripe.confirmCardPayment(
-        paymentIntent.client_secret,
-        {
-          payment_method: {
-            card: elements.getElement(CardElement),
-          },
-        }
-      );
-      console.log(payload.paymentIntent);
-
-      const sendData = async (basket, paymentIntent, shippingAddress) => {
-        console.log("im in send data");
-        console.log("im in send data");
-        console.log(payload);
-        setPaymentIntent(paymentIntent);
-        return await axios
-          .post("http://localhost:1337/orders", {
-            basket,
-            paymentIntent,
-            shippingAddress,
-          })
-          .then(function (response) {
-            //check status of stripe
-            console.log(response);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-      };
-      const response = await sendData(basket, payload.paymentIntent, address);
-
-      // check response is good
-      // sendData(basket, paymentIntent, shippingAddress);
-
-      if (payload.error) {
-        setError(`Payment failed ${payload.error.message}`);
-
-        dispatch({
-          type: "CHECKOUT_FINISH",
-        });
+        await sendOrderToBackend(basket, payload, address);
       } else {
-        setError(null);
-
-        // NOW WE EMPTY THE CART AND GO TO ORDERS BABY
-        // dispatch({
-        //   type: "EMPTY_BASKET",
-        // });
-
-        dispatch({
-          type: "CHECKOUT_FINISH",
-        });
-
-        dispatch({
-          type: "CHECKOUT_COMPLETED",
-        });
-
-        // history.push("/orders");
-
-        setPaymentIntent(payload.paymentIntent);
+        return null;
       }
     } else {
-      return null;
+      noPaymentIntent(
+        dispatch,
+        "There was a problem with our server processing your details. Please try again later."
+      );
     }
   };
   return (

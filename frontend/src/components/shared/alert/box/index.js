@@ -10,7 +10,7 @@ function Index() {
   const closeBoxRef = useRef();
 
   const AlertIcon = () => {
-    if (alert.type === "Danger") {
+    if (alert.type === "Warning") {
       return DangerIcon;
     }
     if (alert.type === "Success") {
