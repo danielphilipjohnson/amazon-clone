@@ -11,6 +11,27 @@ function CheckoutProduct(
 ) {
   const [{ _ }, dispatch] = useStateValue();
 
+  const generateQuantitySelector = () => {
+    const options = [];
+    const optionsValues = 10;
+    for (let index = 1; index <= optionsValues; index++) {
+      if (index === 10) {
+        options.push(<option value="10+">10+</option>);
+      } else {
+        options.push(<option value={index}>{index}</option>);
+      }
+    }
+    return (
+      <select
+        name="quantity"
+        id="quantity"
+        value={quantity > 10 ? "10+" : quantity}
+      >
+        {options}
+      </select>
+    );
+  };
+
   const removeFromBasket = () => {
     // remove the item from the basket
     dispatch({
@@ -55,13 +76,7 @@ function CheckoutProduct(
           {!hideButton && (
             <>
               <span className="seperator">| </span>
-              <select name="" id="" value={quantity}>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-              </select>
+              {generateQuantitySelector()}
 
               <span className="seperator">| </span>
               <button
