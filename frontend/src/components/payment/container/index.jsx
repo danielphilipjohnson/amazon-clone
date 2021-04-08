@@ -5,6 +5,7 @@ import CurrencyFormat from "react-currency-format";
 
 import Aside from "./aside";
 import SubmitButton from "./button";
+import QuantitySelector from "../../shared/quantitySelector";
 
 import axios from "../../../axios";
 
@@ -120,27 +121,6 @@ function Index({ processing }) {
     } catch (error) {
       return error;
     }
-  };
-
-  const generateQuantitySelector = (quantity) => {
-    const options = [];
-    const optionsValues = 10;
-    for (let index = 1; index <= optionsValues; index++) {
-      if (index === 10) {
-        options.push(<option value="10+">10+</option>);
-      } else {
-        options.push(<option value={index}>{index}</option>);
-      }
-    }
-    return (
-      <select
-        name="quantity"
-        id="quantity"
-        value={quantity > 10 ? "10+" : quantity}
-      >
-        {options}
-      </select>
-    );
   };
 
   // add on complete function
@@ -366,7 +346,7 @@ function Index({ processing }) {
                           className="reviewProduct__image"
                           src={item.image}
                         />
-                        <div className="reviewProduct__info">
+                        <div classNagenerateQuantitySelectorme="reviewProduct__info">
                           <p className="reviewProduct__title">{item.title}</p>
                           <div className="reviewProduct__price">
                             <div>
@@ -374,7 +354,7 @@ function Index({ processing }) {
                                 <small>$</small>
                                 {item.price}{" "}
                               </p>
-                              {generateQuantitySelector(item.quantity)}
+                              <QuantitySelector quantity={item.quantity} />
                             </div>
 
                             <img src={PrimeLogo} alt="" />

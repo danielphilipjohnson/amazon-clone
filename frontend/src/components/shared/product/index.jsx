@@ -1,7 +1,11 @@
 import React from "react";
 import FadeIn from "react-fade-in";
-import PrimeLogo from "../../../images/prime-logo.png";
+
 import { Link } from "react-router-dom";
+
+import QuantitySelector from "../quantitySelector";
+
+import PrimeLogo from "../../../images/prime-logo.png";
 import "./product.css";
 import { useStateValue } from "../../../StateProvider";
 
@@ -10,28 +14,6 @@ function CheckoutProduct(
   ref
 ) {
   const [{ _ }, dispatch] = useStateValue();
-  console.log("quantity", quantity);
-
-  const generateQuantitySelector = () => {
-    const options = [];
-    const optionsValues = 10;
-    for (let index = 1; index <= optionsValues; index++) {
-      if (index === 10) {
-        options.push(<option value="10+">10+</option>);
-      } else {
-        options.push(<option value={index}>{index}</option>);
-      }
-    }
-    return (
-      <select
-        name="quantity"
-        id="quantity"
-        value={quantity > 10 ? "10+" : quantity}
-      >
-        {options}
-      </select>
-    );
-  };
 
   const removeFromBasket = () => {
     // remove the item from the basket
@@ -77,7 +59,8 @@ function CheckoutProduct(
           {!hideButton && (
             <>
               <span className="seperator">| </span>
-              {generateQuantitySelector()}
+
+              <QuantitySelector quantity={quantity} />
 
               <span className="seperator">| </span>
               <button
