@@ -21,19 +21,24 @@ const reducer = (state, action) => {
   switch (action.type) {
     case "ADD_TO_BASKET":
       const addItemToCart = (cartItems, cartItemToAdd) => {
+        console.log("item to add", cartItemToAdd);
+
         const existingCartItem = cartItems.find(
           (cartItem) => cartItem.id === cartItemToAdd.id
         );
-        console.log(existingCartItem);
+        // console.log(existingCartItem);
         if (existingCartItem) {
           return cartItems.map((cartItem) =>
             cartItem.id === cartItemToAdd.id
-              ? { ...cartItem, quantity: cartItem.quantity + 1 }
+              ? {
+                  ...cartItem,
+                  quantity: cartItem.quantity + cartItemToAdd.quantity,
+                }
               : cartItem
           );
         }
 
-        return [...cartItems, { ...cartItemToAdd, quantity: 1 }];
+        return [...cartItems, { ...cartItemToAdd }];
       };
       addItemToCart(state.basket, action.item);
       setLocalStorageState("basket", addItemToCart(state.basket, action.item));

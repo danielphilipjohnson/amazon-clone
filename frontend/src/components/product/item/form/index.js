@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useStateValue } from "../../../../StateProvider";
 import PrimeLogo from "../../../../images/prime-logo.png";
 import baseUrl from "../../../../adapters";
@@ -6,17 +6,13 @@ import "./form.css";
 
 // create a function that determines time bewteen now and 24 hours
 function Form({ product, stock }) {
-  const {
-    title,
-    image,
-
-    current_price: price,
-    rating,
-  } = product;
+  const { title, image, current_price: price, rating } = product;
   const [{ basket }, dispatch] = useStateValue();
 
+  const [itemQuantity, setItemQuantity] = useState(1);
+
   const addToBasket = () => {
-    console.log(product);
+    console.log("+itemQuantity", +itemQuantity);
     dispatch({
       type: "ADD_TO_BASKET",
       item: {
@@ -25,8 +21,14 @@ function Form({ product, stock }) {
         image: baseUrl + image.url,
         price: price,
         rating: rating,
+        quantity: +itemQuantity,
       },
     });
+  };
+  const onQuantityChange = (event) => {
+    console.log("changing");
+    console.log(event.target.value);
+    setItemQuantity(event.target.value);
   };
 
   return (
@@ -48,7 +50,7 @@ function Form({ product, stock }) {
 
       <div className="product-form__quantity">
         <label htmlFor="quantity">Quantity: </label>
-        <select name="quantity" id="quantity">
+        <select name="quantity" id="quantity" onChange={onQuantityChange}>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
