@@ -6,6 +6,11 @@ export const initialState = {
   hasSucceeded: false,
   isProcessing: false,
   isSuccessful: false,
+  alert: {
+    type: "Danger",
+    message: "Your account is created successfully",
+    isOpen: true,
+  },
 };
 
 export const getBasketTotal = (basket) =>
@@ -63,14 +68,18 @@ const reducer = (state, action) => {
         ...state,
         isSuccessful: true,
       };
-    /*
 
-  isDisabled: true,
-  isErrored: false,
-  hasSucceeded: false,
-  isProcessing: false,
+    // open next
+    case "CLOSE_ALERT":
+      let newAlertState = state.alert;
+      newAlertState.type = null;
+      newAlertState.message = null;
+      newAlertState.isOpen = action.payload;
+      return {
+        ...state,
+        ...newAlertState,
+      };
 
-    */
     case "SET_USER":
       return {
         ...state,

@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // move to a layout component
+import AlertPortal from "./components/shared/alert";
+import AlertBox from "./components/shared/alert/box";
 import Header from "./components/sitewide/header";
 import Subheader from "./components/sitewide/subheader";
 import ProductList from "./components/shared/product-list";
@@ -28,7 +30,7 @@ import "./App.css";
 console.log(process.env.REACT_APP_STRIPE_KEY);
 const promise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
 function App() {
-  const [{}, dispatch] = useStateValue();
+  const [{ alert }, dispatch] = useStateValue();
   // let { slug } = useParams();
   useEffect(() => {
     // run once when the app component loads
@@ -98,6 +100,10 @@ function App() {
             <Footer />
           </Route>
         </Switch>
+
+        <AlertPortal>
+          <AlertBox alert={alert} />
+        </AlertPortal>
       </div>
     </Router>
   );
