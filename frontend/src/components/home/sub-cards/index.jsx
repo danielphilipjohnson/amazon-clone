@@ -31,7 +31,7 @@ function SubCard() {
                       <Link to={`search?category=${item.category}`}>
                         <img
                           src={formatImagePathFromBackend(item.image.url)}
-                          classname="sub__card-img"
+                          className="sub__card-img"
                           alt="sub__card"
                         />
                       </Link>
