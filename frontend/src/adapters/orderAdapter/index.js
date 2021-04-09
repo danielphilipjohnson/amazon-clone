@@ -1,3 +1,13 @@
+import baseURL from "../index";
+import axios from "axios";
+
+const getOrders = () => {
+  const promise = axios.get(`${baseURL}/orders`);
+  const dataPromise = promise.then((response) => response.data);
+
+  return dataPromise;
+};
+
 const data = [
   {
     id: 1,
@@ -259,4 +269,4 @@ const data = [
   },
 ];
 
-export default data;
+export { data, getOrders };

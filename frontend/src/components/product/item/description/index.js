@@ -62,6 +62,7 @@ function Description({ product }) {
           <p>
             You Save: <span className="color-total">£15.20(52%)</span>
           </p>
+          products
         </div>
 
         <div className="product-description__main__extra">
