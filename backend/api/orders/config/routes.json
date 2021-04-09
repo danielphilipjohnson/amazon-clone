@@ -1,6 +1,14 @@
 {
   "routes": [
     {
+      "method": "POST",
+      "path": "/orders/payment",
+      "handler": "orders.setUpStripe",
+      "config": {
+        "policies": []
+      }
+    },
+    {
       "method": "GET",
       "path": "/orders",
       "handler": "orders.find",
@@ -23,24 +31,21 @@
       "config": {
         "policies": []
       }
-    },
-    {
+    }, {
       "method": "POST",
       "path": "/orders",
       "handler": "orders.create",
       "config": {
         "policies": []
       }
-    },
-    {
+    }, {
       "method": "PUT",
       "path": "/orders/:id",
       "handler": "orders.update",
       "config": {
         "policies": []
       }
-    },
-    {
+    }, {
       "method": "DELETE",
       "path": "/orders/:id",
       "handler": "orders.delete",

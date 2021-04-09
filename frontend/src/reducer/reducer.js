@@ -3,21 +3,81 @@ import { getLocalStorageState, setLocalStorageState } from "../storage/local";
 export const initialState = {
   basket: getLocalStorageState("basket") || [],
   subtotal: 0,
+  hasSucceeded: false,
+  isProcessing: false,
+  isSuccessful: false,
+  alert: {
+    type: null,
+    message: null,
+    isOpen: false,
+  },
 };
 
-export const getBasketTotal = (basket) =>
-  basket?.reduce((amount, item) => item.price + amount, 0);
+export const getBasketLength = (basket) => {
+  return basket.reduce((amount, item) => {
+    return item.quantity + amount;
+  }, 0);
+};
+
+export const getBasketTotal = (basket) => {
+  return basket.reduce((amount, item) => {
+    return item.price * item.quantity + amount;
+  }, 0);
+};
 
 // reducer how to dispatch
 const reducer = (state, action) => {
   switch (action.type) {
+    // sets quantity at payment screen
+    // issues with sending to the backend
     case "ADD_TO_BASKET":
-      console.log(state.basket);
-      setLocalStorageState("basket", [...state.basket, action.item]);
+      const addItemToCart = (cartItems, cartItemToAdd) => {
+        const existingCartItem = cartItems.find(
+          (cartItem) => cartItem.id === cartItemToAdd.id
+        );
+
+        if (existingCartItem) {
+          return cartItems.map((cartItem) =>
+            cartItem.id === cartItemToAdd.id
+              ? {
+                  ...cartItem,
+                  quantity: cartItem.quantity + cartItemToAdd.quantity,
+                }
+              : cartItem
+          );
+        }
+
+        return [...cartItems, { ...cartItemToAdd }];
+      };
+
+      setLocalStorageState("basket", addItemToCart(state.basket, action.item));
 
       return {
         ...state,
-        basket: [...state.basket, action.item],
+        basket: addItemToCart(state.basket, action.item),
+      };
+
+    case "UPDATE_QUANTITY":
+      const cartItems = state.basket;
+      console.log(action.payload);
+      // const matchedCartItem = cartItems.find(
+      //   (cartItem) => cartItem.id === action.payload.itemId
+      // );
+
+      const updatedCartItem = cartItems.map((cartItem) => {
+        if (cartItem.id === action.payload.itemId) {
+          cartItem.quantity = action.payload.quantity;
+          return cartItem;
+        } else {
+          return cartItem;
+        }
+      });
+      console.log(updatedCartItem);
+      setLocalStorageState("basket", [...updatedCartItem]);
+
+      return {
+        ...state,
+        basket: [...updatedCartItem],
       };
     case "EMPTY_BASKET":
       setLocalStorageState("basket", []);
@@ -43,6 +103,44 @@ const reducer = (state, action) => {
       return {
         ...state,
         basket: newBasket,
+      };
+
+    case "CHECKOUT_PROCESSING":
+      return {
+        ...state,
+        isProcessing: true,
+      };
+
+    case "CHECKOUT_FINISH":
+      return {
+        ...state,
+        isProcessing: false,
+      };
+    case "CHECKOUT_COMPLETED":
+      return {
+        ...state,
+        isSuccessful: true,
+      };
+
+    // open next
+    case "OPEN_ALERT":
+      let newAlertState = state.alert;
+      newAlertState.type = action.payload.type;
+      newAlertState.message = action.payload.message;
+      newAlertState.isOpen = action.payload.isOpen;
+      return {
+        ...state,
+        ...newAlertState,
+      };
+
+    case "CLOSE_ALERT":
+      let removeAlertState = state.alert;
+      removeAlertState.type = null;
+      removeAlertState.message = null;
+      removeAlertState.isOpen = action.payload;
+      return {
+        ...state,
+        ...removeAlertState,
       };
 
     case "SET_USER":
