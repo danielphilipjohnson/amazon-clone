@@ -14,7 +14,7 @@ function RecommendedProducts({ cardTitle, recommendedProducts }) {
           <div className="recommended__items-cards">
             {recommendedProducts.map((item) => {
               return (
-                <Link to={`product/${item.id}`}>
+                <Link to={`product/${item.id}`} key={item.id}>
                   <img
                     className="recommended__items-product"
                     src={formatImagePathFromBackend(item.image.url)}
