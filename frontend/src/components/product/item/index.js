@@ -3,19 +3,18 @@ import Description from "./description";
 import Form from "./form";
 import ProductImage from "../../shared/product-image";
 import "./item.css";
-import Data from "../../../adapters/productAdapter/";
+// import Data from "../../../adapters/productAdapter/";
 
 function Item({ id }) {
   const [product, setProduct] = useState(null);
 
   const fetchProduct = (id) => {
-    setProduct(
-      Data.filter(function (item) {
-        if (item.id === id) {
-          return item;
-        }
-      })[0]
-    );
+    setProduct();
+    // Data.filter(function (item) {
+    //   if (item.id === id) {
+    //     return item;
+    //   }
+    // })[0]
   };
   useEffect(() => {
     fetchProduct(id);

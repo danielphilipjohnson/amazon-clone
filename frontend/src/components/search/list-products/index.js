@@ -1,27 +1,55 @@
 import React, { useEffect, useState } from "react";
+import {
+  useLocation,
+  // useParams,
+} from "react-router-dom";
 import Product from "./product";
 import LoadingProducts from "../../shared/loading-product";
-import data from "../../../adapters/productAdapter";
+import {
+  getProducts,
+  getProductsByCategory,
+} from "../../../adapters/productAdapter";
 
-import { useLocation } from "react-router-dom";
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 
 function ListProducts() {
   const [product, setProduct] = useState(null);
   const location = useLocation();
+  // let { category } = useParams();
+  let query = useQuery();
 
-  const fetchMatchedProducts = async () => {
-    // use this to get the correct products
-    // examples
-    //http://localhost:3000/search?category=technology
-    //http://localhost:1337/products?category=Electronics
+  const getCategory = () => {
+    return query.get("category");
+  };
+
+  const fetchMatchedProducts = () => {
+    if (getCategory() === null || getCategory() === "") {
+      // display all products
+      getProducts()
+        .then((data) => {
+          setProduct(data);
+        })
+        .catch((error) => {
+          // dispatch alert
+        });
+    } else {
+      // display by category
+      getProductsByCategory(getCategory())
+        .then((data) => {
+          console.log(data);
+          setProduct(data);
+        })
+        .catch((error) => {});
+    }
+
     console.log(location.search);
-    await setProduct(data);
-    // setProduct(null);
   };
 
   useEffect(() => {
     fetchMatchedProducts();
-  }, data);
+  }, []);
 
   if (product) {
     return product.map((item) => {
