@@ -124,7 +124,7 @@ function Index({ processing }) {
   };
 
   // add on complete function
-  const sendOrderToBackend = async (basket, payload, shippingAddress) => {
+  const sendOrderToBackend = async (basket, payload, shippingAddress, user) => {
     setPaymentIntent(payload.paymentIntent);
     // check if payload payment intent exists
 
@@ -134,6 +134,7 @@ function Index({ processing }) {
           basket,
           paymentIntent: payload.paymentIntent,
           shippingAddress,
+          user,
         })
         .then(function (response) {
           // check if backend was successful saving the order
@@ -273,7 +274,7 @@ function Index({ processing }) {
           address
         );
 
-        await sendOrderToBackend(basket, payload, address);
+        await sendOrderToBackend(basket, payload, address, user);
       } else {
         return null;
       }

@@ -60,7 +60,7 @@ function CheckoutProduct(
             <>
               <span className="seperator">| </span>
 
-              <QuantitySelector quantity={quantity} />
+              <QuantitySelector quantity={quantity} itemId={id} />
 
               <span className="seperator">| </span>
               <button
