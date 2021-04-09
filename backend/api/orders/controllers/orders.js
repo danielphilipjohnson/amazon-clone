@@ -1,9 +1,6 @@
 "use strict";
 
-/**
- * Read the documentation (https://strapi.io/documentation/developer-docs/latest/development/backend-customization.html#core-controllers)
- * to customize this controller
- */
+// move out
 const stripe = require("stripe")(
   "sk_test_51IbRJaF25eMJVCu4PSP1NLfuqFJ02mJ8SW1ofeENMUJ3GobfANwokUlQJkTCYMrTxwlAKVXLaioXeWBEtly7lTjo00wPlRnnvl"
 );
@@ -14,19 +11,20 @@ module.exports = {
   setUpStripe: async (ctx) => {
     const { basket } = ctx.request.body;
 
-    let total = 100;
+    let total = 0;
     let validatedCart = [];
+    // later make a receipt with pdf
     let receiptCart = [];
 
     await Promise.all(
       basket.map(async (product) => {
+        // find the cart items from the basket and find the prices on the backend
         const validatedProduct = await strapi.services.products.findOne({
           id: product.id,
         });
 
         if (validatedProduct) {
-          // validatedProduct.qty = product.qty
-          // in future make it qty
+          validatedProduct.quantity = product.quantity;
           validatedCart.push(validatedProduct);
           receiptCart.push({ id: product.id });
         }
@@ -37,11 +35,13 @@ module.exports = {
 
     total = strapi.config.functions["index"].cartTotal(validatedCart);
 
-    console.log(total);
+    const santiseTotal = strapi.config.functions["index"].convertTotalToStripe(
+      total
+    );
 
     try {
       const paymentIntent = await stripe.paymentIntents.create({
-        amount: total * 100, // subunits of the currency
+        amount: parseInt(santiseTotal), // subunits of the currency
         currency: "usd",
       });
 
@@ -50,10 +50,13 @@ module.exports = {
       throw error;
     }
   },
-  create: async (ctx) => {
-    const { basket, paymentIntent, shippingAddress } = ctx.request.body;
 
-    console.log(paymentIntent);
+  create: async (ctx) => {
+    const { basket, paymentIntent, shippingAddress, user } = ctx.request.body;
+
+    // work on finding the user in the backend
+    console.log(user);
+
     // payment intent validation
     if (paymentIntent) {
       // need to check for duplicate purchases here
@@ -83,6 +86,7 @@ module.exports = {
       }
 
       let santisedCart = [];
+      let cartItems = [];
 
       await Promise.all(
         basket.map(async (product) => {
@@ -91,9 +95,18 @@ module.exports = {
           });
 
           if (foundProduct) {
-            // foundProduct.qty = product.qty
-            // in future make it qty
+            const entity = await strapi.services["cart-item"].create({
+              title: foundProduct.title,
+              image: foundProduct.image.url,
+              quantity: product.quantity,
+            });
+
+            sanitizeEntity(entity, { model: strapi.models["cart-item"] });
+
+            foundProduct.quantity = product.quantity;
             santisedCart.push(foundProduct);
+
+            cartItems.push(entity);
           }
 
           return foundProduct;
@@ -101,6 +114,7 @@ module.exports = {
       );
 
       const total = strapi.config.functions["index"].cartTotal(santisedCart);
+
       const santiseTotal = strapi.config.functions[
         "index"
       ].convertTotalToStripe(total);
@@ -111,15 +125,16 @@ module.exports = {
         .findOne({ id: 1 }, ["role"]);
 
       const address = await strapi.services.address.create({
-        shipping_address: "84 Raccoon Run",
-        shipping_state: "Washington",
-        shipping_country: "US",
-        shipping_zip: "98106",
+        shipping_address: shippingAddress.shipping_address,
+        shipping_state: shippingAddress.shipping_state,
+        shipping_country: shippingAddress.shipping_country,
+        shipping_zip: shippingAddress.shipping_zip,
       });
-      const x = JSON.stringify(santisedCart);
+
       console.log(santisedCart);
+
       const entry = {
-        products: santisedCart,
+        cart_items: cartItems,
         order_total: total,
         order_placed: Date.now(),
         order_identifier: paymentIntent.id,
