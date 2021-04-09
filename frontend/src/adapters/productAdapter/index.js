@@ -8,12 +8,21 @@ const getProducts = () => {
   return dataPromise;
 };
 const getProductsByCategory = (category) => {
+  console.log();
   const promise = axios.get(`${baseURL}/products?category=${category}`);
   const dataPromise = promise.then((response) => response.data);
 
   return dataPromise;
 };
-export { getProducts, getProductsByCategory };
+// by ID
+const getProductsByID = (id) => {
+  console.log();
+  const promise = axios.get(`${baseURL}/products?id=${id}`);
+  const dataPromise = promise.then((response) => response.data);
+
+  return dataPromise;
+};
+export { getProducts, getProductsByCategory, getProductsByID };
 
 // const data = [
 //   {

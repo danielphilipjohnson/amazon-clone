@@ -18,9 +18,14 @@ function ListProducts() {
   const [product, setProduct] = useState(null);
   const location = useLocation();
   // let { category } = useParams();
+  // filter price range
+
+  //products?price_gte=20
+
   let query = useQuery();
 
   const getCategory = () => {
+    console.log(query);
     return query.get("category");
   };
 
