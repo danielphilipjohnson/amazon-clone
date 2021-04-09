@@ -11,7 +11,7 @@ function Item({ id }) {
   const fetchProduct = (id) => {
     setProduct(
       Data.filter(function (item) {
-        if (item.id == id) {
+        if (item.id === id) {
           return item;
         }
       })[0]

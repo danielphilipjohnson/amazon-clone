@@ -35,7 +35,7 @@ function Item({ id, title, image, rating, price, likes }) {
 }
 Item.propTypes = {
   id: PropTypes.number,
-  image: PropTypes.string,
+  image: PropTypes.object,
   description: PropTypes.string,
   rating: PropTypes.number,
   price: PropTypes.number,

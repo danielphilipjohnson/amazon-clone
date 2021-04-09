@@ -25,7 +25,7 @@ function BrowseringHistory({ title }) {
 
           <div className="browsering__items-cards">
             {browseringHistoryProducts.map((product) => {
-              return <Item {...product} />;
+              return <Item {...product} key={product.id} />;
             })}
           </div>
         </div>

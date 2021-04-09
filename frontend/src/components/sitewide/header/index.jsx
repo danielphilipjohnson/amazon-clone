@@ -15,7 +15,7 @@ import AmazonLogo from "../../../images/amazon-logo.png";
 function Header() {
   let history = useHistory();
 
-  const [{ basket, user }, dispatch] = useStateValue();
+  const [{ basket, user }] = useStateValue();
   const [searchQuery, setSearchQuery] = useState("");
   // add category i have to it
   const handleAuthenticaton = () => {

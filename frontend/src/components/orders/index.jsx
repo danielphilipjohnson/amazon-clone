@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-// import Order from "./order";
 import ProductImage from "../shared/product-image";
 
-// import { db } from "../../adapters/firebase";
 import data from "../../adapters/orderAdapter";
 
 import { useStateValue } from "../../StateProvider";
@@ -11,7 +9,7 @@ import { useStateValue } from "../../StateProvider";
 import "./orders.css";
 
 function Orders() {
-  const [{ user }] = useStateValue();
+  // const [{ user }] = useStateValue();
   const [orders, setOrders] = useState([]);
 
   const fetchOrders = () => {
@@ -119,25 +117,6 @@ function Orders() {
     fetchOrders();
   }, []);
 
-  // useEffect(() => {
-  //   if (user) {
-  //     db.collection("users")
-  //       .doc(user?.uid)
-  //       .collection("orders")
-  //       .orderBy("created", "desc")
-  //       .onSnapshot((snapshot) =>
-  //         setOrders(
-  //           snapshot.docs.map((doc) => ({
-  //             id: doc.id,
-  //             data: doc.data(),
-  //           }))
-  //         )
-  //       );
-  //   } else {
-  //     setOrders([]);
-  //   }
-  // }, [user]);
-
   return (
     <div className="order__container">
       <div className="container">
@@ -186,12 +165,6 @@ function Orders() {
         </div>
 
         <GenerateOrder />
-
-        {/* <div className="orders__order">
-          {orders?.map((order) => (
-            <Order order={order} />
-          ))}
-        </div> */}
       </div>
     </div>
   );
