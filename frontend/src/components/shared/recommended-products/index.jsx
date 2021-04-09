@@ -1,57 +1,35 @@
 import React from "react";
 import "./recommended-products.css";
-
-import item1 from "../../../images/items/item1.jpg";
-import item2 from "../../../images/items/item2.jpg";
-import item3 from "../../../images/items/item3.jpg";
-import item4 from "../../../images/items/item4.jpg";
-import item5 from "../../../images/items/item5.jpg";
-import item6 from "../../../images/items/item6.jpg";
-import item7 from "../../../images/items/item7.jpg";
+import formatImagePathFromBackend from "../../../utils/formatImagePathFromBackend";
+import { Link } from "react-router-dom";
 
 // random generate which products
-function RecommendedProducts({ title }) {
-  return (
-    <div className="recommended__items__container">
-      <div className="recommended__items__row">
-        <h2 className="recommended__items-title">{title}</h2>
+function RecommendedProducts({ cardTitle, recommendedProducts }) {
+  if (recommendedProducts) {
+    return (
+      <div className="recommended__items__container">
+        <div className="recommended__items__row">
+          <h2 className="recommended__items-title">{cardTitle}</h2>
 
-        <div className="recommended__items-cards">
-          <img
-            className="recommended__items-product"
-            src={item1}
-            alt="product description"
-          />
-
-          <img
-            className="recommended__items-product"
-            src={item2}
-            alt="product description"
-          />
-          <img
-            className="recommended__items-product"
-            src={item3}
-            alt="product description"
-          />
-          <img
-            className="recommended__items-product"
-            src={item4}
-            alt="product description"
-          />
-          <img
-            className="recommended__items-product"
-            src={item5} // setProcessing(true);
-            alt="product description"
-          />
-          <img
-            className="recommended__items-product"
-            src={item6}
-            alt="product description"
-          />
+          <div className="recommended__items-cards">
+            {recommendedProducts.map((item) => {
+              return (
+                <Link to={`product/${item.id}`}>
+                  <img
+                    className="recommended__items-product"
+                    src={formatImagePathFromBackend(item.image.url)}
+                    alt={item.title}
+                    key={item.key}
+                  />
+                </Link>
+              );
+            })}
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
+  return <div className="recommended__items__container">Loading</div>;
 }
 
 export default RecommendedProducts;

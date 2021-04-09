@@ -1,12 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import generateStars from "./utils";
+import formatImagePathFromBackend from "../../../../utils/formatImagePathFromBackend";
 import "./index.css";
 import PrimeLogo from "../../../../images/prime-logo.png";
 function Item({ id, title, image, description, rating, price, likes }) {
-  const formatImagePathFromBackend = (imageUrl) => {
-    return `${process.env.REACT_APP_IMAGEHOST}${imageUrl} `;
-  };
+  // const formatImagePathFromBackend = (imageUrl) => {
+  //   return `${process.env.REACT_APP_IMAGEHOST}${imageUrl} `;
+  // };
   return (
     <div className="browsering__items-product" key={id}>
       <img

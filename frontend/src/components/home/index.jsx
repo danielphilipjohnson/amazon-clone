@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import RecommendedProducts from "../shared/recommended-products";
 import ProductList from "../shared/product-list";
 import SubCards from "./sub-cards";
+
+import getRecommendedProducts from "../../adapters/recommendedProductsAdapter";
 
 import Bg from "../../images/bg.jpg";
 import shippingImg from "../../images/shipping.jpg";
@@ -13,6 +15,12 @@ import "./home.css";
 import "./card.css";
 
 function Home() {
+  const [recommendedProducts, setRecommendedProducts] = useState(null);
+  useEffect(() => {
+    getRecommendedProducts().then((data) => {
+      setRecommendedProducts(data);
+    });
+  }, []);
   return (
     <>
       <div className="home" id="home-top">
@@ -57,10 +65,19 @@ function Home() {
             </div>
           </div>
 
-          <RecommendedProducts title="Get yourself a little something" />
-          <RecommendedProducts title="Recommended deals for you" />
+          <RecommendedProducts
+            cardTitle="Get yourself a little something"
+            recommendedProducts={recommendedProducts}
+          />
+          <RecommendedProducts
+            cardTitle="Recommended deals for you"
+            recommendedProducts={recommendedProducts}
+          />
           <SubCards />
-          <RecommendedProducts title="Inspired by your shopping trends" />
+          <RecommendedProducts
+            cardTitle="Inspired by your shopping trends"
+            recommendedProducts={recommendedProducts}
+          />
         </div>
       </div>
       <ProductList title="Browsing History" />
