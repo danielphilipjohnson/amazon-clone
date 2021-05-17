@@ -39,7 +39,7 @@ function Login() {
   return (
     <div className="login">
       <Link to="/" className="header__link header__link-alt">
-        <img className="login__logo" src={AmazonLogo} />
+        <img className="login__logo" src={AmazonLogo} alt="amazon fake clone" />
         <span>.fake</span>
       </Link>
       <div className="login__container">
@@ -70,7 +70,7 @@ function Login() {
         </form>
 
         <p>
-          This is an <a href="">AMAZON FAKE CLONE</a> This site isn't real so
+          This is an <a href="/">AMAZON FAKE CLONE</a> This site isn't real so
           please use a fake email you will not have to confirm it. Nor will any
           emails be sent to you.
         </p>

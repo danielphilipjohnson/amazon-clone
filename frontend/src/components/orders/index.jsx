@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import ProductImage from "../shared/product-image";
+
 import formatImagePathFromBackend from "../../utils/formatImagePathFromBackend";
 
-import { data, getOrders } from "../../adapters/orderAdapter";
-
-import { useStateValue } from "../../StateProvider";
+import { getOrders } from "../../adapters/orderAdapter";
 
 import "./orders.css";
 
@@ -15,14 +13,12 @@ function Orders() {
 
   const fetchOrders = () => {
     getOrders().then((data) => {
-      console.log(orders);
       setOrders(data);
     });
   };
 
   const GenerateOrder = () => {
     return orders.map((item) => {
-      console.log(item);
       return (
         <div className="order" key={item.id}>
           <div className="order__heading flex between text-secondary size-base">

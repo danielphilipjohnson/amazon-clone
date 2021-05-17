@@ -17,10 +17,8 @@ import PrimeLogo from "../../../images/prime-logo.png";
 import ProcessingImage from "../../../images/processing.svg";
 
 function Index({ processing }) {
-  const [
-    { basket, user, isProcessing, isSuccessful },
-    dispatch,
-  ] = useStateValue();
+  const [{ basket, user, isProcessing, isSuccessful }, dispatch] =
+    useStateValue();
 
   const stripe = useStripe();
 
@@ -289,7 +287,7 @@ function Index({ processing }) {
     <>
       {isProcessing && (
         <div className="processing-card">
-          <img src={ProcessingImage} />
+          <img src={ProcessingImage} alt="processing" />
         </div>
       )}
       <div className="payment__container">
@@ -346,6 +344,7 @@ function Index({ processing }) {
                         <img
                           className="reviewProduct__image"
                           src={item.image}
+                          alt="review item"
                         />
                         <div className="reviewProduct__info">
                           <p className="reviewProduct__title">{item.title}</p>

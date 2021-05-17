@@ -35,7 +35,11 @@ function Header() {
     <div className="header">
       <div className="nav-left">
         <Link to={"/"} className="header__link">
-          <img className="header__logo" src={AmazonLogo} />
+          <img
+            className="header__logo"
+            src={AmazonLogo}
+            alt="fake amazon clone logo"
+          />
           <span>.co.uk</span>
         </Link>
 

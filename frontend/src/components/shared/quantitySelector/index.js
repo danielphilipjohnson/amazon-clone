@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useStateValue } from "../../../StateProvider";
 function Index({ quantity, itemId }) {
-  const [{}, dispatch] = useStateValue();
+  const [dispatch] = useStateValue();
 
   const [itemQuantity, setItemQuantity] = useState(quantity);
   const options = [];

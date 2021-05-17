@@ -29,7 +29,13 @@ function Description({ product }) {
   const GenerateRating = () => {
     return Array(rating)
       .fill()
-      .map((_, i) => <p key={i}>⭐</p>);
+      .map((_, i) => (
+        <p key={i}>
+          <span role="img" aria-label="star rating">
+            ⭐
+          </span>
+        </p>
+      ));
   };
 
   return (
@@ -56,6 +62,7 @@ function Description({ product }) {
             <img
               className="product-description__primelogo-item"
               src={PrimeLogo}
+              alt="prime logo"
             />
             <span>FREE One-Day</span>
           </div>

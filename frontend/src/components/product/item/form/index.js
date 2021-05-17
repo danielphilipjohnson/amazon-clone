@@ -32,7 +32,11 @@ function Form({ product, stock }) {
     <div className="product-form">
       <h3 className="color-total">{price}</h3>
       <div className="product-description__primelogo">
-        <img className="product-description__primelogo-item" src={PrimeLogo} />
+        <img
+          className="product-description__primelogo-item"
+          src={PrimeLogo}
+          alt="logo"
+        />
         <span>FREE One-Day</span>
       </div>
       <div className="product-form__delivery">
