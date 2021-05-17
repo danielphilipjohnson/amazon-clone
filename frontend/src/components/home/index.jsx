@@ -66,6 +66,7 @@ function Home() {
             cardTitle="Get yourself a little something"
             recommendedProducts={recommendedProducts}
           />
+
           <RecommendedProducts
             cardTitle="Recommended deals for you"
             recommendedProducts={recommendedProducts}

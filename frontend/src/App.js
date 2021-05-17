@@ -97,6 +97,7 @@ function App() {
             <Header />
             <Subheader />
             <Home />
+
             <Footer />
           </Route>
         </Switch>
