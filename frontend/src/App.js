@@ -3,10 +3,9 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // move to a layout component
 import AlertPortal from "./components/shared/alert";
 import AlertBox from "./components/shared/alert/box";
-import Header from "./components/sitewide/header";
-import Subheader from "./components/sitewide/subheader";
+
+import Layout from "./components/sitewide/layout";
 import ProductList from "./components/shared/product-list";
-import Footer from "./components/sitewide/footer";
 
 import SectionNav from "./components/shared/section-nav/";
 
@@ -16,7 +15,6 @@ import Login from "./routes/login";
 import Checkout from "./routes/checkout";
 import Payment from "./routes/payment";
 import Home from "./routes/home";
-import Products from "./routes/products";
 import Product from "./routes/product";
 
 import { auth } from "./adapters/firebase";
@@ -56,37 +54,33 @@ function App() {
       <div className="app">
         <Switch>
           <Route path="/orders">
-            <Header />
-            <Subheader />
-            <SectionNav />
-            <Orders />
-            <ProductList title="Recommended based on your purchase" />
-            <ProductList title={"Browsing History"} />
-            <Footer />
+            <Layout>
+              <SectionNav />
+              <Orders />
+              <ProductList title="Recommended based on your purchase" />
+              <ProductList title={"Browsing History"} />
+            </Layout>
           </Route>
           <Route path="/login">
             <Login />
           </Route>
           <Route path="/checkout">
-            <Header />
-            <Subheader />
-            <SectionNav />
-            <Checkout />
-            <Footer />
+            <Layout>
+              <SectionNav />
+              <Checkout />
+            </Layout>
           </Route>
           <Route path="/search/">
-            <Header />
-            <Subheader />
-            <SectionNav />
-            <Products />
-            <Footer />
+            <Layout>
+              <SectionNav />
+              <Product />
+            </Layout>
           </Route>
           <Route path="/product/:id">
-            <Header />
-            <Subheader />
-            <SectionNav />
-            <Product />
-            <Footer />
+            <Layout>
+              <SectionNav />
+              <Product />
+            </Layout>
           </Route>
           <Route path="/payment">
             <Elements stripe={promise}>
@@ -94,11 +88,9 @@ function App() {
             </Elements>
           </Route>
           <Route path="/">
-            <Header />
-            <Subheader />
-            <Home />
-
-            <Footer />
+            <Layout>
+              <Home />
+            </Layout>
           </Route>
         </Switch>
 
