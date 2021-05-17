@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { getBrowsingHistory } from "../../../adapters/homeAdapter";
+import getBrowsingHistory from "../../../adapters/browsingHistoryAdapter";
 
 import Item from "./item";
 
@@ -12,7 +12,9 @@ function BrowseringHistory({ title }) {
   );
 
   useEffect(() => {
-    setBrowseringHistoryProducts(getBrowsingHistory());
+    getBrowsingHistory().then((data) => {
+      setBrowseringHistoryProducts(data[0].products);
+    });
   }, []);
 
   if (browseringHistoryProducts) {
@@ -23,17 +25,7 @@ function BrowseringHistory({ title }) {
 
           <div className="browsering__items-cards">
             {browseringHistoryProducts.map((product) => {
-              return (
-                <Item
-                  key={product.id}
-                  id={product.id}
-                  image={product.image}
-                  description={product.description}
-                  rating={product.rating}
-                  like={product.likes}
-                  price={product.price}
-                />
-              );
+              return <Item {...product} key={product.id} />;
             })}
           </div>
         </div>

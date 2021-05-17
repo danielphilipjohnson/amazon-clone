@@ -104,7 +104,6 @@ const reducer = (state, action) => {
         ...state,
         basket: newBasket,
       };
-
     case "CHECKOUT_PROCESSING":
       return {
         ...state,

@@ -8,6 +8,7 @@ import { useStateValue } from "../../../../StateProvider";
 function Subtotal() {
   const [{ basket }] = useStateValue();
 
+  console.log(basket);
   if (basket.length > 0) {
     return (
       <>

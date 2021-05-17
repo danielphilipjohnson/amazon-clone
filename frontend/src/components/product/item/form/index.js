@@ -6,13 +6,12 @@ import "./form.css";
 
 // create a function that determines time bewteen now and 24 hours
 function Form({ product, stock }) {
-  const { title, image, current_price: price, rating } = product;
-  const [{ basket }, dispatch] = useStateValue();
+  const { title, image, price, rating } = product;
+  const [{}, dispatch] = useStateValue();
 
   const [itemQuantity, setItemQuantity] = useState(1);
 
   const addToBasket = () => {
-    console.log("+itemQuantity", +itemQuantity);
     dispatch({
       type: "ADD_TO_BASKET",
       item: {
@@ -26,8 +25,6 @@ function Form({ product, stock }) {
     });
   };
   const onQuantityChange = (event) => {
-    console.log("changing");
-    console.log(event.target.value);
     setItemQuantity(event.target.value);
   };
 

@@ -6,7 +6,7 @@ import PrimeLogo from "../../../../images/prime-logo.png";
 
 function Project({ productInformation }) {
   const DisplayPrice = () => {
-    const productInformationStr = productInformation.current_price
+    const productInformationStr = productInformation.price
       .toString()
       .split(".");
     return {
@@ -14,6 +14,7 @@ function Project({ productInformation }) {
       fraction: productInformationStr[1],
     };
   };
+  // need to add details
   const { price, fraction } = DisplayPrice();
 
   return (
@@ -59,7 +60,8 @@ function Project({ productInformation }) {
                 Get it <span className="text-bold">Tomorrow, Mar 31</span>
               </p>
             </div>
-            <div className="flex">
+
+            {/* <div className="flex">
               {productInformation?.details.map((item) => {
                 return (
                   <div className="detail-item size-base">
@@ -70,7 +72,7 @@ function Project({ productInformation }) {
                   </div>
                 );
               })}
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

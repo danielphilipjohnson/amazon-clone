@@ -347,7 +347,7 @@ function Index({ processing }) {
                           className="reviewProduct__image"
                           src={item.image}
                         />
-                        <div classNagenerateQuantitySelectorme="reviewProduct__info">
+                        <div className="reviewProduct__info">
                           <p className="reviewProduct__title">{item.title}</p>
                           <div className="reviewProduct__price">
                             <div>
@@ -380,7 +380,7 @@ function Index({ processing }) {
                                 name="gender"
                                 value="male"
                               />
-                              <label for="male" className="form__delivery">
+                              <label htmlFor="male" className="form__delivery">
                                 FREE One-Day Delivery :{" "}
                                 <span className="color-success">
                                   get it Tomorrow, Mar. 26
@@ -396,7 +396,7 @@ function Index({ processing }) {
                                 name="gender"
                                 value="male"
                               />
-                              <label for="male" className="form__delivery">
+                              <label htmlFor="male" className="form__delivery">
                                 FREE Amazon Day Delivery :
                                 <span className="color-success">
                                   get it Sunday, Mar. 28

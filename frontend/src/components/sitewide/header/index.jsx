@@ -1,15 +1,7 @@
 import React, { useState } from "react";
 import "./header.css";
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useParams,
-  useLocation,
-  useHistory,
-} from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import RoomIcon from "@material-ui/icons/Room";
 import SearchIcon from "@material-ui/icons/Search";
@@ -23,7 +15,7 @@ import AmazonLogo from "../../../images/amazon-logo.png";
 function Header() {
   let history = useHistory();
 
-  const [{ basket, user }, dispatch] = useStateValue();
+  const [{ basket, user }] = useStateValue();
   const [searchQuery, setSearchQuery] = useState("");
   // add category i have to it
   const handleAuthenticaton = () => {
@@ -42,7 +34,7 @@ function Header() {
   return (
     <div className="header">
       <div className="nav-left">
-        <Link to="/" className="header__link">
+        <Link to={"/"} className="header__link">
           <img className="header__logo" src={AmazonLogo} />
           <span>.co.uk</span>
         </Link>
@@ -93,19 +85,25 @@ function Header() {
         <div className="header__option hide-mobile show-desktop">
           <span className="flag-icon flag-icon-gb"></span>
         </div>
-        <Link to={!user && "/login"}>
+        {user && (
           <div className="header__option">
             <span
               onClick={handleAuthenticaton}
               className="header__optionLineOne"
             >
-              Hello {user ? user.email : "Sign in"}
+              Hello {user.email}
             </span>
-            <span className="header__optionLineTwo">
-              {user ? "Sign Out" : "Sign In"}
-            </span>
+            <span className="header__optionLineTwo">{"Sign Out"}</span>
           </div>
-        </Link>
+        )}
+        {!user && (
+          <Link to={"/login"}>
+            <div className="header__option">
+              <span className="header__optionLineOne">Hello {"Sign in"}</span>
+              <span className="header__optionLineTwo">{"Sign In"}</span>
+            </div>
+          </Link>
+        )}
 
         <Link to="/orders">
           <div className="header__option">

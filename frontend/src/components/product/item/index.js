@@ -2,20 +2,22 @@ import React, { useState, useEffect } from "react";
 import Description from "./description";
 import Form from "./form";
 import ProductImage from "../../shared/product-image";
+import formatImagePathFromBackend from "../../../utils/formatImagePathFromBackend";
 import "./item.css";
-import Data from "../../../adapters/productAdapter/";
+import { getProductsByID } from "../../../adapters/productAdapter/";
 
 function Item({ id }) {
   const [product, setProduct] = useState(null);
 
   const fetchProduct = (id) => {
-    setProduct(
-      Data.filter(function (item) {
-        if (item.id == id) {
-          return item;
-        }
-      })[0]
-    );
+    getProductsByID(id)
+      .then((data) => {
+        console.log(data);
+        setProduct(data[0]);
+      })
+      .catch((error) => {
+        // dispatch alert
+      });
   };
   useEffect(() => {
     fetchProduct(id);
@@ -24,10 +26,10 @@ function Item({ id }) {
   if (product) {
     return (
       <div className="product-container">
-        <ProductImage
-          url={product.image.url}
+        <img
+          src={formatImagePathFromBackend(product.image.url)}
           alt={product.title}
-          classname="product__fullimage"
+          className="product__fullimage"
         />
 
         <Description product={product} />

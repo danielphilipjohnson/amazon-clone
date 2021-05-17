@@ -27,7 +27,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 
 import "./App.css";
-console.log(process.env.REACT_APP_STRIPE_KEY);
+
 const promise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
 function App() {
   const [{ alert }, dispatch] = useStateValue();
@@ -74,7 +74,7 @@ function App() {
             <Checkout />
             <Footer />
           </Route>
-          <Route path="/search">
+          <Route path="/search/">
             <Header />
             <Subheader />
             <SectionNav />
@@ -97,6 +97,7 @@ function App() {
             <Header />
             <Subheader />
             <Home />
+
             <Footer />
           </Route>
         </Switch>

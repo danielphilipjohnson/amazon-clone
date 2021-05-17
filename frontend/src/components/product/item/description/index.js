@@ -16,7 +16,8 @@ function Description({ product }) {
   };
 
   const GenerateAbout = () => {
-    return about.map((item) => {
+    const aboutSplitted = about.split("\n");
+    return aboutSplitted.map((item) => {
       return (
         <li>
           <p>{item}</p>
@@ -24,7 +25,7 @@ function Description({ product }) {
       );
     });
   };
-
+  GenerateAbout();
   const GenerateRating = () => {
     return Array(rating)
       .fill()
@@ -61,6 +62,7 @@ function Description({ product }) {
           <p>
             You Save: <span className="color-total">£15.20(52%)</span>
           </p>
+          products
         </div>
 
         <div className="product-description__main__extra">
@@ -80,6 +82,7 @@ function Description({ product }) {
           </p>
 
           <ul className="reset-list">
+            <li>{about}</li>
             <GenerateMaterial />
           </ul>
         </div>
@@ -89,6 +92,7 @@ function Description({ product }) {
             About this item
           </h2>
           <ul className="product-description__about-list reset-list">
+            {/* <li>{about}</li> */}
             <GenerateAbout />
           </ul>
           <p className="alink-normal">See more product details</p>
