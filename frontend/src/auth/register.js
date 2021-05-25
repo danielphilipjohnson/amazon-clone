@@ -31,7 +31,8 @@ function Register() {
         password: password,
       });
 
-      console.log(data);
+      console.log(data.jwt);
+      console.log(data.user);
       // store the data in a token context
     }
     console.log(register);
