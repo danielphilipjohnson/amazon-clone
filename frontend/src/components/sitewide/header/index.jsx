@@ -6,7 +6,9 @@ import { Link, useHistory } from "react-router-dom";
 import RoomIcon from "@material-ui/icons/Room";
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
+
 import { useStateValue } from "../../../StateProvider";
+import IsAuthenticated from "../../../utils/isAuthenticated";
 
 import useUser from "../../../hooks/useUser";
 
@@ -15,12 +17,6 @@ import AmazonLogo from "../../../images/amazon-logo.png";
 function Header() {
   let history = useHistory();
   const [{ user, token }, userDispatch] = useUser();
-
-  function isAuthenticated() {
-    if (token) {
-      return true;
-    }
-  }
 
   const [{ basket }] = useStateValue();
   const [searchQuery, setSearchQuery] = useState("");
@@ -97,13 +93,13 @@ function Header() {
         <div className="header__option hide-mobile show-desktop">
           <span className="flag-icon flag-icon-gb"></span>
         </div>
-        {isAuthenticated() && (
+        {IsAuthenticated() && (
           <button onClick={handleLogout} className="header__option no-button">
             <span className="header__optionLineOne">Hello {user.email}</span>
             <span className="header__optionLineTwo">{"Sign Out"}</span>
           </button>
         )}
-        {!isAuthenticated() && (
+        {!IsAuthenticated() && (
           <Link to={"/login"}>
             <div className="header__option">
               <span className="header__optionLineOne">Hello {"Sign in"}</span>
