@@ -9,8 +9,6 @@ import ProductList from "./components/shared/product-list";
 
 import SectionNav from "./components/shared/section-nav/";
 
-import Register from "./auth/register";
-
 /* Routes */
 import Orders from "./routes/orders";
 import Login from "./routes/login";
@@ -91,7 +89,6 @@ function App() {
           </Route>
           <Route path="/">
             <Layout>
-              <Register />
               <Home />
             </Layout>
           </Route>

@@ -29,16 +29,15 @@ function Login() {
   };
 
   async function registerUser(dispatch, user, updates) {
-    console.log(user);
-    console.log(formState);
-    //password contaminated
+    //password contaminated // move to stored
     dispatch({ type: "start update", updates });
     try {
       const registerInfo = {
-        username: "anon",
+        username: updates.email,
         email: updates.email,
         password: updates.password,
       };
+      console.log(user);
       console.log(registerInfo);
 
       const register = await fetch(
@@ -52,16 +51,12 @@ function Login() {
           body: JSON.stringify(registerInfo),
         }
       );
+      console.log(register);
+
       if (register.status === 200) {
-        //login
-        // const { data } = await axios.post("http://localhost:1337/auth/local", {
-        //   identifier: email,
-        //   password: password,
-        // });
-        // console.log(data.jwt);
-        // console.log(data.user);
-        // store the data in a token context
+        loginUser(dispatch, user, registerInfo);
       } else {
+        console.log("dispatch error");
         throw new error();
       }
     } catch (error) {}
@@ -85,7 +80,6 @@ function Login() {
 
       dispatch({ type: "finish update", updatedUser });
       dispatch({ type: "set token", jwt });
-      console.log(updatedUser);
       history.push("/");
       // return updatedUser;
     } catch (error) {
