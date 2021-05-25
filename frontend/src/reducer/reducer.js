@@ -142,12 +142,6 @@ const reducer = (state, action) => {
         ...removeAlertState,
       };
 
-    case "SET_USER":
-      return {
-        ...state,
-        user: action.user,
-      };
-
     default:
       return state;
   }
