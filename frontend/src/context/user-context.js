@@ -12,6 +12,7 @@ function UserProvider({ children }) {
   const [state, dispatch] = React.useReducer(userReducer, {
     status: null,
     error: null,
+    token: null,
     storedUser: user,
     user,
   });

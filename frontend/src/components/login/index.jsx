@@ -8,17 +8,11 @@ import { Link, useHistory } from "react-router-dom";
 import { auth } from "../../adapters/firebase";
 
 function Login() {
-  const [{ user }] = useUser();
-  console.log(user);
-  const [formState, setFormState] = React.useState(user);
-  const [password, setPassword] = useState("");
+  const [{ user, status, error }, userDispatch] = useUser();
+  const [formState, setFormState] = React.useState({ password: "", ...user });
 
   function handleChange(e) {
     setFormState({ ...formState, [e.target.name]: e.target.value });
-  }
-
-  function handlePasswordChange(e) {
-    setPassword(e.target.value);
   }
 
   const history = useHistory();
@@ -34,19 +28,83 @@ function Login() {
     //some fancy firebase login
   };
 
-  const register = (e) => {
+  async function registerUser(dispatch, user, updates) {
+    console.log(user);
+    console.log(formState);
+    //password contaminated
+    dispatch({ type: "start update", updates });
+    try {
+      const registerInfo = {
+        username: "anon",
+        email: updates.email,
+        password: updates.password,
+      };
+      console.log(registerInfo);
+
+      const register = await fetch(
+        `${process.env.REACT_APP_STRAPI_URL}/auth/local/register`,
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(registerInfo),
+        }
+      );
+      if (register.status === 200) {
+        //login
+        const { data } = await axios.post("http://localhost:1337/auth/local", {
+          identifier: email,
+          password: password,
+        });
+
+        console.log(data.jwt);
+        console.log(data.user);
+        // store the data in a token context
+      } else {
+        throw new error();
+      }
+    } catch (error) {}
+  }
+  async function handleRegisterSubmit(e) {
     e.preventDefault();
-    // auth
-    //   .createUserWithEmailAndPassword(email, password)
-    //   .then((auth) => {
-    //     // it successfully created a new user with email and password
-    //     if (auth) {
-    //       history.push("/");
-    //     }
-    //   })
-    //   .catch((error) => alert(error.message));
-    // // do some fancy firebase register
-  };
+    registerUser(userDispatch, user, formState);
+    // const registerInfo = {
+    //   username: username,
+    //   email: email,
+    //   password: password,
+    // };
+
+    // const register = await fetch(
+    //   `${process.env.REACT_APP_STRAPI_URL}/auth/local/register`,
+    //   {
+    //     method: "POST",
+    //     headers: {
+    //       Accept: "application/json",
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(registerInfo),
+    //   }
+    // );
+    // console.log(register);
+    // // what is stored in here
+    // if (register.status === 200) {
+    //   //login
+    //   const { data } = await axios.post("http://localhost:1337/auth/local", {
+    //     identifier: email,
+    //     password: password,
+    //   });
+
+    //   console.log(data.jwt);
+    //   console.log(data.user);
+    //   // store the data in a token context
+    // }
+    // console.log(register);
+
+    // const registerResponse = await register.json();
+    // console.log(registerResponse);
+  }
 
   return (
     <div className="login">
@@ -72,8 +130,8 @@ function Login() {
             id="password"
             name="password"
             type="password"
-            value={password}
-            onChange={handlePasswordChange}
+            value={formState.password}
+            onChange={handleChange}
           />
 
           <button
@@ -91,7 +149,10 @@ function Login() {
           emails be sent to you.
         </p>
 
-        <button onClick={register} className="login__registerButton">
+        <button
+          onClick={handleRegisterSubmit}
+          className="login__registerButton"
+        >
           Create your Amazon Account
         </button>
       </div>

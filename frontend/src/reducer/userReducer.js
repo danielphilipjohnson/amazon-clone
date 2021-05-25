@@ -3,6 +3,7 @@ function userReducer(state, action) {
     case "start update": {
       return {
         ...state,
+        token: null,
         user: { ...state.user, ...action.updates },
         status: "pending",
         storedUser: state.user,
@@ -24,6 +25,7 @@ function userReducer(state, action) {
         error: action.error,
         user: state.storedUser,
         storedUser: null,
+        token: null,
       };
     }
     case "reset": {
@@ -31,6 +33,7 @@ function userReducer(state, action) {
         ...state,
         status: null,
         error: null,
+        token: null,
       };
     }
     default: {
