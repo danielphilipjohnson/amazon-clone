@@ -54,7 +54,7 @@ function ListProducts() {
 
   useEffect(() => {
     fetchMatchedProducts();
-  }, []);
+  }, [fetchMatchedProducts]);
 
   if (product) {
     return product.map((item) => {

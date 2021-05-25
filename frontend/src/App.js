@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-// move to a layout component
 import AlertPortal from "./components/shared/alert";
 import AlertBox from "./components/shared/alert/box";
 
@@ -27,27 +26,7 @@ import "./App.css";
 
 const promise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
 function App() {
-  const [{ alert }, dispatch] = useStateValue();
-  // let { slug } = useParams();
-  // useEffect(() => {
-  //   // run once when the app component loads
-
-  //   auth.onAuthStateChanged((authUser) => {
-  //     if (authUser) {
-  //       // user just logged in / the user was logged in
-  //       dispatch({
-  //         type: "SET_USER",
-  //         user: authUser,
-  //       });
-  //     } else {
-  //       // the user is logged out
-  //       dispatch({
-  //         type: "SET_USER",
-  //         user: null,
-  //       });
-  //     }
-  //   });
-  // }, []);
+  const [{ alert }] = useStateValue();
 
   return (
     <Router>

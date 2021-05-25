@@ -14,10 +14,8 @@ import "./login.css";
 function Login() {
   const [{ user, status, error }, userDispatch] = useUser();
   const history = useHistory();
-
   const [mode, setMode] = useState("");
 
-  console.log(mode);
   const {
     register,
     handleSubmit,
@@ -31,7 +29,6 @@ function Login() {
     if (mode === "register") {
       registerUser(userDispatch, user, data).catch(() => {});
     }
-    console.log(data);
   };
 
   const isPending = status === "pending";
@@ -107,10 +104,13 @@ function Login() {
         <h1>Sign-in</h1>
 
         <form onSubmit={handleSubmit(onSubmit)}>
+          {isRejected ? (
+            <pre style={{ color: "red" }}>{error.message}</pre>
+          ) : null}
           <label htmlFor="email">E-mail</label>
           {errors.email && (
             <div className="alert" role="alert">
-              Please provide a valid email
+              Sorry, that doesn't match.
             </div>
           )}
           <input
@@ -181,9 +181,6 @@ function Login() {
               ? "✖ Try again"
               : "Create your Amazon Account"}
           </button>
-          {isRejected ? (
-            <pre style={{ color: "red" }}>{error.message}</pre>
-          ) : null}
         </form>
       </div>
       <AltFooter />
