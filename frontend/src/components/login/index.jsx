@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import useUser from "../../hooks/useUser";
 import AltFooter from "../sitewide/alt-footer/index";
 import axios from "axios";
@@ -10,6 +11,12 @@ import { Link, useHistory } from "react-router-dom";
 function Login() {
   const [{ user, status, error }, userDispatch] = useUser();
   const history = useHistory();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => console.log(data);
   const [formState, setFormState] = React.useState({ password: "", ...user });
 
   const isPending = status === "pending";
