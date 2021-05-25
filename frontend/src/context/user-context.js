@@ -1,5 +1,6 @@
 import React from "'react";
 import { useAuth } from "./auth-context";
+import userReducer from "../reducer/userReducer";
 
 const UserContext = React.createContext();
 UserContext.displayName = "UserContext";
@@ -17,3 +18,5 @@ function UserProvider({ children }) {
   const value = [state, dispatch];
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 }
+
+export default UserProvider;
