@@ -11,12 +11,22 @@ import { Link, useHistory } from "react-router-dom";
 function Login() {
   const [{ user, status, error }, userDispatch] = useUser();
   const history = useHistory();
+
+  const [mode, setMode] = useState("");
+
+  console.log(mode);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+
+  const onSubmit = (data) => {
+    if (mode === "login") {
+    }
+    console.log(data);
+  };
+
   const [formState, setFormState] = React.useState({ password: "", ...user });
 
   const isPending = status === "pending";
@@ -95,6 +105,7 @@ function Login() {
     e.preventDefault();
     registerUser(userDispatch, user, formState).catch(() => {});
   }
+  //npm install validator
 
   return (
     <div className="login">
@@ -105,53 +116,77 @@ function Login() {
       <div className="login__container">
         <h1>Sign-in</h1>
 
-        <form>
-          <h5>E-mail</h5>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <label htmlFor="email">E-mail</label>
+          {errors.email && errors.email.type === "required" && (
+            <div className="alert" role="alert">
+              This is required
+            </div>
+          )}
           <input
+            id="email"
+            aria-invalid={errors.email ? "true" : "false"}
+            {...register("email", { required: true, maxLength: 30 })}
+          />
+          {/* <input
             id="email"
             name="email"
             type="text"
             value={formState.email}
             onChange={handleChange}
-          />
+          /> */}
 
-          <h5>Password</h5>
+          <label htmlFor="password">Password</label>
+
+          {errors.password && errors.password.type === "required" && (
+            <div className="alert" role="alert">
+              This is required
+            </div>
+          )}
+
           <input
             id="password"
-            name="password"
-            type="password"
-            value={formState.password}
-            onChange={handleChange}
+            aria-invalid={errors.password ? "true" : "false"}
+            {...register("password", {
+              required: true,
+              minLength: 6,
+              maxLength: 30,
+            })}
           />
 
           <button
             type="submit"
-            onClick={handleLoginSubmit}
             className="login__signInButton"
+            onClick={() => {
+              setMode("login");
+            }}
           >
             {isPending ? "..." : isRejected ? "✖ Try again" : "Continue"}
           </button>
+
+          <p>
+            This is an <a href="/">AMAZON FAKE CLONE</a> This site isn't real so
+            please use a fake email you will not have to confirm it. Nor will
+            any emails be sent to you.
+          </p>
+
+          <button
+            type="submit"
+            onClick={() => {
+              setMode("register");
+            }}
+            className="login__registerButton"
+          >
+            {isPending
+              ? "..."
+              : isRejected
+              ? "✖ Try again"
+              : "Create your Amazon Account"}
+          </button>
+          {isRejected ? (
+            <pre style={{ color: "red" }}>{error.message}</pre>
+          ) : null}
         </form>
-
-        <p>
-          This is an <a href="/">AMAZON FAKE CLONE</a> This site isn't real so
-          please use a fake email you will not have to confirm it. Nor will any
-          emails be sent to you.
-        </p>
-
-        <button
-          onClick={handleRegisterSubmit}
-          className="login__registerButton"
-        >
-          {isPending
-            ? "..."
-            : isRejected
-            ? "✖ Try again"
-            : "Create your Amazon Account"}
-        </button>
-        {isRejected ? (
-          <pre style={{ color: "red" }}>{error.message}</pre>
-        ) : null}
       </div>
       <AltFooter />
     </div>

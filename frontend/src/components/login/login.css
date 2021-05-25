@@ -31,8 +31,10 @@
   margin-bottom: 1.5rem;
 }
 
-.login__container > form > h5 {
+.login__container > form > label {
   margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: bold;
 }
 
 .login__container > form > input {
@@ -44,7 +46,7 @@
   border-radius: 3px;
 }
 
-.login__container > p {
+.login__container p {
   margin-top: 1.05rem;
   font-size: 12px;
   line-height: 1.25rem;
@@ -77,4 +79,10 @@
 }
 .header__link-alt span {
   padding-bottom: 1.5rem;
+}
+
+.alert {
+  color: red;
+  font-size: 0.8rem;
+  margin: 0.5rem 0;
 }
