@@ -6,6 +6,8 @@ function Navigation() {
   return (
     // http://localhost:1337/products?current_price_gte=50
     // deal with prices
+    //https://strapi.io/documentation/developer-docs/latest/developer-resources/content-api/content-api.html#filters
+    //?price_gte=10&price_lte=5
     <aside className="form-navigation">
       <div className="form-navigation__group prime">
         <h3>Amazon Prime</h3>

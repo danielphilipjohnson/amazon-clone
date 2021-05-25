@@ -16,7 +16,7 @@ import Checkout from "./routes/checkout";
 import Payment from "./routes/payment";
 import Home from "./routes/home";
 import Product from "./routes/product";
-
+import Products from "./routes/products";
 import { auth } from "./adapters/firebase";
 
 import { useStateValue } from "./StateProvider";
@@ -53,6 +53,7 @@ function App() {
     <Router>
       <div className="app">
         <Switch>
+          ghfgf
           <Route path="/orders">
             <Layout>
               <SectionNav />
@@ -73,7 +74,7 @@ function App() {
           <Route path="/search/">
             <Layout>
               <SectionNav />
-              <Product />
+              <Products />
             </Layout>
           </Route>
           <Route path="/product/:id">
