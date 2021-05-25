@@ -9,24 +9,15 @@ import { Link, useHistory } from "react-router-dom";
 
 function Login() {
   const [{ user, status, error }, userDispatch] = useUser();
+  const history = useHistory();
   const [formState, setFormState] = React.useState({ password: "", ...user });
+
+  const isPending = status === "pending";
+  const isRejected = status === "rejected";
 
   function handleChange(e) {
     setFormState({ ...formState, [e.target.name]: e.target.value });
   }
-
-  const history = useHistory();
-
-  const signIn = (e) => {
-    e.preventDefault();
-    // auth
-    //   .signInWithEmailAndPassword(email, password)
-    //   .then((auth) => {
-    //     history.push("/");
-    //   })
-    //   .catch((error) => alert(error.message));
-    //some fancy firebase login
-  };
 
   async function registerUser(dispatch, user, updates) {
     //password contaminated // move to stored
@@ -37,8 +28,6 @@ function Login() {
         email: updates.email,
         password: updates.password,
       };
-      console.log(user);
-      console.log(registerInfo);
 
       const register = await fetch(
         `${process.env.REACT_APP_STRAPI_URL}/auth/local/register`,
@@ -51,15 +40,19 @@ function Login() {
           body: JSON.stringify(registerInfo),
         }
       );
-      console.log(register);
 
       if (register.status === 200) {
         loginUser(dispatch, user, registerInfo);
       } else {
-        console.log("dispatch error");
-        throw new error();
+        const error = {
+          message: "Make sure to provide valid email and password",
+        };
+        dispatch({ type: "fail update", error });
       }
-    } catch (error) {}
+    } catch (error) {
+      dispatch({ type: "fail update", error });
+      return Promise.reject(error);
+    }
   }
 
   async function loginUser(dispatch, user, updates) {
@@ -70,7 +63,6 @@ function Login() {
         identifier: updates.email,
         password: updates.password,
       });
-
       const updatedUser = {
         username: data.user.username,
         email: data.user.email,
@@ -81,56 +73,20 @@ function Login() {
       dispatch({ type: "finish update", updatedUser });
       dispatch({ type: "set token", jwt });
       history.push("/");
-      // return updatedUser;
     } catch (error) {
       dispatch({ type: "fail update", error });
-      console.log(error);
       return Promise.reject(error);
     }
   }
 
-  async function handleLoginSubmit(e) {
+  function handleLoginSubmit(e) {
     e.preventDefault();
-    loginUser(userDispatch, user, formState);
+    loginUser(userDispatch, user, formState).catch(() => {});
   }
 
-  async function handleRegisterSubmit(e) {
+  function handleRegisterSubmit(e) {
     e.preventDefault();
-    registerUser(userDispatch, user, formState);
-    // const registerInfo = {
-    //   username: username,
-    //   email: email,
-    //   password: password,
-    // };
-
-    // const register = await fetch(
-    //   `${process.env.REACT_APP_STRAPI_URL}/auth/local/register`,
-    //   {
-    //     method: "POST",
-    //     headers: {
-    //       Accept: "application/json",
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(registerInfo),
-    //   }
-    // );
-    // console.log(register);
-    // // what is stored in here
-    // if (register.status === 200) {
-    //   //login
-    //   const { data } = await axios.post("http://localhost:1337/auth/local", {
-    //     identifier: email,
-    //     password: password,
-    //   });
-
-    //   console.log(data.jwt);
-    //   console.log(data.user);
-    //   // store the data in a token context
-    // }
-    // console.log(register);
-
-    // const registerResponse = await register.json();
-    // console.log(registerResponse);
+    registerUser(userDispatch, user, formState).catch(() => {});
   }
 
   return (
@@ -166,7 +122,7 @@ function Login() {
             onClick={handleLoginSubmit}
             className="login__signInButton"
           >
-            Continue
+            {isPending ? "..." : isRejected ? "✖ Try again" : "Continue"}
           </button>
         </form>
 
@@ -180,10 +136,16 @@ function Login() {
           onClick={handleRegisterSubmit}
           className="login__registerButton"
         >
-          Create your Amazon Account
+          {isPending
+            ? "..."
+            : isRejected
+            ? "✖ Try again"
+            : "Create your Amazon Account"}
         </button>
+        {isRejected ? (
+          <pre style={{ color: "red" }}>{error.message}</pre>
+        ) : null}
       </div>
-
       <AltFooter />
     </div>
   );
