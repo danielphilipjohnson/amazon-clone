@@ -8,21 +8,31 @@ import SearchIcon from "@material-ui/icons/Search";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import { useStateValue } from "../../../StateProvider";
 
+import useUser from "../../../hooks/useUser";
 import { auth } from "../../../adapters/firebase";
 
 import AmazonLogo from "../../../images/amazon-logo.png";
 
 function Header() {
   let history = useHistory();
+  const [{ user, token, status, error }, userDispatch] = useUser();
 
-  const [{ basket, user }] = useStateValue();
+  function isAuthenticated() {
+    if (token) {
+      return true;
+    }
+  }
+
+  const [{ basket }] = useStateValue();
   const [searchQuery, setSearchQuery] = useState("");
-  // add category i have to it
-  const handleAuthenticaton = () => {
-    if (user) {
+
+  const handleLogout = () => {
+    if (token) {
+      userDispatch({ type: "remove token" });
       auth.signOut();
     }
   };
+
   const onSearchClick = (e) => {
     const formSearch = `/search?category=${searchQuery}`;
     history.push(formSearch);
@@ -89,18 +99,13 @@ function Header() {
         <div className="header__option hide-mobile show-desktop">
           <span className="flag-icon flag-icon-gb"></span>
         </div>
-        {user && (
-          <div className="header__option">
-            <span
-              onClick={handleAuthenticaton}
-              className="header__optionLineOne"
-            >
-              Hello {user.email}
-            </span>
+        {isAuthenticated() && (
+          <button onClick={handleLogout} className="header__option">
+            <span className="header__optionLineOne">Hello {user.email}</span>
             <span className="header__optionLineTwo">{"Sign Out"}</span>
-          </div>
+          </button>
         )}
-        {!user && (
+        {!isAuthenticated() && (
           <Link to={"/login"}>
             <div className="header__option">
               <span className="header__optionLineOne">Hello {"Sign in"}</span>
@@ -108,14 +113,12 @@ function Header() {
             </div>
           </Link>
         )}
-
         <Link to="/orders">
           <div className="header__option">
             <span className="header__optionLineOne">Returns</span>
             <span className="header__optionLineTwo">& Orders</span>
           </div>
         </Link>
-
         <Link to="/checkout">
           <div className="header__optionBasket">
             <ShoppingBasketIcon />

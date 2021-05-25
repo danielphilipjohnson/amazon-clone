@@ -18,6 +18,21 @@ function userReducer(state, action) {
         error: null,
       };
     }
+    case "set token": {
+      return {
+        ...state,
+        token: action.jwt,
+        status: "resolved",
+        storedUser: null,
+        error: null,
+      };
+    }
+    case "remove token": {
+      return {
+        ...state,
+        token: null,
+      };
+    }
     case "fail update": {
       return {
         ...state,

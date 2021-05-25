@@ -1,7 +1,8 @@
 import React from "react";
 
+// find a way to add more fields remotely
 const AuthContext = React.createContext({
-  user: { email: "", token: "", name: "" },
+  user: { email: "", username: "" },
 });
 AuthContext.displayName = "AuthContext";
 const AuthProvider = ({ user, ...props }) => (

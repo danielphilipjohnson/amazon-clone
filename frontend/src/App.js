@@ -57,7 +57,6 @@ function App() {
     <Router>
       <div className="app">
         <Switch>
-          ghfgf
           <Route path="/orders">
             <Layout>
               <SectionNav />

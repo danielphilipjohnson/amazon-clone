@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import useUser from "../../hooks/useUser";
 import AltFooter from "../sitewide/alt-footer/index";
+import axios from "axios";
 
 import "./login.css";
 import AmazonLogo from "../../images/amazon-logo-black.png";
@@ -54,19 +55,52 @@ function Login() {
       );
       if (register.status === 200) {
         //login
-        const { data } = await axios.post("http://localhost:1337/auth/local", {
-          identifier: email,
-          password: password,
-        });
-
-        console.log(data.jwt);
-        console.log(data.user);
+        // const { data } = await axios.post("http://localhost:1337/auth/local", {
+        //   identifier: email,
+        //   password: password,
+        // });
+        // console.log(data.jwt);
+        // console.log(data.user);
         // store the data in a token context
       } else {
         throw new error();
       }
     } catch (error) {}
   }
+
+  async function loginUser(dispatch, user, updates) {
+    dispatch({ type: "start update", updates });
+
+    try {
+      const { data } = await axios.post("http://localhost:1337/auth/local", {
+        identifier: updates.email,
+        password: updates.password,
+      });
+
+      const updatedUser = {
+        username: data.user.username,
+        email: data.user.email,
+      };
+
+      const jwt = data.jwt;
+
+      dispatch({ type: "finish update", updatedUser });
+      dispatch({ type: "set token", jwt });
+      console.log(updatedUser);
+      history.push("/");
+      // return updatedUser;
+    } catch (error) {
+      dispatch({ type: "fail update", error });
+      console.log(error);
+      return Promise.reject(error);
+    }
+  }
+
+  async function handleLoginSubmit(e) {
+    e.preventDefault();
+    loginUser(userDispatch, user, formState);
+  }
+
   async function handleRegisterSubmit(e) {
     e.preventDefault();
     registerUser(userDispatch, user, formState);
@@ -136,7 +170,7 @@ function Login() {
 
           <button
             type="submit"
-            onClick={signIn}
+            onClick={handleLoginSubmit}
             className="login__signInButton"
           >
             Continue
