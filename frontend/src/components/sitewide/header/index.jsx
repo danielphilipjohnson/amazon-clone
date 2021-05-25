@@ -100,7 +100,7 @@ function Header() {
           <span className="flag-icon flag-icon-gb"></span>
         </div>
         {isAuthenticated() && (
-          <button onClick={handleLogout} className="header__option">
+          <button onClick={handleLogout} className="header__option no-button">
             <span className="header__optionLineOne">Hello {user.email}</span>
             <span className="header__optionLineTwo">{"Sign Out"}</span>
           </button>
