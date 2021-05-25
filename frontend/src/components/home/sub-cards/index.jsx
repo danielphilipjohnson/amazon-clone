@@ -18,11 +18,7 @@ function SubCard() {
       <div className="sub__cards-container">
         {productTypes.map((productType) => {
           return (
-            <div
-              className="sub__cards-grid"
-              key={productType.title}
-              key={productType.id}
-            >
+            <div className="sub__cards-grid" key={productType.id}>
               <h2 className="sub__cards-title">{productType.title}</h2>
               <div className="sub__cards-items">
                 {productType.sub_card_imgs.map((item) => {

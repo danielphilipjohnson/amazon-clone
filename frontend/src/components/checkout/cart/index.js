@@ -3,17 +3,17 @@ import { Link } from "react-router-dom";
 import RemindLogin from "./remind-login";
 import YourItems from "./your-items";
 import Basket from "./basket";
+import IsAuthenticated from "../../../utils/isAuthenticated";
+
 import { useStateValue } from "../../../StateProvider";
 
 import "./cart.css";
 
-// refactor into more meaningfull components
-
 function Cart() {
-  let [{ basket, user }] = useStateValue();
+  let [{ basket }] = useStateValue();
 
   /* if a user has an email he is logged in */
-  if (user?.email) {
+  if (IsAuthenticated()) {
     /* if there is items in the basket display items */
     if (basket.length > 0) {
       return (

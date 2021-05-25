@@ -2,11 +2,12 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import SubTotal from "../shared/displaySubtotal";
 import PeopleWhoBought from "../../sitewide/people-who-bought";
+import IsAuthenticated from "../../../utils/isAuthenticated";
 
-function CheckoutSubtotal({ user, basket }) {
+function CheckoutSubtotal({ basket }) {
   const history = useHistory();
 
-  if (user?.email && basket.length > 0) {
+  if (IsAuthenticated() && basket.length > 0) {
     return (
       <>
         <div className="checkout__subtotal">

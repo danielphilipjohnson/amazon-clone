@@ -59,7 +59,7 @@ module.exports = {
 
     // payment intent validation
     if (paymentIntent) {
-      // need to check for duplicate purchases here
+      // need to check for duplicate purchases hereurl
       try {
         const paymentInfo = await stripe.paymentIntents.retrieve(
           paymentIntent.id

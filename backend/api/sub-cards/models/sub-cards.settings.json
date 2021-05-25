@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sub_cards",
+  "info": {
+    "name": "SubCards",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "sub_card_imgs": {
+      "collection": "sub-card-img"
+    }
+  }
+}

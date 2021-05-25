@@ -24,6 +24,7 @@ function Item({ id, title, image, rating, price, likes }) {
           <img
             className="product-description__primelogo-item"
             src={PrimeLogo}
+            alt="prime logo"
           />
           <span>FREE One-Day</span>
         </div>

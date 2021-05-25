@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Description from "./description";
 import Form from "./form";
-import ProductImage from "../../shared/product-image";
+
 import formatImagePathFromBackend from "../../../utils/formatImagePathFromBackend";
 import "./item.css";
 import { getProductsByID } from "../../../adapters/productAdapter/";
@@ -21,7 +21,7 @@ function Item({ id }) {
   };
   useEffect(() => {
     fetchProduct(id);
-  }, []);
+  }, [id]);
 
   if (product) {
     return (

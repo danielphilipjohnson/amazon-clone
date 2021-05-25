@@ -19,7 +19,7 @@ function Table() {
 
   useEffect(() => {
     setTableData(data);
-  }, [data]);
+  }, []);
 
   const TableRows = () => {
     return tableData.map((row) => {
