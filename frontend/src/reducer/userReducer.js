@@ -1,7 +1,6 @@
 function userReducer(state, action) {
   switch (action.type) {
     case "start update": {
-      console.log("start update called");
       return {
         ...state,
         token: null,
@@ -35,7 +34,6 @@ function userReducer(state, action) {
       };
     }
     case "fail update": {
-      console.log("fail update called");
       return {
         ...state,
         status: "rejected",

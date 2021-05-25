@@ -1,12 +1,15 @@
 import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import useUser from "../../hooks/useUser";
-import AltFooter from "../sitewide/alt-footer/index";
-import axios from "axios";
 
-import "./login.css";
+import axios from "axios";
+import isEmail from "validator/lib/isEmail";
+
+import AltFooter from "../sitewide/alt-footer/index";
+
 import AmazonLogo from "../../images/amazon-logo-black.png";
-import { Link, useHistory } from "react-router-dom";
+import "./login.css";
 
 function Login() {
   const [{ user, status, error }, userDispatch] = useUser();
@@ -23,18 +26,16 @@ function Login() {
 
   const onSubmit = (data) => {
     if (mode === "login") {
+      loginUser(userDispatch, user, data).catch(() => {});
+    }
+    if (mode === "register") {
+      registerUser(userDispatch, user, data).catch(() => {});
     }
     console.log(data);
   };
 
-  const [formState, setFormState] = React.useState({ password: "", ...user });
-
   const isPending = status === "pending";
   const isRejected = status === "rejected";
-
-  function handleChange(e) {
-    setFormState({ ...formState, [e.target.name]: e.target.value });
-  }
 
   async function registerUser(dispatch, user, updates) {
     //password contaminated // move to stored
@@ -96,17 +97,6 @@ function Login() {
     }
   }
 
-  function handleLoginSubmit(e) {
-    e.preventDefault();
-    loginUser(userDispatch, user, formState).catch(() => {});
-  }
-
-  function handleRegisterSubmit(e) {
-    e.preventDefault();
-    registerUser(userDispatch, user, formState).catch(() => {});
-  }
-  //npm install validator
-
   return (
     <div className="login">
       <Link to="/" className="header__link header__link-alt">
@@ -118,23 +108,21 @@ function Login() {
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <label htmlFor="email">E-mail</label>
-          {errors.email && errors.email.type === "required" && (
+          {errors.email && (
             <div className="alert" role="alert">
-              This is required
+              Please provide a valid email
             </div>
           )}
           <input
             id="email"
             aria-invalid={errors.email ? "true" : "false"}
-            {...register("email", { required: true, maxLength: 30 })}
-          />
-          {/* <input
-            id="email"
             name="email"
-            type="text"
-            value={formState.email}
-            onChange={handleChange}
-          /> */}
+            {...register("email", {
+              required: true,
+              validate: (input) => isEmail(input),
+            })}
+            style={{ borderColor: errors.email && "red" }}
+          />
 
           <label htmlFor="password">Password</label>
 
@@ -143,9 +131,19 @@ function Login() {
               This is required
             </div>
           )}
-
+          {errors.password && errors.password.type === "minLength" && (
+            <div className="alert" role="alert">
+              Must contain more than 5 characters
+            </div>
+          )}
+          {errors.password && errors.password.type === "maxLength" && (
+            <div className="alert" role="alert">
+              Must not contain more than 30 characters
+            </div>
+          )}
           <input
             id="password"
+            type="password"
             aria-invalid={errors.password ? "true" : "false"}
             {...register("password", {
               required: true,

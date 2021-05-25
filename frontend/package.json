@@ -20,7 +20,8 @@
     "react-flip-move": "^3.0.4",
     "react-hook-form": "^7.6.6",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3"
+    "react-scripts": "3.4.3",
+    "validator": "^13.6.0"
   },
   "scripts": {
     "start": "react-scripts start",
