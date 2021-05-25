@@ -9,7 +9,7 @@ import { useStateValue } from "../../StateProvider";
 import "./checkout.css";
 
 function Checkout() {
-  const [{ basket, user }] = useStateValue();
+  const [{ basket }] = useStateValue();
 
   return (
     <>
@@ -23,7 +23,7 @@ function Checkout() {
           <Cart />
         </div>
         <div className="checkout__right">
-          <Subtotal user={user} basket={basket} />
+          <Subtotal basket={basket} />
         </div>
       </div>
       <ProductList />
