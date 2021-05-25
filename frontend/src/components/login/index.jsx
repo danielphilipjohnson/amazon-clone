@@ -6,7 +6,6 @@ import axios from "axios";
 import "./login.css";
 import AmazonLogo from "../../images/amazon-logo-black.png";
 import { Link, useHistory } from "react-router-dom";
-import { auth } from "../../adapters/firebase";
 
 function Login() {
   const [{ user, status, error }, userDispatch] = useUser();

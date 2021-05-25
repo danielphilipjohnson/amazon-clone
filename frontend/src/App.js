@@ -10,6 +10,7 @@ import ProductList from "./components/shared/product-list";
 import SectionNav from "./components/shared/section-nav/";
 
 import Register from "./auth/register";
+
 /* Routes */
 import Orders from "./routes/orders";
 import Login from "./routes/login";
@@ -18,9 +19,6 @@ import Payment from "./routes/payment";
 import Home from "./routes/home";
 import Product from "./routes/product";
 import Products from "./routes/products";
-import { auth } from "./adapters/firebase";
-
-import useUser from "./hooks/useUser";
 
 import { useStateValue } from "./StateProvider";
 import { loadStripe } from "@stripe/stripe-js";

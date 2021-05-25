@@ -9,13 +9,12 @@ import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import { useStateValue } from "../../../StateProvider";
 
 import useUser from "../../../hooks/useUser";
-import { auth } from "../../../adapters/firebase";
 
 import AmazonLogo from "../../../images/amazon-logo.png";
 
 function Header() {
   let history = useHistory();
-  const [{ user, token, status, error }, userDispatch] = useUser();
+  const [{ user, token }, userDispatch] = useUser();
 
   function isAuthenticated() {
     if (token) {
@@ -29,7 +28,6 @@ function Header() {
   const handleLogout = () => {
     if (token) {
       userDispatch({ type: "remove token" });
-      auth.signOut();
     }
   };
 
