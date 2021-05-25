@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import useUser from "../../hooks/useUser";
 import AltFooter from "../sitewide/alt-footer/index";
 
 import "./login.css";
@@ -7,33 +8,44 @@ import { Link, useHistory } from "react-router-dom";
 import { auth } from "../../adapters/firebase";
 
 function Login() {
-  const history = useHistory();
-  const [email, setEmail] = useState("");
+  const [{ user }] = useUser();
+  console.log(user);
+  const [formState, setFormState] = React.useState(user);
   const [password, setPassword] = useState("");
+
+  function handleChange(e) {
+    setFormState({ ...formState, [e.target.name]: e.target.value });
+  }
+
+  function handlePasswordChange(e) {
+    setPassword(e.target.value);
+  }
+
+  const history = useHistory();
 
   const signIn = (e) => {
     e.preventDefault();
-    auth
-      .signInWithEmailAndPassword(email, password)
-      .then((auth) => {
-        history.push("/");
-      })
-      .catch((error) => alert(error.message));
+    // auth
+    //   .signInWithEmailAndPassword(email, password)
+    //   .then((auth) => {
+    //     history.push("/");
+    //   })
+    //   .catch((error) => alert(error.message));
     //some fancy firebase login
   };
 
   const register = (e) => {
     e.preventDefault();
-    auth
-      .createUserWithEmailAndPassword(email, password)
-      .then((auth) => {
-        // it successfully created a new user with email and password
-        if (auth) {
-          history.push("/");
-        }
-      })
-      .catch((error) => alert(error.message));
-    // do some fancy firebase register
+    // auth
+    //   .createUserWithEmailAndPassword(email, password)
+    //   .then((auth) => {
+    //     // it successfully created a new user with email and password
+    //     if (auth) {
+    //       history.push("/");
+    //     }
+    //   })
+    //   .catch((error) => alert(error.message));
+    // // do some fancy firebase register
   };
 
   return (
@@ -48,16 +60,20 @@ function Login() {
         <form>
           <h5>E-mail</h5>
           <input
+            id="email"
+            name="email"
             type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={formState.email}
+            onChange={handleChange}
           />
 
           <h5>Password</h5>
           <input
+            id="password"
+            name="password"
             type="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={handlePasswordChange}
           />
 
           <button

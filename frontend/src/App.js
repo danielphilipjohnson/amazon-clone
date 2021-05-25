@@ -20,6 +20,8 @@ import Product from "./routes/product";
 import Products from "./routes/products";
 import { auth } from "./adapters/firebase";
 
+import useUser from "./hooks/useUser";
+
 import { useStateValue } from "./StateProvider";
 import { loadStripe } from "@stripe/stripe-js";
 
@@ -31,25 +33,25 @@ const promise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
 function App() {
   const [{ alert }, dispatch] = useStateValue();
   // let { slug } = useParams();
-  useEffect(() => {
-    // run once when the app component loads
+  // useEffect(() => {
+  //   // run once when the app component loads
 
-    auth.onAuthStateChanged((authUser) => {
-      if (authUser) {
-        // user just logged in / the user was logged in
-        dispatch({
-          type: "SET_USER",
-          user: authUser,
-        });
-      } else {
-        // the user is logged out
-        dispatch({
-          type: "SET_USER",
-          user: null,
-        });
-      }
-    });
-  }, []);
+  //   auth.onAuthStateChanged((authUser) => {
+  //     if (authUser) {
+  //       // user just logged in / the user was logged in
+  //       dispatch({
+  //         type: "SET_USER",
+  //         user: authUser,
+  //       });
+  //     } else {
+  //       // the user is logged out
+  //       dispatch({
+  //         type: "SET_USER",
+  //         user: null,
+  //       });
+  //     }
+  //   });
+  // }, []);
 
   return (
     <Router>

@@ -1,4 +1,4 @@
-import React from "'react";
+import * as React from "react";
 import { useAuth } from "./auth-context";
 import userReducer from "../reducer/userReducer";
 
@@ -19,4 +19,4 @@ function UserProvider({ children }) {
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 }
 
-export default UserProvider;
+export { UserContext, UserProvider };

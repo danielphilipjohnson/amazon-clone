@@ -44,14 +44,14 @@ function Register() {
     <form>
       <input
         type="text"
-        onChange={(e) => setUsername(e.target.value)}
+        onChange={handleRegister}
         value={username}
         placeholder="Username"
       />
       <br />
       <input
         type="email"
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={handleRegister}
         value={email}
         placeholder="Email"
       />

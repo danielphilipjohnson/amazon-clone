@@ -1,7 +1,7 @@
-import React from "'react";
+import React from "react";
 
 const AuthContext = React.createContext({
-  user: { identifier: "", token: "", name: "" },
+  user: { email: "", token: "", name: "" },
 });
 AuthContext.displayName = "AuthContext";
 const AuthProvider = ({ user, ...props }) => (
