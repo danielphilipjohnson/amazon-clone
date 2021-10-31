@@ -9,7 +9,7 @@ import { useStateValue } from "../../StateProvider";
 import "./checkout.css";
 
 function Checkout() {
-  const [{ basket, user }] = useStateValue();
+  const [{ basket }] = useStateValue();
 
   return (
     <>
@@ -18,11 +18,12 @@ function Checkout() {
           <img
             className="checkout__ad"
             src="https://images-na.ssl-images-amazon.com/images/G/02/UK_CCMP/TM/OCC_Amazon1._CB423493668_.jpg"
+            alt="checkout background"
           />
           <Cart />
         </div>
         <div className="checkout__right">
-          <Subtotal user={user} basket={basket} />
+          <Subtotal basket={basket} />
         </div>
       </div>
       <ProductList />

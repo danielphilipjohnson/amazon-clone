@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sub_card_imgs",
+  "info": {
+    "name": "subCardImg",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "title": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    }
+  }
+}

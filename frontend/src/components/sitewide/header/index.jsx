@@ -1,36 +1,32 @@
 import React, { useState } from "react";
 import "./header.css";
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useParams,
-  useLocation,
-  useHistory,
-} from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import RoomIcon from "@material-ui/icons/Room";
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
-import { useStateValue } from "../../../StateProvider";
 
-import { auth } from "../../../adapters/firebase";
+import { useStateValue } from "../../../StateProvider";
+import IsAuthenticated from "../../../utils/isAuthenticated";
+
+import useUser from "../../../hooks/useUser";
 
 import AmazonLogo from "../../../images/amazon-logo.png";
 
 function Header() {
   let history = useHistory();
+  const [{ user, token }, userDispatch] = useUser();
 
-  const [{ basket, user }, dispatch] = useStateValue();
+  const [{ basket }] = useStateValue();
   const [searchQuery, setSearchQuery] = useState("");
-  // add category i have to it
-  const handleAuthenticaton = () => {
-    if (user) {
-      auth.signOut();
+
+  const handleLogout = () => {
+    if (token) {
+      userDispatch({ type: "remove token" });
     }
   };
+
   const onSearchClick = (e) => {
     const formSearch = `/search?category=${searchQuery}`;
     history.push(formSearch);
@@ -42,8 +38,12 @@ function Header() {
   return (
     <div className="header">
       <div className="nav-left">
-        <Link to="/" className="header__link">
-          <img className="header__logo" src={AmazonLogo} />
+        <Link to={"/"} className="header__link">
+          <img
+            className="header__logo"
+            src={AmazonLogo}
+            alt="fake amazon clone logo"
+          />
           <span>.co.uk</span>
         </Link>
 
@@ -93,27 +93,26 @@ function Header() {
         <div className="header__option hide-mobile show-desktop">
           <span className="flag-icon flag-icon-gb"></span>
         </div>
-        <Link to={!user && "/login"}>
-          <div className="header__option">
-            <span
-              onClick={handleAuthenticaton}
-              className="header__optionLineOne"
-            >
-              Hello {user ? user.email : "Sign in"}
-            </span>
-            <span className="header__optionLineTwo">
-              {user ? "Sign Out" : "Sign In"}
-            </span>
-          </div>
-        </Link>
-
+        {IsAuthenticated() && (
+          <button onClick={handleLogout} className="header__option no-button">
+            <span className="header__optionLineOne">Hello {user.email}</span>
+            <span className="header__optionLineTwo">{"Sign Out"}</span>
+          </button>
+        )}
+        {!IsAuthenticated() && (
+          <Link to={"/login"}>
+            <div className="header__option">
+              <span className="header__optionLineOne">Hello {"Sign in"}</span>
+              <span className="header__optionLineTwo">{"Sign In"}</span>
+            </div>
+          </Link>
+        )}
         <Link to="/orders">
           <div className="header__option">
             <span className="header__optionLineOne">Returns</span>
             <span className="header__optionLineTwo">& Orders</span>
           </div>
         </Link>
-
         <Link to="/checkout">
           <div className="header__optionBasket">
             <ShoppingBasketIcon />

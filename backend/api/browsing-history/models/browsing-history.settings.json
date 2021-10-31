@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "browsing_histories",
+  "info": {
+    "name": "BrowsingHistory",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "products": {
+      "collection": "products"
+    },
+    "users_permissions_user": {
+      "plugin": "users-permissions",
+      "model": "user"
+    }
+  }
+}

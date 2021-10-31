@@ -11,9 +11,6 @@
     "draftAndPublish": true
   },
   "attributes": {
-    "products": {
-      "collection": "products"
-    },
     "order_total": {
       "type": "decimal"
     },
@@ -23,9 +20,15 @@
     "order_identifier": {
       "type": "uid"
     },
-    "users": {
+    "user": {
       "plugin": "users-permissions",
       "model": "user"
+    },
+    "address": {
+      "model": "address"
+    },
+    "cart_items": {
+      "collection": "cart-item"
     }
   }
 }

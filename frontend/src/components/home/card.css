@@ -13,6 +13,7 @@
 .card {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   background: #fff;
   padding: 1rem 1.5rem 0 1.5rem;
   width: 80%;
@@ -31,8 +32,8 @@
 .card__item__image {
   margin: 0 auto;
   object-fit: cover;
-  height: 240px;
-  width: 125px;
+  /* height: 240px;
+  width: 125px; */
 }
 
 .card__link {
@@ -50,7 +51,6 @@
 .card__description {
   padding: 1rem 0;
 }
-
 
 @media only screen and (min-width: 768px) {
   .card-grid {

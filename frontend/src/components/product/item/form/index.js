@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useStateValue } from "../../../../StateProvider";
 import PrimeLogo from "../../../../images/prime-logo.png";
 import baseUrl from "../../../../adapters";
@@ -6,17 +6,12 @@ import "./form.css";
 
 // create a function that determines time bewteen now and 24 hours
 function Form({ product, stock }) {
-  const {
-    title,
-    image,
+  const { title, image, price, rating } = product;
+  const [{}, dispatch] = useStateValue();
 
-    current_price: price,
-    rating,
-  } = product;
-  const [{ basket }, dispatch] = useStateValue();
+  const [itemQuantity, setItemQuantity] = useState(1);
 
   const addToBasket = () => {
-    console.log(product);
     dispatch({
       type: "ADD_TO_BASKET",
       item: {
@@ -25,15 +20,23 @@ function Form({ product, stock }) {
         image: baseUrl + image.url,
         price: price,
         rating: rating,
+        quantity: +itemQuantity,
       },
     });
+  };
+  const onQuantityChange = (event) => {
+    setItemQuantity(event.target.value);
   };
 
   return (
     <div className="product-form">
       <h3 className="color-total">{price}</h3>
       <div className="product-description__primelogo">
-        <img className="product-description__primelogo-item" src={PrimeLogo} />
+        <img
+          className="product-description__primelogo-item"
+          src={PrimeLogo}
+          alt="logo"
+        />
         <span>FREE One-Day</span>
       </div>
       <div className="product-form__delivery">
@@ -48,10 +51,15 @@ function Form({ product, stock }) {
 
       <div className="product-form__quantity">
         <label htmlFor="quantity">Quantity: </label>
-        <select name="quantity" id="quantity">
+
+        <select name="quantity" id="quantity" onChange={onQuantityChange}>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
         </select>
       </div>
 

@@ -116,10 +116,13 @@
   font-size: 0.95rem;
   font-weight: bold;
 }
+.no-button {
+  border: none;
+  background: none;
+}
 
 .header__nav {
   display: flex;
-  /* justify-content: space-evenly; */
   justify-content: space-between;
 }
 
@@ -134,7 +137,9 @@
   margin-right: 10px;
   color: #fff;
 }
-
+.header__option:hover {
+  cursor: pointer;
+}
 .header__basketCount {
   margin-left: 10px;
   margin-right: 10px;

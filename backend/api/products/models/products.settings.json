@@ -60,6 +60,15 @@
     "questions": {
       "collection": "questions",
       "via": "product"
+    },
+    "about": {
+      "type": "text"
+    },
+    "details": {
+      "type": "json"
+    },
+    "stock": {
+      "type": "integer"
     }
   }
 }

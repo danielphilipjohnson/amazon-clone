@@ -1,27 +1,60 @@
 import React, { useEffect, useState } from "react";
+import {
+  useLocation,
+  // useParams,
+} from "react-router-dom";
 import Product from "./product";
 import LoadingProducts from "../../shared/loading-product";
-import data from "../../../adapters/productAdapter";
+import {
+  getProducts,
+  getProductsByCategory,
+} from "../../../adapters/productAdapter";
 
-import { useLocation } from "react-router-dom";
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 
 function ListProducts() {
   const [product, setProduct] = useState(null);
   const location = useLocation();
+  // let { category } = useParams();
+  // filter price range
 
-  const fetchMatchedProducts = async () => {
-    // use this to get the correct products
-    // examples
-    //http://localhost:3000/search?category=technology
-    //http://localhost:1337/products?category=Electronics
+  //products?price_gte=20
+
+  let query = useQuery();
+
+  const getCategory = () => {
+    console.log(query);
+    return query.get("category");
+  };
+
+  const fetchMatchedProducts = () => {
+    if (getCategory() === null || getCategory() === "") {
+      // display all products
+      getProducts()
+        .then((data) => {
+          setProduct(data);
+        })
+        .catch((error) => {
+          // dispatch alert
+        });
+    } else {
+      // display by category
+      getProductsByCategory(getCategory())
+        .then((data) => {
+          console.log(data);
+          setProduct(data);
+        })
+        .catch((error) => {});
+    }
+
     console.log(location.search);
-    await setProduct(data);
-    // setProduct(null);
   };
 
   useEffect(() => {
     fetchMatchedProducts();
-  }, data);
+  }, [fetchMatchedProducts]);
 
   if (product) {
     return product.map((item) => {

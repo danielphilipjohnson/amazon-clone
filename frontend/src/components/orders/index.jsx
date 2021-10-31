@@ -1,27 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-// import Order from "./order";
-import ProductImage from "../shared/product-image";
 
-// import { db } from "../../adapters/firebase";
-import data from "../../adapters/orderAdapter";
+import formatImagePathFromBackend from "../../utils/formatImagePathFromBackend";
 
-import { useStateValue } from "../../StateProvider";
+import { getOrders } from "../../adapters/orderAdapter";
 
 import "./orders.css";
 
 function Orders() {
-  const [{ user }] = useStateValue();
+  // const [{ user }] = useStateValue();
   const [orders, setOrders] = useState([]);
 
   const fetchOrders = () => {
-    setOrders(data);
+    getOrders().then((data) => {
+      setOrders(data);
+    });
   };
 
   const GenerateOrder = () => {
     return orders.map((item) => {
       return (
-        <div className="order">
+        <div className="order" key={item.id}>
           <div className="order__heading flex between text-secondary size-base">
             <div className="order__heading-left">
               <div className="flex between order-responsive">
@@ -35,7 +34,7 @@ function Orders() {
                 </div>
                 <div className="grid-space">
                   <p className="order__heading-title">Dispatch to</p>
-                  <p className="alink-normal">{item.users.username}</p>
+                  <p className="alink-normal">{item.user.username}</p>
                 </div>
               </div>
             </div>
@@ -56,12 +55,15 @@ function Orders() {
             <div className="order__content flex between left">
               <div className="x">
                 <h2>Arriving tomorrow </h2>
-                {item.products.map((product) => {
+                {item.cart_items.map((product) => {
                   return (
-                    <div className="flex between order-responsive">
-                      <ProductImage
-                        url={product.image.url}
-                        classname="order__content-image"
+                    <div
+                      className="flex between order-responsive"
+                      key={product.id}
+                    >
+                      <img
+                        src={formatImagePathFromBackend(product.image)}
+                        className="order__content-image"
                         alt="sub__card"
                       />
 
@@ -119,25 +121,6 @@ function Orders() {
     fetchOrders();
   }, []);
 
-  // useEffect(() => {
-  //   if (user) {
-  //     db.collection("users")
-  //       .doc(user?.uid)
-  //       .collection("orders")
-  //       .orderBy("created", "desc")
-  //       .onSnapshot((snapshot) =>
-  //         setOrders(
-  //           snapshot.docs.map((doc) => ({
-  //             id: doc.id,
-  //             data: doc.data(),
-  //           }))
-  //         )
-  //       );
-  //   } else {
-  //     setOrders([]);
-  //   }
-  // }, [user]);
-
   return (
     <div className="order__container">
       <div className="container">
@@ -186,12 +169,6 @@ function Orders() {
         </div>
 
         <GenerateOrder />
-
-        {/* <div className="orders__order">
-          {orders?.map((order) => (
-            <Order order={order} />
-          ))}
-        </div> */}
       </div>
     </div>
   );

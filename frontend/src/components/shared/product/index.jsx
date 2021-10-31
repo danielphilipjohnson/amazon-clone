@@ -1,12 +1,19 @@
 import React from "react";
 import FadeIn from "react-fade-in";
-import PrimeLogo from "../../../images/prime-logo.png";
+
 import { Link } from "react-router-dom";
+
+import QuantitySelector from "../quantitySelector";
+
+import PrimeLogo from "../../../images/prime-logo.png";
 import "./product.css";
 import { useStateValue } from "../../../StateProvider";
 
-function CheckoutProduct({ id, image, title, price, rating, hideButton }, ref) {
-  const [{ _ }, dispatch] = useStateValue();
+function CheckoutProduct(
+  { id, image, title, price, rating, hideButton, quantity },
+  ref
+) {
+  const [{}, dispatch] = useStateValue();
 
   const removeFromBasket = () => {
     // remove the item from the basket
@@ -51,6 +58,10 @@ function CheckoutProduct({ id, image, title, price, rating, hideButton }, ref) {
           </div>
           {!hideButton && (
             <>
+              <span className="seperator">| </span>
+
+              <QuantitySelector quantity={quantity} itemId={id} />
+
               <span className="seperator">| </span>
               <button
                 onClick={() => removeFromBasket()}

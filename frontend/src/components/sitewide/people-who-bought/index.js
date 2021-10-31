@@ -27,7 +27,9 @@ function PeopleWhoBought() {
             />
             <div className="suggested__items-description">
               <h3 className="alink-normal">Item Name</h3>
-              <span>🌟 🌟 🌟 🌟 🌟</span>
+              <span role="img" aria-label="5 star rating">
+                🌟 🌟 🌟 🌟 🌟
+              </span>
               <p className="color-total">$30.00</p>
               <button className="btn-amazon btn-amazon-active">
                 Add to basket
@@ -42,7 +44,9 @@ function PeopleWhoBought() {
             />
             <div className="suggested__items-description">
               <h3 className="alink-normal">Item Name</h3>
-              <span>🌟 🌟 🌟 🌟 🌟</span>
+              <span role="img" aria-label="5 star rating">
+                🌟 🌟 🌟 🌟 🌟
+              </span>
               <p className="color-total">$30.00</p>
               <button className="btn-amazon btn-amazon-active">
                 Add to basket
@@ -57,7 +61,9 @@ function PeopleWhoBought() {
             />
             <div className="suggested__items-description">
               <h3 className="alink-normal">Item Name</h3>
-              <span>🌟 🌟 🌟 🌟 🌟</span>
+              <span role="img" aria-label="5 star rating">
+                🌟 🌟 🌟 🌟 🌟
+              </span>
               <p className="color-total">$30.00</p>
               <button className="btn-amazon btn-amazon-active">
                 Add to basket
@@ -72,7 +78,9 @@ function PeopleWhoBought() {
             />
             <div className="suggested__items-description">
               <h3 className="alink-normal">Item Name</h3>
-              <span>🌟 🌟 🌟 🌟 🌟</span>
+              <span role="img" aria-label="5 star rating">
+                🌟 🌟 🌟 🌟 🌟
+              </span>
               <p className="color-total">$30.00</p>
               <button className="btn-amazon btn-amazon-active">
                 Add to basket
@@ -87,7 +95,9 @@ function PeopleWhoBought() {
             />
             <div className="suggested__items-description">
               <h3 className="alink-normal">Item Name</h3>
-              <span>🌟 🌟 🌟 🌟 🌟</span>
+              <span role="img" aria-label="5 star rating">
+                🌟 🌟 🌟 🌟 🌟
+              </span>
               <p className="color-total">$30.00</p>
               <button className="btn-amazon btn-amazon-active">
                 Add to basket
@@ -102,7 +112,9 @@ function PeopleWhoBought() {
             />
             <div className="suggested__items-description">
               <h3 className="alink-normal">Item Name</h3>
-              <span>🌟 🌟 🌟 🌟 🌟</span>
+              <span role="img" aria-label="5 star rating">
+                🌟 🌟 🌟 🌟 🌟
+              </span>
               <p className="color-total">$30.00</p>
               <button className="btn-amazon btn-amazon-active">
                 Add to basket

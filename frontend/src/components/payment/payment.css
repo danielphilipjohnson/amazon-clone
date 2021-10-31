@@ -198,10 +198,30 @@
 }
 .buynow__btn {
   flex: 0.15 1;
-  padding: 1rem;
+  /* padding: 1rem; */
+}
+
+.buynow__btn:disabled {
+  background: #dddddd;
+  color: #dddddd;
+  /* display: none; */
 }
 
 .content {
   flex: 1;
   font-size: 0.85rem;
+}
+
+.processing-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+}
+.processing-card img {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
 }

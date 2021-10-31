@@ -6,12 +6,15 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import reducer, { initialState } from "./reducer/reducer";
 import { StateProvider } from "./StateProvider";
-
+import { UserProvider } from "./context/user-context";
+// use context for login
 ReactDOM.render(
   <React.StrictMode>
-    <StateProvider initialState={initialState} reducer={reducer}>
-      <App />
-    </StateProvider>
+    <UserProvider>
+      <StateProvider initialState={initialState} reducer={reducer}>
+        <App />
+      </StateProvider>
+    </UserProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
